@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -123,7 +124,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                                 <ResponsiveContainer>
                                     <BarChart data={chartData}>
                                         <XAxis dataKey="name" stroke="#555" fontSize={12} tickLine={false} axisLine={false} />
-                                        <YAxis stroke="#555" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}`} />
+                                        <YAxis stroke="#555" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
                                         <Tooltip cursor={{fill: 'transparent'}} contentStyle={{backgroundColor: 'hsl(var(--background))', border: '1px solid hsl(var(--border))'}} />
                                         <Bar dataKey="Nível de Inflamação" radius={[4, 4, 0, 0]} />
                                     </BarChart>
