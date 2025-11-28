@@ -63,11 +63,27 @@ const faqs = [
 ];
 
 const bonusContent = [
-    { title: "O Guia \"Anti-Falso Saudável\"", id: 'bonus1' },
-    { title: "O Antídoto de Emergência", id: 'bonus2' },
-    { title: "Sobremesas que \"Enganam\" o Cérebro", id: 'bonus3' },
-    { title: "Manual da Economia no Mercado", id: 'bonus4' },
-]
+    { 
+      title: 'O Guia "Anti-Falso Saudável"', 
+      id: 'bonus1',
+      description: 'Nunca mais seja enganada por rótulos bonitos.'
+    },
+    { 
+      title: 'O Antídoto de Emergência', 
+      id: 'bonus2',
+      description: 'Uma sequência de 3 bebidas naturais para limpar os receptores de açúcar.'
+    },
+    { 
+      title: 'Sobremesas que "Enganam" o Cérebro', 
+      id: 'bonus3',
+      description: 'Sobremesas que dão o prazer que seu cérebro pede, mas sem disparar a insulina.'
+    },
+    { 
+      title: 'Manual da Economia no Mercado', 
+      id: 'bonus4',
+      description: 'Como substituir ingredientes caros por versões baratas que têm o mesmo efeito químico.'
+    },
+];
 
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
   const [showButton, setShowButton] = useState(false);
@@ -156,11 +172,14 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         </CardHeader>
                         <CardContent>
                             <p className="mb-4 text-foreground/80">Baseado nas suas respostas, estes são os materiais que mais vão te ajudar:</p>
-                            <ul className="space-y-3">
+                             <ul className="space-y-4">
                                 {bonusContent.map(bonus => (
-                                    <li key={bonus.id} className="flex items-center">
-                                        <CheckCircle className="h-5 w-5 text-primary mr-2 shrink-0"/>
-                                        <span className={`font-medium ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground font-bold' : 'text-muted-foreground'}`}>{bonus.title}</span>
+                                    <li key={bonus.id} className="flex items-start">
+                                        <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/>
+                                        <div>
+                                            <span className={`font-semibold ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground' : 'text-muted-foreground'}`}>{bonus.title}</span>
+                                            <p className={`text-sm ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground/80' : 'text-muted-foreground/80'}`}>{bonus.description}</p>
+                                        </div>
                                     </li>
                                 ))}
                             </ul>
