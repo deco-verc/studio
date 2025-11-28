@@ -19,7 +19,8 @@ export async function submitQuiz(answers: string[]) {
     };
 
     const encodedResults = encodeURIComponent(JSON.stringify(results));
-    redirect(`/resultado?data=${encodedResults}`);
+    // Redirect to the new analysis page instead of the results page
+    redirect(`/analise?data=${encodedResults}`);
   } catch (error) {
     console.error('Error processing quiz:', error);
     // In case of an error, redirect back to the quiz with an error flag
