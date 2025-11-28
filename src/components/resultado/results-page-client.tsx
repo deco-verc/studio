@@ -117,15 +117,69 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
         {/* Header Section */}
-        <section className="bg-primary/10 py-8 md:py-10">
+        <section className="bg-primary/10 py-6 md:py-8">
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                    O seu metabolismo foi Bloqueado pela Química das Indústrias.
+                    O seu <span className="font-bold">metabolismo</span> foi <span className="text-destructive">Bloqueado pela Química das Indústrias.</span>
                 </p>
             </div>
         </section>
         
+        {/* Chart Section */}
+        <section className="py-8 md:py-12 bg-primary/5">
+          <div className="container mx-auto px-4 max-w-4xl">
+              <Card className="shadow-lg border-none bg-card">
+                  <CardHeader>
+                      <CardTitle className="font-headline text-2xl text-center">Seu Metabolismo: Antes e Depois</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                       <div className="w-full h-[300px]">
+                          <ResponsiveContainer>
+                              <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                                  <XAxis 
+                                      dataKey="name" 
+                                      stroke="hsl(var(--muted-foreground))" 
+                                      fontSize={12} 
+                                      tickLine={false} 
+                                      axisLine={false} 
+                                      interval={0}
+                                  />
+                                  <YAxis 
+                                      stroke="hsl(var(--muted-foreground))" 
+                                      fontSize={12} 
+                                      tickLine={false} 
+                                      axisLine={false} 
+                                      tickFormatter={(value) => `${Math.round(value)}%`} 
+                                  />
+                                  <Tooltip 
+                                      cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
+                                      contentStyle={{
+                                          backgroundColor: 'hsl(var(--background))', 
+                                          border: '1px solid hsl(var(--border))',
+                                          borderRadius: 'var(--radius)'
+                                      }}
+                                      labelFormatter={(label) => label ? `Dia ${label}` : ''}
+                                      formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
+                                  />
+                                  <Legend wrapperStyle={{fontSize: "14px"}}/>
+                                  <Line 
+                                      type="monotone" 
+                                      dataKey="Seu Nível de Inflamação" 
+                                      stroke="hsl(var(--primary))" 
+                                      strokeWidth={3}
+                                      dot={false}
+                                      activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
+                                  />
+                              </LineChart>
+                          </ResponsiveContainer>
+                      </div>
+                  </CardContent>
+              </Card>
+          </div>
+        </section>
+
         {/* Main Content Section */}
         <section className="py-8 md:py-12">
             <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -142,57 +196,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <p>Nos próximos minutos eu vou te dar o segredo das mulheres que conseguem manter o corpo magro e já vou te adiantando que  não é a genética. É que elas, conscientemente ou não, alimentam o corpo com a dosagem exata de macronutrientes que são absorvidos pelo intestino e aceleram a queima de gordura   E a boa notícia é que você não precisa ser chef de cozinha, nem rica, para fazer isso. Você só precisa do Manual de Instruções que eu vou te apresentar.</p>
                         </CardContent>
                     </Card>
-
-                    {/* Chart */}
-                    <Card className="shadow-lg border-none bg-card">
-                        <CardHeader>
-                            <CardTitle className="font-headline text-2xl">Seu Metabolismo: Antes e Depois</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                             <div className="w-full h-[300px]">
-                                <ResponsiveContainer>
-                                    <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                                        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                                        <XAxis 
-                                            dataKey="name" 
-                                            stroke="hsl(var(--muted-foreground))" 
-                                            fontSize={12} 
-                                            tickLine={false} 
-                                            axisLine={false} 
-                                            interval={0}
-                                        />
-                                        <YAxis 
-                                            stroke="hsl(var(--muted-foreground))" 
-                                            fontSize={12} 
-                                            tickLine={false} 
-                                            axisLine={false} 
-                                            tickFormatter={(value) => `${Math.round(value)}%`} 
-                                        />
-                                        <Tooltip 
-                                            cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
-                                            contentStyle={{
-                                                backgroundColor: 'hsl(var(--background))', 
-                                                border: '1px solid hsl(var(--border))',
-                                                borderRadius: 'var(--radius)'
-                                            }}
-                                            labelFormatter={(label) => label ? `Dia ${label}` : ''}
-                                            formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
-                                        />
-                                        <Legend wrapperStyle={{fontSize: "14px"}}/>
-                                        <Line 
-                                            type="monotone" 
-                                            dataKey="Seu Nível de Inflamação" 
-                                            stroke="hsl(var(--primary))" 
-                                            strokeWidth={3}
-                                            dot={false}
-                                            activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
-                                        />
-                                    </LineChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </CardContent>
-                    </Card>
-
+                    
                      {/* Offer */}
                     <Card className="shadow-lg bg-primary/5 border-primary">
                         <CardHeader>
@@ -355,3 +359,5 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
+
+    
