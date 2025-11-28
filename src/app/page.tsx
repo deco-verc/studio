@@ -23,14 +23,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
               <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-headline">
+                <div className="space-y-4">
+                  <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl/none font-headline">
                     Emagreça até 3kg em 7 dias  com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -41,8 +41,8 @@ export default function Home() {
                   {features.map((feature, index) => (
                     <li key={index}>
                       <div className="flex items-start">
-                        <CheckCircle className="mt-1 h-5 w-5 text-primary" />
-                        <span className="ml-2 text-muted-foreground">{feature}</span>
+                        <CheckCircle className="mt-1 h-5 w-5 text-primary shrink-0" />
+                        <span className="ml-3 text-muted-foreground">{feature}</span>
                       </div>
                     </li>
                   ))}
@@ -50,22 +50,25 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center justify-center space-y-6">
                 {heroImage && (
-                  <Image
-                    src={heroImage.imageUrl}
-                    width="550"
-                    height="550"
-                    alt={heroImage.description}
-                    data-ai-hint={heroImage.imageHint}
-                    className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
-                  />
+                  <div className="w-full max-w-[400px] md:max-w-[550px] mx-auto">
+                    <Image
+                      src={heroImage.imageUrl}
+                      width="550"
+                      height="550"
+                      alt={heroImage.description}
+                      data-ai-hint={heroImage.imageHint}
+                      className="aspect-square overflow-hidden rounded-xl object-cover"
+                      priority
+                    />
+                  </div>
                 )}
-                <div className="flex flex-col gap-2 text-center w-full">
-                  <Link href="/quiz" className="w-full">
-                    <Button size="lg" className="w-full max-w-md mx-auto bg-primary hover:bg-primary/90 text-primary-foreground text-2xl font-bold py-8 rounded-lg shadow-lg">
+                <div className="flex flex-col gap-2 text-center w-full max-w-md mx-auto">
+                  <Link href="/quiz">
+                    <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white text-2xl font-bold py-8 rounded-lg shadow-lg">
                       FAZER TESTE GRATUITO
                     </Button>
                   </Link>
-                  <p className="text-xs text-muted-foreground mt-2">
+                  <p className="text-xs text-muted-foreground mt-2 px-4">
                     Esse teste é feito apenas uma vez por pessoa. Responda o teste para ver se você está apta a acessar um conteúdo exclusivo.
                   </p>
                 </div>
@@ -79,7 +82,7 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">+10516 Corpos Transformados</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Veja o que aconteceu com mulheres que estavam na mesma situação que você.</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Veja o que aconteceu com mulheres que estavam na mesma situação que você.</h2>
               </div>
             </div>
             <div className="pb-8">
@@ -94,7 +97,7 @@ export default function Home() {
                   {socialProofs.map((proof) => (
                     <CarouselItem key={proof.id} className="basis-1/2 sm:basis-1/3 md:basis-1/4">
                       <div className="p-1">
-                        <Card>
+                        <Card className="overflow-hidden">
                           <CardContent className="p-0">
                             <Image
                               src={proof.imageUrl}
@@ -102,7 +105,7 @@ export default function Home() {
                               height="500"
                               alt={proof.description}
                               data-ai-hint={proof.imageHint}
-                              className="mx-auto aspect-[1/2] w-full overflow-hidden rounded-lg object-cover"
+                              className="aspect-[1/2] w-full object-cover"
                             />
                           </CardContent>
                         </Card>

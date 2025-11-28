@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel';
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
@@ -133,10 +133,10 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 </div>
                 
                 {/* Sidebar with recommendations */}
-                <aside className="space-y-8">
-                     <Card className="shadow-lg bg-accent/10 border-accent sticky top-8">
+                <aside className="space-y-8 lg:sticky top-8">
+                     <Card className="shadow-lg bg-accent/10 border-accent">
                         <CardHeader>
-                            <CardTitle className="font-headline text-2xl text-accent-foreground flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
+                            <CardTitle className="font-headline text-xl md:text-2xl text-accent-foreground flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="mb-4 text-foreground/80">Baseado nas suas respostas, estes são os materiais que mais vão te ajudar:</p>
@@ -162,7 +162,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 <p className="text-lg max-w-3xl mx-auto">Eu decidi remover a única barreira que restava entre você e o corpo que você merece: o dinheiro. Mas atenção: essa é uma Condição de Exceção. Assim que o lote de Black Friday encerrar, o valor voltará ao normal sem aviso prévio.</p>
                 <div className="h-20 flex items-center justify-center">
                     {showButton ? (
-                        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 animate-pulse text-xl py-8 px-12">
+                        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 animate-pulse text-xl py-8 px-8 md:px-12">
                             QUERO ACESSAR COM DESCONTO AGORA
                         </Button>
                     ) : (
@@ -186,10 +186,10 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                      <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
                      <p className="text-lg max-w-3xl mx-auto text-muted-foreground">Nossa inteligência artificial identificou um padrão. As suas respostas no quiz foram 97% parecidas com as delas. Elas enfrentavam as mesmas dificuldades que você enfrenta hoje, mas veja o que aconteceu depois que elas se reprogramaram seus cérebros.</p>
                 </div>
-                <Carousel className="w-full max-w-4xl mx-auto">
+                <Carousel className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto">
                     <CarouselContent>
                         {carouselImages.map((img, index) => (
-                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                        <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
                             <div className="p-1">
                             <Card>
                                 <CardContent className="flex aspect-square items-center justify-center p-0 rounded-lg overflow-hidden">
@@ -200,8 +200,8 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="hidden sm:flex" />
+                    <CarouselNext className="hidden sm:flex" />
                 </Carousel>
             </div>
         </section>

@@ -32,7 +32,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const { toast } = useToast();
 
   const totalQuestions = quizQuestions.length;
-  const progress = useMemo(() => smartProgress(currentStep, totalQuestions), [currentStep, totalQuestions]);
+  const progress = useMemo(() => smartProgress(currentStep + 1, totalQuestions), [currentStep, totalQuestions]);
   const currentQuestion = quizQuestions[currentStep];
 
   const handleValueChange = (value: string) => {
@@ -58,10 +58,11 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                 }
             });
         }
-    }, 200); // Short delay for UX
+    }, 300); // Short delay for UX
   };
   
   useEffect(() => {
+    // This effect is kept as a safeguard but primary submission logic is in handleValueChange
     if (isPending && currentStep === totalQuestions -1 && Object.keys(answers).length === totalQuestions) {
        const answerArray = Object.values(answers);
        submitQuiz(answerArray);
@@ -74,15 +75,15 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl">
         <CardHeader>
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <CardTitle className="text-3xl font-bold font-headline text-center text-foreground min-h-[9rem] flex items-center justify-center px-6">
+          <CardTitle className="text-2xl md:text-3xl font-bold font-headline text-center text-foreground min-h-[9rem] flex items-center justify-center px-6">
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-6 md:px-8 pb-8">
+        <CardContent className="px-4 sm:px-6 md:px-8 pb-8">
            {isPending ? (
              <div className="flex flex-col items-center justify-center space-y-4 h-64">
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
-                <p className="text-xl text-muted-foreground">Analisando suas respostas...</p>
+                <p className="text-lg md:text-xl text-muted-foreground">Analisando suas respostas...</p>
              </div>
            ) : (
             <RadioGroup
@@ -92,9 +93,9 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               className="space-y-4"
             >
               {currentQuestion.options.map((option, index) => (
-                <div key={index} className="flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-5 hover:border-primary hover:bg-primary/5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg">
+                <div key={index} className="flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-4 md:p-5 hover:border-primary hover:bg-primary/5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg">
                   <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5" />
-                  <Label htmlFor={`q${currentStep}-o${index}`} className="text-lg font-medium text-foreground/80 flex-1 cursor-pointer">
+                  <Label htmlFor={`q${currentStep}-o${index}`} className="text-base md:text-lg font-medium text-foreground/80 flex-1 cursor-pointer">
                     {option.label}
                   </Label>
                 </div>
