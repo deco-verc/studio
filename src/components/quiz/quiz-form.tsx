@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type QuizFormProps = {
   submitQuiz: (answers: string[]) => Promise<void>;
@@ -29,6 +30,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [isPending, startTransition] = useTransition();
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const { toast } = useToast();
 
   const totalQuestions = quizQuestions.length;
@@ -38,50 +40,49 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const handleValueChange = (value: string) => {
     const newAnswers = { ...answers, [currentStep]: value };
     setAnswers(newAnswers);
+    setIsAnimatingOut(true);
 
     setTimeout(() => {
         if (currentStep < totalQuestions - 1) {
             setCurrentStep(currentStep + 1);
+            setIsAnimatingOut(false);
         } else {
-            // Last question, submit the form
             startTransition(async () => {
                 const answerArray = Object.values(newAnswers);
                 if(answerArray.length === totalQuestions) {
                   await submitQuiz(answerArray);
                 } else {
-                  // This case should ideally not be hit with this new logic
-                  // but as a fallback
                   toast({
                       title: "Por favor, responda todas as perguntas.",
                       variant: "destructive",
                   });
+                  setIsAnimatingOut(false);
                 }
             });
         }
-    }, 300); // Short delay for UX
+    }, 350);
   };
   
-  useEffect(() => {
-    // This effect is kept as a safeguard but primary submission logic is in handleValueChange
-    if (isPending && currentStep === totalQuestions -1 && Object.keys(answers).length === totalQuestions) {
-       const answerArray = Object.values(answers);
-       submitQuiz(answerArray);
-    }
-  }, [isPending, answers, currentStep, totalQuestions, submitQuiz]);
-
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 overflow-hidden">
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl">
         <CardHeader>
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <CardTitle className="text-2xl md:text-3xl font-bold font-headline text-center text-foreground min-h-[9rem] flex items-center justify-center px-6">
-            {currentQuestion.question}
-          </CardTitle>
+          <div className="relative h-40 md:h-36 overflow-hidden">
+            <CardTitle 
+              key={currentStep}
+              className={cn(
+                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground flex items-center justify-center px-6 absolute w-full h-full transition-all duration-300 ease-in-out",
+                isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
+              )}
+            >
+              {currentQuestion.question}
+            </CardTitle>
+          </div>
         </CardHeader>
-        <CardContent className="px-4 sm:px-6 md:px-8 pb-8">
+        <CardContent className="px-4 sm:px-6 md:px-8 pb-8 min-h-[320px]">
            {isPending ? (
-             <div className="flex flex-col items-center justify-center space-y-4 h-64">
+             <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
                 <p className="text-lg md:text-xl text-muted-foreground">Analisando suas respostas...</p>
              </div>
@@ -93,8 +94,17 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               className="space-y-4"
             >
               {currentQuestion.options.map((option, index) => (
-                <div key={index} className="flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-4 md:p-5 hover:border-primary hover:bg-primary/5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg">
-                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5" />
+                <div 
+                  key={index}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                  className={cn(
+                    "flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
+                    "hover:border-primary hover:bg-primary/5 hover:shadow-md",
+                    "opacity-0 translate-y-4 animate-fade-in-up",
+                    isAnimatingOut ? 'opacity-0 translate-x-12' : ''
+                  )}
+                >
+                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5 flex-shrink-0" />
                   <Label htmlFor={`q${currentStep}-o${index}`} className="text-base md:text-lg font-medium text-foreground/80 flex-1 cursor-pointer">
                     {option.label}
                   </Label>
