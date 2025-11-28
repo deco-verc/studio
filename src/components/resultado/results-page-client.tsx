@@ -28,38 +28,38 @@ const chartData = [
 ];
 
 const faqs = [
-  {
-    q: "Eu não sei cozinhar / Tenho preguiça. Funciona pra mim?",
-    a: "Sim! O método foi criado para a mulher moderna. As receitas são de \"panela única\" ou preparo rápido (menos de 20 minutos). Se você sabe ferver água, você consegue seguir o protocolo."
-  },
-  {
-    q: "Os ingredientes são caros?",
-    a: "Não. Você não vai precisar de farinha de amêndoas do Himalaia. Usamos o que tem no açougue e na feira: ovos, carnes, legumes e frutas. Você vai, na verdade, economizar no mercado."
-  },
-  {
-    q: "Tenho mais de 50/60 anos e metabolismo lento. Adianta?",
-    a: "É exatamente para você. O protocolo não depende da velocidade do seu metabolismo, mas da qualidade química do alimento. Ele foi desenhado para desinflamar corpos que sofreram com anos de alimentação industrializada."
-  },
-  {
-    q: "E se eu tiver compulsão por doces?",
-    a: "O Antídoto foi feito para isso. As receitas de doces funcionais vão saciar a química do seu cérebro sem disparar a insulina, permitindo que você coma o que gosta sem travar o emagrecimento."
-  },
-  {
-    q: "Por que nunca ouvi falar disso antes?",
-    a: "Porque essa informação é financeiramente perigosa para a Indústria Alimentícia. Se você souber que pode \"destravar\" seu metabolismo usando ingredientes baratos do mercado, você para de comprar os produtos \"Diet/Light\" caros e os remédios que eles vendem. A grande mídia é patrocinada por quem quer te manter inflamada. O que estou te entregando é o \"segredo de bastidores\" que nutricionistas de elite usam, mas que nunca chega na TV aberta porque vai contra o lucro dos gigantes."
-  },
-  {
-    q: "E se eu não gostar?",
-    a: "O risco é zero para você. Eu confio tanto neste protocolo que ofereço uma Garantia Blindada de 7 Dias. Você entra, acessa as receitas, faz o teste do jantar de desintoxicação... Se você não sentir suas roupas folgadas, ou se simplesmente não for com a minha cara, eu devolvo 100% do seu dinheiro. Sem letras miúdas e sem perguntas. Você só paga pelo que funciona."
-  },
-  {
-    q: "Será que o produto funciona?",
-    a: "Funciona porque ataca a causa raiz (a inflamação e o vício químico), e não apenas o sintoma (a gordura). Dietas comuns falham porque tentam vencer a biologia com \"força de vontade\". O nosso protocolo funciona porque usa a química a seu favor: ele desinflama as células para que elas soltem a gordura e silencia o \"ruído mental\" para que você não precise lutar contra a fome. Nossa Inteligência Artificial já validou esse método com milhares de perfis idênticos ao seu."
-  },
-  {
-    q: "Será que isso dá certo para mim?",
-    a: "Sim, principalmente se você sente que tem \"metabolismo lento\" ou \"genética ruim\". O protocolo foi desenhado especificamente para corpos que foram danificados por anos de alimentação industrializada e efeito sanfona. Não importa sua idade (30, 40 ou 60 anos) ou quantas vezes você já falhou antes. O método não depende do seu \"esforço\", ele depende da reação química dos alimentos no seu organismo. Se você come, você consegue aplicar."
-  }
+    {
+      q: "Eu não sei cozinhar / Tenho preguiça. Funciona pra mim?",
+      a: "Sim! O método foi criado para a mulher moderna. As receitas são de \"panela única\" ou preparo rápido (menos de 20 minutos). Se você sabe ferver água, você consegue seguir o protocolo."
+    },
+    {
+      q: "Os ingredientes são caros?",
+      a: "Não. Você não vai precisar de farinha de amêndoas do Himalaia. Usamos o que tem no açougue e na feira: ovos, carnes, legumes e frutas. Você vai, na verdade, economizar no mercado."
+    },
+    {
+      q: "Tenho mais de 50/60 anos e metabolismo lento. Adianta?",
+      a: "É exatamente para você. O protocolo não depende da velocidade do seu metabolismo, mas da qualidade química do alimento. Ele foi desenhado para desinflamar corpos que sofreram com anos de alimentação industrializada."
+    },
+    {
+      q: "E se eu tiver compulsão por doces?",
+      a: "O Antídoto foi feito para isso. As receitas de doces funcionais vão saciar a química do seu cérebro sem disparar a insulina, permitindo que você coma o que gosta sem travar o emagrecimento."
+    },
+    {
+        q: "Por que nunca ouvi falar disso antes?",
+        a: "Porque essa informação é financeiramente perigosa para a Indústria Alimentícia. Se você souber que pode \"destravar\" seu metabolismo usando ingredientes baratos do mercado, você para de comprar os produtos \"Diet/Light\" caros e os remédios que eles vendem. A grande mídia é patrocinada por quem quer te manter inflamada. O que estou te entregando é o \"segredo de bastidores\" que nutricionistas de elite usam, mas que nunca chega na TV aberta porque vai contra o lucro dos gigantes."
+    },
+    {
+        q: "E se eu não gostar?",
+        a: "O risco é zero para você. Eu confio tanto neste protocolo que ofereço uma Garantia Blindada de 7 Dias. Você entra, acessa as receitas, faz o teste do jantar de desintoxicação... Se você não sentir suas roupas folgadas, ou se simplesmente não for com a minha cara, eu devolvo 100% do seu dinheiro. Sem letras miúdas e sem perguntas. Você só paga pelo que funciona."
+    },
+    {
+        q: "Será que o produto funciona?",
+        a: "Funciona porque ataca a causa raiz (a inflamação e o vício químico), e não apenas o sintoma (a gordura). Dietas comuns falham porque tentam vencer a biologia com \"força de vontade\". O nosso protocolo funciona porque usa a química a seu favor: ele desinflama as células para que elas soltem a gordura e silencia o \"ruído mental\" para que você não precise lutar contra a fome. Nossa Inteligência Artificial já validou esse método com milhares de perfis idênticos ao seu."
+    },
+    {
+        q: "Será que isso dá certo para mim?",
+        a: "Sim, principalmente se você sente que tem \"metabolismo lento\" ou \"genética ruim\". O protocolo foi desenhado especificamente para corpos que foram danificados por anos de alimentação industrializada e efeito sanfona. Não importa sua idade (30, 40 ou 60 anos) ou quantas vezes você já falhou antes. O método não depende do seu \"esforço\", ele depende da reação química dos alimentos no seu organismo. Se você come, você consegue aplicar."
+    }
 ];
 
 const bonusContent = [
@@ -87,8 +87,12 @@ const bonusContent = [
 
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
 
-  const carouselImages = [
+  const transformationImages = [
     'carousel1', 'carousel2', 'carousel3', 'carousel4', 'carousel5', 'carousel6', 'carousel7'
+  ].map(id => PlaceHolderImages.find(p => p.id === id)).filter(Boolean) as any[];
+
+  const foodImages = [
+    'food1', 'food2', 'food3', 'food4', 'food5', 'food6', 'food7', 'food8'
   ].map(id => PlaceHolderImages.find(p => p.id === id)).filter(Boolean) as any[];
 
 
@@ -98,7 +102,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         {/* Header Section */}
         <section className="bg-primary/10 py-12 md:py-20">
             <div className="container mx-auto px-4 text-center">
-                <h1 className="text-3xl md:text-5xl font-bold font-headline text-primary mb-4">DIAGNÓSTICO CONFIRMADO</h1>
+                <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-primary mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
                     O seu metabolismo <span className="font-bold">NÃO</span> está "velho" ou "quebrado". Ele foi <span className="font-bold text-destructive">Bloqueado pela Química das Indústrias.</span>
                 </p>
@@ -154,6 +158,29 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             </ul>
                         </CardContent>
                     </Card>
+
+                     {/* Food Carousel */}
+                    <Carousel
+                        opts={{ align: "start", loop: true }}
+                        className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto"
+                    >
+                        <CarouselContent>
+                            {foodImages.map((img, index) => (
+                                <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
+                                    <div className="p-1">
+                                        <Card className="border-none">
+                                            <CardContent className="flex aspect-square items-center justify-center p-0 rounded-lg overflow-hidden">
+                                                <Image src={img.imageUrl} alt={img.description} width={400} height={400} className="object-cover w-full h-full" data-ai-hint={img.imageHint} />
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="hidden sm:flex" />
+                        <CarouselNext className="hidden sm:flex" />
+                    </Carousel>
+
                 </div>
                 
                 {/* Sidebar with recommendations */}
@@ -198,12 +225,12 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         <section className="py-12 md:py-24">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                     <h2 className="text-3xl md:text-4xl font-bold font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
+                     <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
                      <p className="text-lg max-w-3xl mx-auto text-muted-foreground">Nossa inteligência artificial identificou um padrão. As suas respostas no quiz foram 97% parecidas com as delas. Elas enfrentavam as mesmas dificuldades que você enfrenta hoje, mas veja o que aconteceu depois que elas se reprogramaram seus cérebros.</p>
                 </div>
                 <Carousel className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto">
                     <CarouselContent>
-                        {carouselImages.map((img, index) => (
+                        {transformationImages.map((img, index) => (
                         <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
                             <div className="p-1">
                             <Card className="border-none">
@@ -224,7 +251,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         {/* FAQ Section */}
         <section className="bg-primary/5 py-12 md:py-24">
             <div className="container mx-auto px-4 max-w-3xl">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline text-center mb-12">Perguntas Frequentes</h2>
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline text-center mb-12">Perguntas Frequentes</h2>
                 <Accordion type="single" collapsible className="w-full">
                     {faqs.map((faq, index) => (
                         <AccordionItem value={`item-${index}`} key={index} className="bg-card border-none rounded-lg shadow-sm mb-4 px-6">

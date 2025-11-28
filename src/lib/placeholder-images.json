@@ -71,6 +71,54 @@
       "description": "Transformation carousel image 7",
       "imageUrl": "https://i.imgur.com/bUzPfHi.jpeg",
       "imageHint": "transformation before-after"
+    },
+    {
+      "id": "food1",
+      "description": "Delicious food image 1",
+      "imageUrl": "https://i.imgur.com/HRe1FfA.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food2",
+      "description": "Delicious food image 2",
+      "imageUrl": "https://i.imgur.com/s21pWXG.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food3",
+      "description": "Delicious food image 3",
+      "imageUrl": "https://i.imgur.com/zZvWct9.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food4",
+      "description": "Delicious food image 4",
+      "imageUrl": "https://i.imgur.com/TXJEQ49.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food5",
+      "description": "Delicious food image 5",
+      "imageUrl": "https://i.imgur.com/IziPo6W.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food6",
+      "description": "Delicious food image 6",
+      "imageUrl": "https://i.imgur.com/XFApUB5.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food7",
+      "description": "Delicious food image 7",
+      "imageUrl": "https://i.imgur.com/FP4Wbhc.jpeg",
+      "imageHint": "delicious food"
+    },
+    {
+      "id": "food8",
+      "description": "Delicious food image 8",
+      "imageUrl": "https://i.imgur.com/4lHLYmD.png",
+      "imageHint": "delicious food"
     }
   ]
 }
