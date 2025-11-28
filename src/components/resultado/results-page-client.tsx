@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
-import { AlertCircle, CheckCircle, Gift, ShieldCheck } from 'lucide-react';
+import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
 import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -42,6 +42,22 @@ const faqs = [
   {
     q: "E se eu tiver compulsão por doces?",
     a: "O Antídoto foi feito para isso. As receitas de doces funcionais vão saciar a química do seu cérebro sem disparar a insulina, permitindo que você coma o que gosta sem travar o emagrecimento."
+  },
+  {
+    q: "Por que nunca ouvi falar disso antes?",
+    a: "Porque essa informação é financeiramente perigosa para a Indústria Alimentícia. Se você souber que pode \"destravar\" seu metabolismo usando ingredientes baratos do mercado, você para de comprar os produtos \"Diet/Light\" caros e os remédios que eles vendem. A grande mídia é patrocinada por quem quer te manter inflamada. O que estou te entregando é o \"segredo de bastidores\" que nutricionistas de elite usam, mas que nunca chega na TV aberta porque vai contra o lucro dos gigantes."
+  },
+  {
+    q: "E se eu não gostar?",
+    a: "O risco é zero para você. Eu confio tanto neste protocolo que ofereço uma Garantia Blindada de 7 Dias. Você entra, acessa as receitas, faz o teste do jantar de desintoxicação... Se você não sentir suas roupas folgadas, ou se simplesmente não for com a minha cara, eu devolvo 100% do seu dinheiro. Sem letras miúdas e sem perguntas. Você só paga pelo que funciona."
+  },
+  {
+    q: "Será que o produto funciona?",
+    a: "Funciona porque ataca a causa raiz (a inflamação e o vício químico), e não apenas o sintoma (a gordura). Dietas comuns falham porque tentam vencer a biologia com \"força de vontade\". O nosso protocolo funciona porque usa a química a seu favor: ele desinflama as células para que elas soltem a gordura e silencia o \"ruído mental\" para que você não precise lutar contra a fome. Nossa Inteligência Artificial já validou esse método com milhares de perfis idênticos ao seu."
+  },
+  {
+    q: "Será que isso dá certo para mim?",
+    a: "Sim, principalmente se você sente que tem \"metabolismo lento\" ou \"genética ruim\". O protocolo foi desenhado especificamente para corpos que foram danificados por anos de alimentação industrializada e efeito sanfona. Não importa sua idade (30, 40 ou 60 anos) ou quantas vezes você já falhou antes. O método não depende do seu \"esforço\", ele depende da reação química dos alimentos no seu organismo. Se você come, você consegue aplicar."
   }
 ];
 
@@ -91,8 +107,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         </CardHeader>
                         <CardContent className="space-y-4 text-lg text-foreground/90">
                             <p>Eu sei exatamente o que você pensou quando viu o resultado desse quiz.</p>
-                            <p className="italic">"{results.diagnosis}"</p>
-                            <p>Você pensou em todas as vezes que recusou um jantar com amigos para não sair da dieta. Pensou nas horas de esteira, nos chás amargos e na frustração de subir na balança e ver o peso subindo. É uma sensação horrível que eu também já senti.</p>
+                            <p>Você pensou em todas as vezes que recusou um jantar com amigos para não sair da dieta. Pensou nos horas de esteira, nos chás amargos e na frustração de subir na balança e ver o peso subindo. É uma sensação horrível que eu também já senti.</p>
                             <p className="font-semibold">Mas existe uma maneira de consertar isso. E não é parando de comer.</p>
                             <p>Pelo contrário: você precisa comer. Mas precisa comer os nutrientes certos, na combinação exata, para formatar o seu paladar e obrigar o seu corpo a usar a gordura estocada como combustível novamente.</p>
                         </CardContent>
@@ -148,7 +163,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                                     </li>
                                 ))}
                             </ul>
-                             <p className="mt-4 text-sm text-foreground/70 italic">{results.recommendations.reasoning}</p>
                         </CardContent>
                     </Card>
                 </aside>
