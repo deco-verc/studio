@@ -31,10 +31,10 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-headline">
-                    Emagreça até 3kg em 7 dias dormindo com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro
+                    Emagreça até 3kg em 7 dias dormindo com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    ...sem passar fome e comendo suas comidas preferidas. Fique até o final para você descobrir:
+                    Fique até o final para você descobrir:
                   </p>
                 </div>
                 <ul className="grid gap-2 py-4">
