@@ -74,15 +74,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
+        <section className="w-full py-12 md:py-16 bg-secondary/50">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">+10516 Corpos Transformados</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Veja o que aconteceu com mulheres que estavam na mesma situação que você.</h2>
               </div>
             </div>
-            <div className="py-12">
+            <div className="pb-8">
                <Carousel
                 opts={{
                   align: "start",
@@ -113,13 +113,6 @@ export default function Home() {
                 <CarouselPrevious className="hidden sm:flex" />
                 <CarouselNext className="hidden sm:flex" />
               </Carousel>
-            </div>
-            <div className="flex justify-center">
-              <Link href="/quiz">
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                    EU QUERO SER A PRÓXIMA
-                  </Button>
-              </Link>
             </div>
           </div>
         </section>
