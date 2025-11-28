@@ -70,19 +70,19 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
 
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
-      <Card className="w-full max-w-2xl shadow-2xl">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-2xl">
         <CardHeader>
-          <Progress value={progress} className="w-full mb-4 h-2" />
-          <CardTitle className="text-2xl font-headline text-center min-h-[6rem] flex items-center justify-center">
+          <Progress value={progress} className="w-full mb-6 h-2" />
+          <CardTitle className="text-3xl font-bold font-headline text-center text-foreground min-h-[9rem] flex items-center justify-center px-6">
             {currentQuestion.question}
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-6 md:px-8 pb-8">
            {isPending ? (
-             <div className="flex flex-col items-center justify-center space-y-4 h-48">
-                <Loader2 className="h-12 w-12 animate-spin text-primary" />
-                <p className="text-lg text-muted-foreground">Analisando suas respostas...</p>
+             <div className="flex flex-col items-center justify-center space-y-4 h-64">
+                <Loader2 className="h-16 w-16 animate-spin text-primary" />
+                <p className="text-xl text-muted-foreground">Analisando suas respostas...</p>
              </div>
            ) : (
             <RadioGroup
@@ -92,9 +92,9 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               className="space-y-4"
             >
               {currentQuestion.options.map((option, index) => (
-                <div key={index} className="flex items-center space-x-3 rounded-lg border p-4 hover:bg-accent/50 transition-colors">
-                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} />
-                  <Label htmlFor={`q${currentStep}-o${index}`} className="text-base flex-1 cursor-pointer">
+                <div key={index} className="flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-5 hover:border-primary hover:bg-primary/5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg">
+                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5" />
+                  <Label htmlFor={`q${currentStep}-o${index}`} className="text-lg font-medium text-foreground/80 flex-1 cursor-pointer">
                     {option.label}
                   </Label>
                 </div>
@@ -106,4 +106,3 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
     </div>
   );
 }
-
