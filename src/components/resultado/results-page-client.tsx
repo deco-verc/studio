@@ -9,8 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
-import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized_recommendations';
-import { PlaceHolderImages } from '@/lib/placeholder_images';
+import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay"
 
 interface Results {
@@ -322,3 +322,5 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
+
+    
