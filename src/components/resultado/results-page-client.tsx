@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recha
 import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
 import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Autoplay from "embla-carousel-autoplay"
 
 interface Results {
   diagnosis: string;
@@ -94,7 +95,10 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
   const foodImages = [
     'food1', 'food2', 'food3', 'food4', 'food5', 'food6', 'food7', 'food8'
   ].map(id => PlaceHolderImages.find(p => p.id === id)).filter(Boolean) as any[];
-
+  
+  const autoplay = useRef(
+    Autoplay({ delay: 1500, stopOnInteraction: false })
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -150,36 +154,35 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         <CardHeader>
                             <CardTitle className="font-headline text-2xl text-primary">O que você recebe ao desbloquear seu acesso:</CardTitle>
                         </CardHeader>
-                        <CardContent className="space-y-4">
+                        <CardContent className="space-y-6">
                             <ul className="space-y-3 text-lg">
                                 <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">Receitas que Enganam seu Cérebro:</span> 200+ opções deliciosas.</span></li>
                                 <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">O Detox de Gorduras:</span> Um plano para limpar seu corpo.</span></li>
                                 <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">A Ativação da Queima Noturna:</span> Emagreça enquanto dorme.</span></li>
                             </ul>
+                             <Carousel
+                                opts={{ align: "start", loop: true }}
+                                plugins={[autoplay.current]}
+                                className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto pt-4"
+                            >
+                                <CarouselContent>
+                                    {foodImages.map((img, index) => (
+                                        <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
+                                            <div className="p-1">
+                                                <Card className="border-none">
+                                                    <CardContent className="flex aspect-square items-center justify-center p-0 rounded-lg overflow-hidden">
+                                                        <Image src={img.imageUrl} alt={img.description} width={400} height={400} className="object-cover w-full h-full" data-ai-hint={img.imageHint} />
+                                                    </CardContent>
+                                                </Card>
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious className="hidden sm:flex" />
+                                <CarouselNext className="hidden sm:flex" />
+                            </Carousel>
                         </CardContent>
                     </Card>
-
-                     {/* Food Carousel */}
-                    <Carousel
-                        opts={{ align: "start", loop: true }}
-                        className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto"
-                    >
-                        <CarouselContent>
-                            {foodImages.map((img, index) => (
-                                <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
-                                    <div className="p-1">
-                                        <Card className="border-none">
-                                            <CardContent className="flex aspect-square items-center justify-center p-0 rounded-lg overflow-hidden">
-                                                <Image src={img.imageUrl} alt={img.description} width={400} height={400} className="object-cover w-full h-full" data-ai-hint={img.imageHint} />
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="hidden sm:flex" />
-                        <CarouselNext className="hidden sm:flex" />
-                    </Carousel>
 
                 </div>
                 
@@ -205,6 +208,31 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         </CardContent>
                     </Card>
                 </aside>
+            </div>
+        </section>
+
+        {/* Price Anchor Section */}
+        <section className="py-12 md:py-20 bg-background">
+            <div className="container mx-auto px-4">
+                <Card className="max-w-2xl mx-auto text-center p-6 md:p-10 bg-primary/5 shadow-2xl border-2 border-accent">
+                    <CardHeader>
+                        <p className="text-sm font-bold tracking-wider text-accent uppercase">OFERTA ESPECIAL POR TEMPO LIMITADO</p>
+                        <CardTitle className="font-headline text-3xl md:text-5xl !mt-2">Acesso Imediato ao Protocolo</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="my-4">
+                            <p className="text-4xl md:text-5xl font-bold text-muted-foreground line-through">De R$147,00</p>
+                            <p className="text-lg text-muted-foreground mt-1">Por apenas 12x de</p>
+                            <p className="text-6xl md:text-8xl font-black text-primary my-2">
+                                R$47<span className="text-4xl md:text-6xl align-top">,90</span>
+                            </p>
+                             <p className="text-muted-foreground">(ou R$497 à vista)</p>
+                        </div>
+                        <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
+                            QUERO COMPRAR COM DESCONTO AGORA!
+                        </Button>
+                    </CardContent>
+                </Card>
             </div>
         </section>
 
@@ -262,6 +290,11 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         </AccordionItem>
                     ))}
                 </Accordion>
+                <div className="text-center mt-12">
+                     <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                        ESTOU PREPARADA PARA COMPRAR
+                    </Button>
+                </div>
             </div>
         </section>
       </main>
