@@ -69,22 +69,22 @@ const bonusContent = [
     {
       title: 'O Guia "Anti-Falso Saudável"',
       id: 'bonus1',
-      description: 'Nunca mais seja enganada por rótulos bonitos.'
+      description: 'A lista secreta de compras que te fará economizar e ainda sim comprar os alimentos certos que te emagrecem.'
     },
     {
       title: 'O Antídoto de Emergência',
       id: 'bonus2',
-      description: 'Uma sequência de 3 bebidas naturais para limpar os receptores de açúcar.'
+      description: 'Uma sequência de 3 bebidas naturais para limpar os receptores de açúcar do seu corpo e eliminar a vontade de comer doce.'
     },
     {
       title: 'Sobremesas que "Enganam" o Cérebro',
       id: 'bonus3',
-      description: 'Sobremesas que dão o prazer que seu cérebro pede, mas sem disparar a insulina.'
+      description: 'Receitas de doces que dão o prazer que seu cérebro pede, mas sem disparar a insulina, o hormônio que estoca gordura.'
     },
     {
       title: 'Manual da Economia no Mercado',
       id: 'bonus4',
-      description: 'Como substituir ingredientes caros por versões baratas que têm o mesmo efeito químico.'
+      description: 'Como substituir ingredientes caros por versões baratas que têm o mesmo efeito químico desinflamatório no seu corpo.'
     },
 ];
 
@@ -117,7 +117,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
         {/* Header Section */}
-        <section className="bg-primary/10 py-12 md:py-20">
+        <section className="bg-primary/10 py-10 md:py-16">
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
@@ -127,7 +127,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
         
         {/* Main Content Section */}
-        <section className="py-12 md:py-20">
+        <section className="py-10 md:py-16">
             <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2 space-y-8">
                     {/* Diagnosis */}
@@ -256,7 +256,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Price Anchor Section */}
-        <section className="py-12 md:py-20 bg-background">
+        <section className="py-10 md:py-16 bg-background">
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto text-center">
                     <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
@@ -284,7 +284,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Action Section */}
-        <section className="bg-primary text-primary-foreground py-12 md:py-20">
+        <section className="bg-primary text-primary-foreground py-10 md:py-16">
             <div className="container mx-auto px-4 text-center space-y-6">
                  <div className="flex items-center justify-center space-x-4 text-lg">
                     <ShieldCheck className="h-10 w-10 shrink-0"/>
@@ -297,7 +297,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Social Proof Carousel */}
-        <section className="py-12 md:py-24">
+        <section className="py-10 md:py-20">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
@@ -328,7 +328,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
         
         {/* FAQ Section */}
-        <section className="bg-primary/5 py-12 md:py-24">
+        <section className="bg-primary/5 py-10 md:py-20">
             <div className="container mx-auto px-4 max-w-3xl">
                 <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline text-center mb-12">Perguntas Frequentes</h2>
                 <Accordion type="single" collapsible className="w-full">
