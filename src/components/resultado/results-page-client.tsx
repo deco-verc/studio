@@ -121,7 +121,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                    O seu <span className="font-bold">metabolismo</span> foi <span className="text-destructive">Bloqueado pela Química das Indústrias.</span>
+                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-destructive">Bloqueado pela Química das Indústrias.</span>
                 </p>
             </div>
         </section>
@@ -200,7 +200,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                      {/* Offer */}
                     <Card className="shadow-lg bg-primary/5 border-primary">
                         <CardHeader>
-                            <CardTitle className="font-headline text-2xl text-primary">O que você recebe ao desbloquear seu acesso:</CardTitle>
+                            <CardTitle className="font-headline text-2xl text-primary">O Plano Perfeito.</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <ul className="space-y-3 text-lg">
@@ -359,6 +359,8 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
+
+    
 
     
 
