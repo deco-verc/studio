@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { quizQuestions } from './quiz-questions';
 import { Button } from '@/components/ui/button';
@@ -15,6 +15,16 @@ type QuizFormProps = {
   submitQuiz: (answers: string[]) => Promise<void>;
 };
 
+const smartProgress = (current: number, total: number): number => {
+    if (current < total * 0.5) {
+      return (current / (total * 0.5)) * 60;
+    } else if (current < total - 1) {
+      return 60 + ((current - total * 0.5) / (total * 0.5 - 1)) * 30;
+    } else {
+      return 100;
+    }
+};
+
 export function QuizForm({ submitQuiz }: QuizFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
@@ -23,7 +33,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const router = useRouter();
 
   const totalQuestions = quizQuestions.length;
-  const progress = ((currentStep + 1) / totalQuestions) * 100;
+  const progress = useMemo(() => smartProgress(currentStep, totalQuestions), [currentStep, totalQuestions]);
   const currentQuestion = quizQuestions[currentStep];
 
   const handleValueChange = (value: string) => {
@@ -75,7 +85,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl">
         <CardHeader>
           <Progress value={progress} className="w-full mb-4 h-2" />
-          <CardTitle className="text-2xl font-headline text-center">Pergunta {currentStep + 1}/{totalQuestions}</CardTitle>
+          <CardTitle className="text-2xl font-headline text-center">Pergunta</CardTitle>
           <CardDescription className="text-center text-lg md:text-xl h-24 flex items-center justify-center">
             {currentQuestion.question}
           </CardDescription>
