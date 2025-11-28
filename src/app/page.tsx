@@ -31,7 +31,7 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-headline">
-                    Emagreça até 3kg em 7 dias dormindo com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
+                    Emagreça até 3kg em 7 dias com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Fique até o final para você descobrir:
@@ -61,7 +61,7 @@ export default function Home() {
                 )}
                 <div className="flex flex-col gap-2 text-center w-full">
                   <Link href="/quiz" className="w-full">
-                    <Button size="lg" className="w-full max-w-md mx-auto bg-[#2E7D32] hover:bg-[#2E7D32]/90 text-white text-2xl font-bold py-8 rounded-lg shadow-lg">
+                    <Button size="lg" className="w-full max-w-md mx-auto bg-primary hover:bg-primary/90 text-primary-foreground text-2xl font-bold py-8 rounded-lg shadow-lg">
                       FAZER TESTE GRATUITO
                     </Button>
                   </Link>
