@@ -1,10 +1,10 @@
+
 "use client";
 
-import { useState, useTransition, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useTransition, useMemo, useEffect } from 'react';
 import { quizQuestions } from './quiz-questions';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
@@ -30,69 +30,63 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-  const router = useRouter();
 
   const totalQuestions = quizQuestions.length;
   const progress = useMemo(() => smartProgress(currentStep, totalQuestions), [currentStep, totalQuestions]);
   const currentQuestion = quizQuestions[currentStep];
 
   const handleValueChange = (value: string) => {
-    setAnswers(prev => ({ ...prev, [currentStep]: value }));
-  };
+    const newAnswers = { ...answers, [currentStep]: value };
+    setAnswers(newAnswers);
 
-  const handleNext = () => {
-    if (answers[currentStep] === undefined) {
-      toast({
-        title: "Por favor, selecione uma resposta.",
-        variant: "destructive",
-      });
-      return;
-    }
-    if (currentStep < totalQuestions - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (Object.keys(answers).length !== totalQuestions) {
-        toast({
-            title: "Por favor, responda todas as perguntas.",
-            description: "Parece que você pulou uma. Verifique suas respostas antes de continuar.",
-            variant: "destructive",
-        });
-        const firstUnanswered = quizQuestions.findIndex((_, index) => answers[index] === undefined);
-        if (firstUnanswered !== -1) {
-            setCurrentStep(firstUnanswered);
+    setTimeout(() => {
+        if (currentStep < totalQuestions - 1) {
+            setCurrentStep(currentStep + 1);
+        } else {
+            // Last question, submit the form
+            startTransition(async () => {
+                const answerArray = Object.values(newAnswers);
+                if(answerArray.length === totalQuestions) {
+                  await submitQuiz(answerArray);
+                } else {
+                  // This case should ideally not be hit with this new logic
+                  // but as a fallback
+                  toast({
+                      title: "Por favor, responda todas as perguntas.",
+                      variant: "destructive",
+                  });
+                }
+            });
         }
-        return;
-    }
-
-    startTransition(async () => {
-        const answerArray = Object.values(answers);
-        await submitQuiz(answerArray);
-    });
+    }, 200); // Short delay for UX
   };
+  
+  useEffect(() => {
+    if (isPending && currentStep === totalQuestions -1 && Object.keys(answers).length === totalQuestions) {
+       const answerArray = Object.values(answers);
+       submitQuiz(answerArray);
+    }
+  }, [isPending, answers, currentStep, totalQuestions, submitQuiz]);
+
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
       <Card className="w-full max-w-2xl shadow-2xl">
         <CardHeader>
           <Progress value={progress} className="w-full mb-4 h-2" />
-          <CardTitle className="text-2xl font-headline text-center">Pergunta</CardTitle>
-          <CardDescription className="text-center text-lg md:text-xl h-24 flex items-center justify-center">
+          <CardTitle className="text-2xl font-headline text-center min-h-[6rem] flex items-center justify-center">
             {currentQuestion.question}
-          </CardDescription>
+          </CardTitle>
         </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent>
+        <CardContent>
+           {isPending ? (
+             <div className="flex flex-col items-center justify-center space-y-4 h-48">
+                <Loader2 className="h-12 w-12 animate-spin text-primary" />
+                <p className="text-lg text-muted-foreground">Analisando suas respostas...</p>
+             </div>
+           ) : (
             <RadioGroup
+              key={currentStep}
               value={answers[currentStep]}
               onValueChange={handleValueChange}
               className="space-y-4"
@@ -106,30 +100,10 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                 </div>
               ))}
             </RadioGroup>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button type="button" variant="outline" onClick={handlePrev} disabled={currentStep === 0 || isPending}>
-              Anterior
-            </Button>
-            {currentStep < totalQuestions - 1 ? (
-              <Button type="button" onClick={handleNext} disabled={isPending}>
-                Próxima
-              </Button>
-            ) : (
-              <Button type="submit" disabled={isPending} className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                {isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Analisando...
-                  </>
-                ) : (
-                  'Ver meu diagnóstico'
-                )}
-              </Button>
-            )}
-          </CardFooter>
-        </form>
+           )}
+        </CardContent>
       </Card>
     </div>
   );
 }
+
