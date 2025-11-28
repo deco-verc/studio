@@ -121,17 +121,17 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-destructive">Bloqueado pela Química das Indústrias.</span>
+                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-red-500">Bloqueado pela Química das Indústrias.</span>
                 </p>
             </div>
         </section>
         
         {/* Chart Section */}
-        <section className="pt-8 md:pt-12 bg-primary/5">
+        <section className="pt-8 bg-primary/5">
           <div className="container mx-auto px-4 max-w-4xl">
               <Card className="shadow-lg border-none bg-card">
                   <CardHeader>
-                      <CardTitle className="font-headline text-2xl text-center">Seu Metabolismo: Antes e Depois</CardTitle>
+                      <CardTitle className="font-headline text-2xl text-center">Seu Metabolismo</CardTitle>
                   </CardHeader>
                   <CardContent>
                        <div className="w-full h-[300px]">
