@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
@@ -117,7 +117,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         {/* Header Section */}
         <section className="bg-primary/10 py-12 md:py-20">
             <div className="container mx-auto px-4 text-center">
-                <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-primary mb-4">DIAGNÓSTICO CONFIRMADO</h1>
+                <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
                     O seu metabolismo <span className="font-bold">NÃO</span> está "velho" ou "quebrado". Ele foi <span className="font-bold text-destructive">Bloqueado pela Química das Indústrias.</span>
                 </p>
@@ -323,4 +323,5 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
   );
 }
 
+    
     
