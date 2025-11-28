@@ -1,3 +1,76 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Hero image showing a woman happily eating",
+      "imageUrl": "https://i.imgur.com/lvHcDYm.png",
+      "imageHint": "woman eating"
+    },
+    {
+      "id": "socialProof1",
+      "description": "Social proof testimonial 1",
+      "imageUrl": "https://i.imgur.com/MawSgG1.png",
+      "imageHint": "testimonial social"
+    },
+    {
+      "id": "socialProof2",
+      "description": "Social proof testimonial 2",
+      "imageUrl": "https://i.imgur.com/Ukgrgwg.png",
+      "imageHint": "testimonial social"
+    },
+    {
+      "id": "socialProof3",
+      "description": "Social proof testimonial 3",
+      "imageUrl": "https://i.imgur.com/nNJJRiJ.png",
+      "imageHint": "testimonial social"
+    },
+    {
+      "id": "socialProof4",
+      "description": "Social proof testimonial 4",
+      "imageUrl": "https://i.imgur.com/S3DEzmV.png",
+      "imageHint": "testimonial social"
+    },
+    {
+      "id": "carousel1",
+      "description": "Transformation carousel image 1",
+      "imageUrl": "https://i.imgur.com/U2pbvDN.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel2",
+      "description": "Transformation carousel image 2",
+      "imageUrl": "https://i.imgur.com/9wQAUKI.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel3",
+      "description": "Transformation carousel image 3",
+      "imageUrl": "https://i.imgur.com/3YAGzgG.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel4",
+      "description": "Transformation carousel image 4",
+      "imageUrl": "https://i.imgur.com/zdMdVQf.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel5",
+      "description": "Transformation carousel image 5",
+      "imageUrl": "https://i.imgur.com/3E1J2xR.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel6",
+      "description": "Transformation carousel image 6",
+      "imageUrl": "https://i.imgur.com/JyeCmb2.jpeg",
+      "imageHint": "transformation before-after"
+    },
+    {
+      "id": "carousel7",
+      "description": "Transformation carousel image 7",
+      "imageUrl": "https://i.imgur.com/bUzPfHi.jpeg",
+      "imageHint": "transformation before-after"
+    }
+  ]
 }
