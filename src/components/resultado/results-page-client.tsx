@@ -63,37 +63,29 @@ const faqs = [
 ];
 
 const bonusContent = [
-    { 
-      title: 'O Guia "Anti-Falso Saudável"', 
+    {
+      title: 'O Guia "Anti-Falso Saudável"',
       id: 'bonus1',
       description: 'Nunca mais seja enganada por rótulos bonitos.'
     },
-    { 
-      title: 'O Antídoto de Emergência', 
+    {
+      title: 'O Antídoto de Emergência',
       id: 'bonus2',
       description: 'Uma sequência de 3 bebidas naturais para limpar os receptores de açúcar.'
     },
-    { 
-      title: 'Sobremesas que "Enganam" o Cérebro', 
+    {
+      title: 'Sobremesas que "Enganam" o Cérebro',
       id: 'bonus3',
       description: 'Sobremesas que dão o prazer que seu cérebro pede, mas sem disparar a insulina.'
     },
-    { 
-      title: 'Manual da Economia no Mercado', 
+    {
+      title: 'Manual da Economia no Mercado',
       id: 'bonus4',
       description: 'Como substituir ingredientes caros por versões baratas que têm o mesmo efeito químico.'
     },
 ];
 
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
-  const [showButton, setShowButton] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowButton(true);
-    }, 60000); // 60 seconds
-    return () => clearTimeout(timer);
-  }, []);
 
   const carouselImages = [
     'carousel1', 'carousel2', 'carousel3', 'carousel4', 'carousel5', 'carousel6', 'carousel7'
@@ -192,17 +184,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         {/* Action Section */}
         <section className="bg-primary text-primary-foreground py-12 md:py-20">
             <div className="container mx-auto px-4 text-center space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold font-headline">A ÚNICA BARREIRA ENTRE VOCÊ E SEU NOVO CORPO FOI REMOVIDA</h2>
-                <p className="text-lg max-w-3xl mx-auto">Eu decidi remover a única barreira que restava entre você e o corpo que você merece: o dinheiro. Mas atenção: essa é uma Condição de Exceção. Assim que o lote de Black Friday encerrar, o valor voltará ao normal sem aviso prévio.</p>
-                <div className="h-20 flex items-center justify-center">
-                    {showButton ? (
-                        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 animate-pulse text-xl py-8 px-8 md:px-12 transform hover:scale-105 transition-transform">
-                            QUERO ACESSAR COM DESCONTO AGORA
-                        </Button>
-                    ) : (
-                        <div className="text-lg">Assista o vídeo acima... seu acesso será liberado em breve.</div>
-                    )}
-                </div>
                  <div className="flex items-center justify-center space-x-4 text-lg">
                     <ShieldCheck className="h-10 w-10 shrink-0"/>
                     <div>
