@@ -4,28 +4,57 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
+import { getAnalysisResults } from '@/app/actions';
 
 export default function AnalisePage() {
   const [showButton, setShowButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [resultsData, setResultsData] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const data = searchParams.get('data');
-
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const answersParam = searchParams.get('answers');
+
+    if (answersParam) {
+      try {
+        const answers = JSON.parse(decodeURIComponent(answersParam));
+        // Trigger AI processing in the background
+        getAnalysisResults(answers).then(results => {
+          if (results.error) {
+            console.error(results.error);
+            router.push('/quiz?error=true'); // Redirect on error
+          } else {
+            setResultsData(encodeURIComponent(JSON.stringify(results)));
+            setIsLoading(false); // AI processing is done
+          }
+        });
+      } catch (e) {
+        console.error("Failed to parse answers or get results", e);
+        router.push('/quiz?error=true');
+      }
+    } else {
+        // No answers, redirect back to quiz
+        router.push('/quiz?error=missingData');
+    }
+
+    // This timer controls the button's visibility, independent of AI processing
+    const buttonTimer = setTimeout(() => {
       setShowButton(true);
     }, 60000); // 1 minute delay
 
-    return () => clearTimeout(timer);
-  }, []);
+    return () => {
+      clearTimeout(buttonTimer);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run only once on mount
 
   const handleRedirect = () => {
-    if (data) {
-      router.push(`/resultado?data=${data}`);
+    if (resultsData) {
+      router.push(`/resultado?data=${resultsData}`);
     } else {
-      // Fallback if data is somehow missing
-      router.push('/quiz?error=true');
+      // This can happen if the button is clicked before AI processing is complete
+      // We'll show a loading state on the button to prevent this.
     }
   };
 
@@ -53,8 +82,16 @@ export default function AnalisePage() {
               size="lg"
               className="w-full max-w-md bg-green-600 hover:bg-green-700 text-white text-2xl font-bold py-8 rounded-lg shadow-lg animate-pulse"
               onClick={handleRedirect}
+              disabled={isLoading}
             >
-              VER MEU DIAGNÓSTICO COMPLETO
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                  ANALISANDO...
+                </>
+              ) : (
+                'VER MEU DIAGNÓSTICO COMPLETO'
+              )}
             </Button>
           ) : (
             <div className="flex items-center text-muted-foreground text-lg">
