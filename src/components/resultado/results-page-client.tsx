@@ -234,7 +234,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 <aside className="space-y-8 lg:sticky top-8 self-start">
                      <Card className="shadow-lg bg-accent/10 border-accent/50">
                         <CardHeader>
-                            <CardTitle className="font-headline text-xl md:text-2xl text-accent-foreground flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
+                            <CardTitle className="font-headline text-xl md:text-2xl text-foreground flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="mb-4 text-foreground/80">Baseado nas suas respostas, estes são os materiais que mais vão te ajudar:</p>
