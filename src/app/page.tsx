@@ -19,7 +19,7 @@ export default function Home() {
     'Como sair da Armadilha da Indústria Alimentícia que vicia o seu paladar em açúcar',
     'A Mentira dos Alimentos "Light e FIT" e como eles te engordam.',
     'A técnica simples que obriga seu corpo a usar a gordura acumulada como energia enquanto você dorme.',
-    'O BOTÃO DO SEU CORPO QUE DESLIGA A FOME',
+    'O Botão dentro do seu corpo que desliga a Fome',
   ];
 
   return (
@@ -31,7 +31,7 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-headline">
-                    Emagreça até 3kg em 7 dias com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
+                    Emagreça até 3kg em 7 dias  com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro sem passar fome e comendo suas comidas preferidas.
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Fique até o final para você descobrir:
