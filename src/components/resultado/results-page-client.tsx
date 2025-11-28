@@ -241,7 +241,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <CardTitle className="font-headline text-xl md:text-2xl text-black flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="mb-4 text-foreground/80">Baseado nas suas respostas, estes são os materiais que mais vão te ajudar:</p>
+                            <p className="mb-4 text-foreground/80">APENAS SE VOCÊ GARANTIR NO PERÍODO DA BLACK FRIDAY</p>
                              <ul className="space-y-4">
                                 {bonusContent.map(bonus => (
                                     <li key={bonus.id} className="flex items-start">
@@ -359,5 +359,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
+
+    
 
     
