@@ -139,7 +139,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <p>Eu sei exatamente o que você pensou quando viu o resultado desse quiz.</p>
                             <p>Você pensou em todas as vezes que recusou um jantar com amigos para não sair da dieta. Pensou nos horas de esteira, nos chás amargos e na frustração de subir na balança e ver o peso subindo. É uma sensação horrível que eu também já senti.</p>
                             <p className="font-semibold text-primary">Mas existe uma maneira de consertar isso. E não é parando de comer.</p>
-                            <p>Pelo contrário: você precisa comer. Mas precisa comer os nutrientes certos, na combinação exata, para formatar o seu paladar e obrigar o seu corpo a usar a gordura estocada como combustível novamente.</p>
+                            <p>Nos próximos minutos eu vou te dar o segredo das mulheres que conseguem manter o corpo magro e já vou te adiantando que não é a genética. É que elas, conscientemente ou não, alimentam o corpo com a dosagem exata de macronutrientes que são absorvidos pelo intestino e aceleram a queima de gordura E a boa notícia é que você não precisa ser chef de cozinha, nem rica, para fazer isso. Você só precisa do Manual de Instruções que eu vou te apresentar.</p>
                         </CardContent>
                     </Card>
 
@@ -357,6 +357,8 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
 }
 
     
+    
+
     
 
     
