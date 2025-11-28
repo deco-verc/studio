@@ -233,7 +233,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                              <p className="text-muted-foreground">(ou R$497 à vista)</p>
                         </div>
                         <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
-                            QUERO COMPRAR COM DESCONTO AGORA!
+                            COMPRAR COM DESCONTO
                         </Button>
                     </CardContent>
                 </Card>
