@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
 import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -23,10 +23,12 @@ interface ResultsPageClientProps {
   results: Results;
 }
 
-const chartData = [
-  { name: 'Antes', "Nível de Inflamação": 95, fill: 'hsl(var(--destructive))' },
-  { name: 'Depois', "Nível de Inflamação": 25, fill: 'hsl(var(--primary))' },
-];
+const chartData = Array.from({ length: 10 }, (_, i) => ({
+    day: i * 3, 
+    "Seu Nível de Inflamação": Math.max(15, 100 * Math.exp(-i * 0.4)), 
+    name: i === 1 ? "Agora" : (i === 9 ? "Você Depois" : "")
+}));
+
 
 const faqs = [
     {
@@ -149,12 +151,43 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                         <CardContent>
                              <div className="w-full h-[300px]">
                                 <ResponsiveContainer>
-                                    <BarChart data={chartData}>
-                                        <XAxis dataKey="name" stroke="#555" fontSize={12} tickLine={false} axisLine={false} />
-                                        <YAxis stroke="#555" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
-                                        <Tooltip cursor={{fill: 'transparent'}} contentStyle={{backgroundColor: 'hsl(var(--background))', border: '1px solid hsl(var(--border))'}} />
-                                        <Bar dataKey="Nível de Inflamação" radius={[4, 4, 0, 0]} />
-                                    </BarChart>
+                                    <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                                        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                                        <XAxis 
+                                            dataKey="name" 
+                                            stroke="hsl(var(--muted-foreground))" 
+                                            fontSize={12} 
+                                            tickLine={false} 
+                                            axisLine={false} 
+                                            interval={0}
+                                        />
+                                        <YAxis 
+                                            stroke="hsl(var(--muted-foreground))" 
+                                            fontSize={12} 
+                                            tickLine={false} 
+                                            axisLine={false} 
+                                            tickFormatter={(value) => `${Math.round(value)}%`} 
+                                        />
+                                        <Tooltip 
+                                            cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
+                                            contentStyle={{
+                                                backgroundColor: 'hsl(var(--background))', 
+                                                border: '1px solid hsl(var(--border))',
+                                                borderRadius: 'var(--radius)'
+                                            }}
+                                            labelFormatter={(label) => label ? `Dia ${label}` : ''}
+                                            formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
+                                        />
+                                        <Legend wrapperStyle={{fontSize: "14px"}}/>
+                                        <Line 
+                                            type="monotone" 
+                                            dataKey="Seu Nível de Inflamação" 
+                                            stroke="hsl(var(--primary))" 
+                                            strokeWidth={3}
+                                            dot={false}
+                                            activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
+                                        />
+                                    </LineChart>
                                 </ResponsiveContainer>
                             </div>
                         </CardContent>
@@ -210,7 +243,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                                     <li key={bonus.id} className="flex items-start">
                                         <CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/>
                                         <div>
-                                            <span className={`font-semibold ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground' : 'text-muted-foreground'}`}>{bonus.title}</span>
+                                            <p className={`font-semibold ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground' : 'text-muted-foreground'}`}>{bonus.title}</p>
                                             <p className={`text-sm ${results.recommendations.recommendedBonusContent.includes(bonus.title) ? 'text-foreground/80' : 'text-muted-foreground/80'}`}>{bonus.description}</p>
                                         </div>
                                     </li>
@@ -324,4 +357,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
 }
 
     
+    
+
     
