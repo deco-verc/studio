@@ -117,19 +117,19 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
         {/* Header Section */}
-        <section className="bg-primary/10 py-10 md:py-16">
+        <section className="bg-primary/10 py-8 md:py-10">
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                    O seu metabolismo <span className="font-bold">NÃO</span> está "velho" ou "quebrado". Ele foi <span className="font-bold text-destructive">Bloqueado pela Química das Indústrias.</span>
+                    O seu metabolismo foi Bloqueado pela Química das Indústrias.
                 </p>
             </div>
         </section>
         
         {/* Main Content Section */}
-        <section className="py-10 md:py-16">
-            <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-12">
-                <div className="lg:col-span-2 space-y-8">
+        <section className="py-8 md:py-12">
+            <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2 space-y-6">
                     {/* Diagnosis */}
                     <Card className="shadow-lg border-none bg-card">
                         <CardHeader>
@@ -139,7 +139,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <p>Eu sei exatamente o que você pensou quando viu o resultado desse quiz.</p>
                             <p>Você pensou em todas as vezes que recusou um jantar com amigos para não sair da dieta. Pensou nos horas de esteira, nos chás amargos e na frustração de subir na balança e ver o peso subindo. É uma sensação horrível que eu também já senti.</p>
                             <p className="font-semibold text-primary">Mas existe uma maneira de consertar isso. E não é parando de comer.</p>
-                            <p>Nos próximos minutos eu vou te dar o segredo das mulheres que conseguem manter o corpo magro e já vou te adiantando que não é a genética. É que elas, conscientemente ou não, alimentam o corpo com a dosagem exata de macronutrientes que são absorvidos pelo intestino e aceleram a queima de gordura E a boa notícia é que você não precisa ser chef de cozinha, nem rica, para fazer isso. Você só precisa do Manual de Instruções que eu vou te apresentar.</p>
+                            <p>Nos próximos minutos eu vou te dar o segredo das mulheres que conseguem manter o corpo magro e já vou te adiantando que  não é a genética. É que elas, conscientemente ou não, alimentam o corpo com a dosagem exata de macronutrientes que são absorvidos pelo intestino e aceleram a queima de gordura   E a boa notícia é que você não precisa ser chef de cozinha, nem rica, para fazer isso. Você só precisa do Manual de Instruções que eu vou te apresentar.</p>
                         </CardContent>
                     </Card>
 
@@ -231,10 +231,10 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 </div>
                 
                 {/* Sidebar with recommendations */}
-                <aside className="space-y-8 lg:sticky top-8 self-start">
+                <aside className="space-y-6 lg:sticky top-8 self-start">
                      <Card className="shadow-lg bg-accent/10 border-accent/50">
                         <CardHeader>
-                            <CardTitle className="font-headline text-xl md:text-2xl text-foreground flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
+                            <CardTitle className="font-headline text-xl md:text-2xl text-black flex items-center"><Gift className="mr-2"/> Seus Bônus Exclusivos</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="mb-4 text-foreground/80">Baseado nas suas respostas, estes são os materiais que mais vão te ajudar:</p>
@@ -256,7 +256,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Price Anchor Section */}
-        <section className="py-10 md:py-16 bg-background">
+        <section className="py-8 md:py-12 bg-background">
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto text-center">
                     <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
@@ -284,7 +284,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Action Section */}
-        <section className="bg-primary text-primary-foreground py-10 md:py-16">
+        <section className="bg-primary text-primary-foreground py-8 md:py-12">
             <div className="container mx-auto px-4 text-center space-y-6">
                  <div className="flex items-center justify-center space-x-4 text-lg">
                     <ShieldCheck className="h-10 w-10 shrink-0"/>
@@ -297,7 +297,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
 
         {/* Social Proof Carousel */}
-        <section className="py-10 md:py-20">
+        <section className="py-8 md:py-16">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
@@ -328,7 +328,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
         
         {/* FAQ Section */}
-        <section className="bg-primary/5 py-10 md:py-20">
+        <section className="bg-primary/5 py-10 md:py-16">
             <div className="container mx-auto px-4 max-w-3xl">
                 <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline text-center mb-12">Perguntas Frequentes</h2>
                 <Accordion type="single" collapsible className="w-full">
@@ -355,10 +355,3 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
-
-    
-    
-
-    
-
-    
