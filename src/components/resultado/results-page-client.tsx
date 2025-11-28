@@ -26,7 +26,7 @@ interface ResultsPageClientProps {
 const chartData = Array.from({ length: 10 }, (_, i) => ({
     day: i * 3, 
     "Seu Nível de Inflamação": Math.max(15, 100 * Math.exp(-i * 0.4)), 
-    name: i === 1 ? "Agora" : (i === 9 ? "Você Depois" : "")
+    name: i === 1 ? "Agora" : (i === 9 ? "Depois" : "")
 }));
 
 
@@ -127,7 +127,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         </section>
         
         {/* Chart Section */}
-        <section className="py-8 md:py-12 bg-primary/5">
+        <section className="pt-8 md:pt-12 bg-primary/5">
           <div className="container mx-auto px-4 max-w-4xl">
               <Card className="shadow-lg border-none bg-card">
                   <CardHeader>
