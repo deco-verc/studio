@@ -47,18 +47,8 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/quiz">
-                    <Button size="lg" className="w-full min-[400px]:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
-                      FAZER TESTE GRATUITO
-                    </Button>
-                  </Link>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Esse teste é feito apenas uma vez por pessoa. Responda o teste para ver se você está apta a acessar um conteúdo exclusivo.
-                </p>
               </div>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center space-y-6">
                 {heroImage && (
                   <Image
                     src={heroImage.imageUrl}
@@ -69,6 +59,16 @@ export default function Home() {
                     className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
                   />
                 )}
+                <div className="flex flex-col gap-2 text-center w-full">
+                  <Link href="/quiz" className="w-full">
+                    <Button size="lg" className="w-full max-w-md mx-auto bg-[#2E7D32] hover:bg-[#2E7D32]/90 text-white text-2xl font-bold py-8 rounded-lg shadow-lg">
+                      FAZER TESTE GRATUITO
+                    </Button>
+                  </Link>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Esse teste é feito apenas uma vez por pessoa. Responda o teste para ver se você está apta a acessar um conteúdo exclusivo.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
