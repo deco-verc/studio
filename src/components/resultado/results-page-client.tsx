@@ -9,8 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
-import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized_recommendations';
+import { PlaceHolderImages } from '@/lib/placeholder_images';
 import Autoplay from "embla-carousel-autoplay"
 
 interface Results {
@@ -87,6 +87,13 @@ const bonusContent = [
 ];
 
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
+  const [today, setToday] = useState('');
+
+  useEffect(() => {
+    const date = new Date();
+    const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+    setToday(formattedDate);
+  }, []);
 
   const transformationImages = [
     'carousel1', 'carousel2', 'carousel3', 'carousel4', 'carousel5', 'carousel6', 'carousel7'
@@ -218,25 +225,28 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         {/* Price Anchor Section */}
         <section className="py-12 md:py-20 bg-background">
             <div className="container mx-auto px-4">
-                <Card className="max-w-2xl mx-auto text-center p-6 md:p-10 bg-primary/5 shadow-2xl border-2 border-accent">
-                    <CardHeader>
-                        <p className="text-sm font-bold tracking-wider text-accent uppercase">OFERTA ESPECIAL POR TEMPO LIMITADO</p>
-                        <CardTitle className="font-headline text-3xl md:text-5xl !mt-2">Acesso Imediato ao Protocolo</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                        <div className="my-4">
-                            <p className="text-4xl md:text-5xl font-bold text-muted-foreground line-through">De R$147,00</p>
-                            <p className="text-lg text-muted-foreground mt-1">Por apenas 12x de</p>
-                            <p className="text-6xl md:text-8xl font-black text-primary my-2">
-                                R$47<span className="text-4xl md:text-6xl align-top">,90</span>
-                            </p>
-                             <p className="text-muted-foreground">(ou R$497 à vista)</p>
-                        </div>
-                        <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
-                            COMPRAR COM DESCONTO
-                        </Button>
-                    </CardContent>
-                </Card>
+                <div className="max-w-2xl mx-auto text-center">
+                    <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
+                        <p className="font-bold text-lg">{`OFERTA BLACK FRIDAY (${today} - 23:59)`}</p>
+                    </Card>
+                    <Card className="p-6 md:p-10 bg-primary/5 shadow-2xl border-2 border-accent">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-3xl md:text-5xl !mt-2">Acesso Imediato ao Protocolo</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="my-4">
+                                <p className="text-4xl md:text-5xl font-bold text-muted-foreground line-through">De R$147,00</p>
+                                <p className="text-lg text-muted-foreground mt-1">Por apenas</p>
+                                <p className="text-6xl md:text-8xl font-black text-primary my-2">
+                                    R$47<span className="text-4xl md:text-6xl align-top">,90</span>
+                                </p>
+                            </div>
+                            <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
+                                COMPRAR COM DESCONTO
+                            </Button>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </section>
 
