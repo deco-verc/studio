@@ -96,8 +96,12 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     'food1', 'food2', 'food3', 'food4', 'food5', 'food6', 'food7', 'food8'
   ].map(id => PlaceHolderImages.find(p => p.id === id)).filter(Boolean) as any[];
   
-  const autoplay = useRef(
+  const foodAutoplay = useRef(
     Autoplay({ delay: 1500, stopOnInteraction: false })
+  );
+  
+  const socialProofAutoplay = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: false })
   );
 
   return (
@@ -162,7 +166,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             </ul>
                              <Carousel
                                 opts={{ align: "start", loop: true }}
-                                plugins={[autoplay.current]}
+                                plugins={[foodAutoplay.current]}
                                 className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto pt-4"
                             >
                                 <CarouselContent>
@@ -256,7 +260,11 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                      <h2 className="text-3xl md:text-4xl font-black tracking-tight sm:text-5xl font-headline mb-4">Elas Tinham as Mesmas Dificuldades que Você</h2>
                      <p className="text-lg max-w-3xl mx-auto text-muted-foreground">Nossa inteligência artificial identificou um padrão. As suas respostas no quiz foram 97% parecidas com as delas. Elas enfrentavam as mesmas dificuldades que você enfrenta hoje, mas veja o que aconteceu depois que elas se reprogramaram seus cérebros.</p>
                 </div>
-                <Carousel className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto">
+                <Carousel 
+                    className="w-full max-w-xs sm:max-w-xl md:max-w-3xl lg:max-w-5xl mx-auto"
+                    plugins={[socialProofAutoplay.current]}
+                    opts={{ align: "start", loop: true }}
+                >
                     <CarouselContent>
                         {transformationImages.map((img, index) => (
                         <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
