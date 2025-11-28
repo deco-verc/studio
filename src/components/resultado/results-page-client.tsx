@@ -123,62 +123,61 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
                   O seu <span className="font-bold">metabolismo</span> foi <span className="text-red-500">Bloqueado pela Química das Indústrias.</span>
                 </p>
+                 <div className="container mx-auto px-4 max-w-4xl pt-8">
+                  <Card className="shadow-lg border-none bg-card">
+                      <CardHeader>
+                          <CardTitle className="font-headline text-2xl text-center">Seu Metabolismo</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                          <div className="w-full h-[300px]">
+                              <ResponsiveContainer>
+                                  <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                                      <XAxis 
+                                          dataKey="name" 
+                                          stroke="hsl(var(--muted-foreground))" 
+                                          fontSize={12} 
+                                          tickLine={false} 
+                                          axisLine={false} 
+                                          interval={0}
+                                      />
+                                      <YAxis 
+                                          stroke="hsl(var(--muted-foreground))" 
+                                          fontSize={12} 
+                                          tickLine={false} 
+                                          axisLine={false} 
+                                          tickFormatter={(value) => `${Math.round(value)}%`} 
+                                      />
+                                      <Tooltip 
+                                          cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
+                                          contentStyle={{
+                                              backgroundColor: 'hsl(var(--background))', 
+                                              border: '1px solid hsl(var(--border))',
+                                              borderRadius: 'var(--radius)'
+                                          }}
+                                          labelFormatter={(label) => label ? `Dia ${label}` : ''}
+                                          formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
+                                      />
+                                      <Legend wrapperStyle={{fontSize: "14px"}}/>
+                                      <Line 
+                                          type="monotone" 
+                                          dataKey="Seu Nível de Inflamação" 
+                                          stroke="hsl(var(--primary))" 
+                                          strokeWidth={3}
+                                          dot={false}
+                                          activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
+                                      />
+                                  </LineChart>
+                              </ResponsiveContainer>
+                          </div>
+                      </CardContent>
+                  </Card>
+              </div>
             </div>
         </section>
         
         {/* Chart Section */}
-        <section className="pt-8 bg-primary/5">
-          <div className="container mx-auto px-4 max-w-4xl">
-              <Card className="shadow-lg border-none bg-card">
-                  <CardHeader>
-                      <CardTitle className="font-headline text-2xl text-center">Seu Metabolismo</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                       <div className="w-full h-[300px]">
-                          <ResponsiveContainer>
-                              <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                                  <XAxis 
-                                      dataKey="name" 
-                                      stroke="hsl(var(--muted-foreground))" 
-                                      fontSize={12} 
-                                      tickLine={false} 
-                                      axisLine={false} 
-                                      interval={0}
-                                  />
-                                  <YAxis 
-                                      stroke="hsl(var(--muted-foreground))" 
-                                      fontSize={12} 
-                                      tickLine={false} 
-                                      axisLine={false} 
-                                      tickFormatter={(value) => `${Math.round(value)}%`} 
-                                  />
-                                  <Tooltip 
-                                      cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
-                                      contentStyle={{
-                                          backgroundColor: 'hsl(var(--background))', 
-                                          border: '1px solid hsl(var(--border))',
-                                          borderRadius: 'var(--radius)'
-                                      }}
-                                      labelFormatter={(label) => label ? `Dia ${label}` : ''}
-                                      formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
-                                  />
-                                  <Legend wrapperStyle={{fontSize: "14px"}}/>
-                                  <Line 
-                                      type="monotone" 
-                                      dataKey="Seu Nível de Inflamação" 
-                                      stroke="hsl(var(--primary))" 
-                                      strokeWidth={3}
-                                      dot={false}
-                                      activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
-                                  />
-                              </LineChart>
-                          </ResponsiveContainer>
-                      </div>
-                  </CardContent>
-              </Card>
-          </div>
-        </section>
+       
 
         {/* Main Content Section */}
         <section className="py-8 md:py-12">
@@ -200,7 +199,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                      {/* Offer */}
                     <Card className="shadow-lg bg-primary/5 border-primary">
                         <CardHeader>
-                            <CardTitle className="font-headline text-2xl text-primary">O Plano Perfeito.</CardTitle>
+                            <CardTitle className="font-headline text-2xl text-primary">Seu Plano Exclusivo</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
                             <ul className="space-y-3 text-lg">
@@ -365,3 +364,4 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     
 
     
+
