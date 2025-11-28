@@ -64,11 +64,11 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   };
   
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-950 p-4 overflow-hidden">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-2xl">
-        <CardHeader>
+    <div className="flex min-h-screen items-center justify-center bg-background/80 p-4 overflow-hidden">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
+        <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative h-40 md:h-36 overflow-hidden">
+          <div className="relative h-32 md:h-28 overflow-hidden">
             <CardTitle 
               key={currentStep}
               className={cn(
@@ -98,13 +98,13 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                   key={index}
                   style={{ animationDelay: `${index * 100}ms` }}
                   className={cn(
-                    "flex items-center space-x-4 rounded-xl border-2 border-transparent bg-gray-100 dark:bg-gray-800/50 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
-                    "hover:border-primary hover:bg-primary/5 hover:shadow-md",
+                    "flex items-center space-x-4 rounded-xl border bg-secondary/30 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
+                    "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
                     "opacity-0 translate-y-4 animate-fade-in-up",
                     isAnimatingOut ? 'opacity-0 translate-x-12' : ''
                   )}
                 >
-                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5 flex-shrink-0" />
+                  <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5 flex-shrink-0 border-primary/50" />
                   <Label htmlFor={`q${currentStep}-o${index}`} className="text-base md:text-lg font-medium text-foreground/80 flex-1 cursor-pointer">
                     {option.label}
                   </Label>

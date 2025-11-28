@@ -80,7 +80,7 @@ export default function AnalisePage() {
           {showButton ? (
             <Button
               size="lg"
-              className="w-full max-w-md bg-green-600 hover:bg-green-700 text-white text-xl md:text-2xl font-bold py-6 rounded-lg shadow-lg animate-pulse"
+              className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-6 rounded-lg shadow-lg animate-pulse"
               onClick={handleRedirect}
               disabled={isLoading}
             >
