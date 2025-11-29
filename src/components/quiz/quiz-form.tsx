@@ -68,11 +68,11 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative h-32 md:h-28 overflow-hidden">
+          <div className="relative min-h-[112px] flex items-center justify-center">
             <CardTitle 
               key={currentStep}
               className={cn(
-                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground flex items-center justify-center px-6 absolute w-full h-full transition-all duration-300 ease-in-out",
+                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground transition-all duration-300 ease-in-out px-4",
                 isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
               )}
             >
