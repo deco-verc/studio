@@ -1,3 +1,4 @@
+
 export const quizQuestions = [
     {
       id: 1,
@@ -11,10 +12,10 @@ export const quizQuestions = [
       id: 2,
       question: "Em qual fase da vida você está agora?",
       options: [
-        { label: "Tenho entre 18 e 29 anos", value: "Tenho entre 18 e 29 anos" },
-        { label: "Tenho entre 30 e 45 anos", value: "Tenho entre 30 e 45 anos" },
-        { label: "Tenho entre 46 e 60 anos", value: "Tenho entre 46 e 60 anos" },
-        { label: "Tenho mais de 60 anos", value: "Tenho mais de 60 anos" },
+        { label: "Tenho entre 18 e 29 anos", value: "Tenho entre 18 e 29 anos", avatar: "https://i.imgur.com/wVp3ZfX.png" },
+        { label: "Tenho entre 30 e 45 anos", value: "Tenho entre 30 e 45 anos", avatar: "https://i.imgur.com/QZ7ZJ9H.png" },
+        { label: "Tenho entre 46 e 60 anos", value: "Tenho entre 46 e 60 anos", avatar: "https://i.imgur.com/iZ2tZ4j.png" },
+        { label: "Tenho mais de 60 anos", value: "Tenho mais de 60 anos", avatar: "https://i.imgur.com/gKq9g7p.png" },
       ],
     },
     {
