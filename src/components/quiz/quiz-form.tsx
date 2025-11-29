@@ -106,13 +106,12 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                 const OptionContent = (
                   <>
                     {hasAvatars && (
-                      <div className="mb-4">
+                      <div className="mb-4 relative w-32 h-32">
                         <Image
                           src={option.avatar!}
                           alt={option.label}
-                          width={128}
-                          height={128}
-                          className="mx-auto rounded-full aspect-square object-cover shadow-md"
+                          fill
+                          className="mx-auto rounded-full object-cover shadow-md"
                         />
                       </div>
                     )}
@@ -138,7 +137,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                     )}
                   >
                     {hasAvatars ? (
-                        <Label htmlFor={`q${currentStep}-o${index}`} className="w-full cursor-pointer">{OptionContent}</Label>
+                        <Label htmlFor={`q${currentStep}-o${index}`} className="w-full cursor-pointer flex flex-col items-center">{OptionContent}</Label>
                     ) : (
                       OptionContent
                     )}
