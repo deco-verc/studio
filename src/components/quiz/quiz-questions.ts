@@ -4,8 +4,8 @@ export const quizQuestions = [
       id: 1,
       question: "Para começarmos, qual seu sexo?",
       options: [
-        { label: "Feminino", value: "Feminino", avatar: "https://i.imgur.com/L4p6G5d.png" },
-        { label: "Masculino", value: "Masculino", avatar: "https://i.imgur.com/kZ6E7s3.png" },
+        { label: "Feminino", value: "Feminino", avatar: "https://i.imgur.com/LQGNQBh.png" },
+        { label: "Masculino", value: "Masculino", avatar: "https://i.imgur.com/EUTPGJ3.png" },
       ],
     },
     {
