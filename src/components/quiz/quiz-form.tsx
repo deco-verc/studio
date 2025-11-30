@@ -74,7 +74,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center min-h-[6rem] md:min-h-[4rem]">
             <CardTitle 
               key={currentStep}
               className={cn(
@@ -106,12 +106,12 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                 const OptionContent = (
                   <>
                     {hasAvatars && option.avatar && (
-                      <div className="mb-4 relative w-32 h-32">
+                      <div className="mb-4 mx-auto relative w-32 h-32">
                         <Image
                           src={option.avatar}
                           alt={option.label}
                           fill
-                          className="mx-auto rounded-full object-cover shadow-md"
+                          className="rounded-full object-cover shadow-md"
                         />
                       </div>
                     )}
@@ -133,7 +133,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
                       "opacity-0 translate-y-4 animate-fade-in-up",
                       isAnimatingOut ? 'opacity-0 translate-x-12' : '',
-                       hasAvatars ? 'flex flex-col items-center justify-start' : 'flex items-center space-x-4'
+                       hasAvatars ? 'flex flex-col items-center justify-start' : 'flex items-center'
                     )}
                   >
                     {hasAvatars ? (
