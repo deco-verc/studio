@@ -37,7 +37,8 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
 
   const totalQuestions = quizQuestions.length;
   const progress = useMemo(() => smartProgress(currentStep + 1, totalQuestions), [currentStep, totalQuestions]);
-  const currentQuestion = quizQuestions[currentStep];
+  const currentQuestion = quizQuestions[currentStep] as (typeof quizQuestions)[0] & { imageBelowTitle?: string };
+
 
   const hasAvatars = useMemo(() => {
     return currentQuestion.options.every(option => 'avatar' in option && option.avatar);
@@ -74,7 +75,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative flex items-center justify-center min-h-[64px]">
+          <div className="relative flex flex-col items-center justify-center">
             <CardTitle 
               key={currentStep}
               className={cn(
@@ -84,6 +85,22 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
             >
               {currentQuestion.question}
             </CardTitle>
+            {currentQuestion.imageBelowTitle && (
+              <div className={cn(
+                  "mt-4 relative w-full max-w-xs mx-auto rounded-lg overflow-hidden shadow-md transition-all duration-300 ease-in-out",
+                  isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
+                )}
+                style={{ animationDelay: '100ms' }}
+              >
+                <Image 
+                  src={currentQuestion.imageBelowTitle}
+                  alt="Imagem da pergunta"
+                  width={300}
+                  height={200}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )}
           </div>
         </CardHeader>
         <CardContent className="px-4 sm:px-6 md:px-8 pb-8">
@@ -115,28 +132,29 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       isAnimatingOut ? 'opacity-0 translate-x-12' : ''
                     )}
                   >
-                    <Label htmlFor={id} className="w-full h-full cursor-pointer">
-                      {hasAvatars ? (
-                        <div className="flex flex-col items-center justify-start text-center gap-4">
-                           {option.avatar && (
-                            <div className="relative w-32 h-32">
-                              <Image
-                                src={option.avatar}
-                                alt={option.label}
-                                fill
-                                className="rounded-full object-cover shadow-md"
-                              />
-                            </div>
-                          )}
-                          <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                          <span className="font-medium text-foreground/80 text-sm md:text-base">
-                            {option.label}
-                          </span>
+                    <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-start text-center gap-4">
+                      {hasAvatars && option.avatar && (
+                        <div className="relative w-32 h-32">
+                          <Image
+                            src={option.avatar}
+                            alt={option.label}
+                            fill
+                            className="rounded-full object-cover shadow-md"
+                          />
                         </div>
-                      ) : (
-                        <div className="flex items-center space-x-4">
+                      )}
+                      
+                      {hasAvatars ? (
+                        <>
                            <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                           <span className="font-medium text-foreground/80 flex-1 text-base md:text-lg">
+                           <span className="font-medium text-foreground/80 text-sm md:text-base">
+                            {option.label}
+                           </span>
+                        </>
+                      ) : (
+                        <div className="flex items-center space-x-4 w-full">
+                           <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
+                           <span className="font-medium text-foreground/80 flex-1 text-base md:text-lg text-left">
                             {option.label}
                            </span>
                         </div>

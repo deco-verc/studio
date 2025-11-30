@@ -12,15 +12,16 @@ export const quizQuestions = [
       id: 2,
       question: "Em qual fase da vida você está agora?",
       options: [
-        { label: "Tenho entre 18 e 29 anos", value: "Tenho entre 18 e 29 anos", avatar: "https://i.imgur.com/wVp3ZfX.png" },
-        { label: "Tenho entre 30 e 45 anos", value: "Tenho entre 30 e 45 anos", avatar: "https://i.imgur.com/QZ7ZJ9H.png" },
-        { label: "Tenho entre 46 e 60 anos", value: "Tenho entre 46 e 60 anos", avatar: "https://i.imgur.com/iZ2tZ4j.png" },
-        { label: "Tenho mais de 60 anos", value: "Tenho mais de 60 anos", avatar: "https://i.imgur.com/gKq9g7p.png" },
+        { label: "Tenho entre 18 e 29 anos", value: "Tenho entre 18 e 29 anos", avatar: "https://i.imgur.com/MvneBFa.png" },
+        { label: "Tenho entre 30 e 45 anos", value: "Tenho entre 30 e 45 anos", avatar: "https://i.imgur.com/9bMf6xY.png" },
+        { label: "Tenho entre 46 e 60 anos", value: "Tenho entre 46 e 60 anos", avatar: "https://i.imgur.com/6LVROCC.png" },
+        { label: "Tenho mais de 60 anos", value: "Tenho mais de 60 anos", avatar: "https://i.imgur.com/kTstDj1.png" },
       ],
     },
     {
       id: 3,
       question: "Qual é o seu maior desejo ao se olhar no espelho daqui a 30 dias?",
+      imageBelowTitle: "https://i.imgur.com/6oSBBn1.jpeg",
       options: [
         { label: "Ver minha barriga ficar chapada e minhas roupas servindo fácil.", value: "Ver minha barriga ficar chapada e minhas roupas servindo fácil." },
         { label: "Acordar leve, sem inchaço e com energia de sobra.", value: "Acordar leve, sem inchaço e com energia de sobra." },
@@ -51,6 +52,7 @@ export const quizQuestions = [
     {
       id: 6,
       question: "Como você se sente quando vai comprar roupas hoje?",
+      imageBelowTitle: "https://i.imgur.com/crtE4Sf.jpeg",
       options: [
         { label: "Sinto um aperto no peito e evito me olhar no espelho da loja.", value: "Sinto um aperto no peito e evito me olhar no espelho da loja." },
         { label: "Fico triste, pois só compro roupas largas para me esconder.", value: "Fico triste, pois só compro roupas largas para me esconder." },
@@ -91,6 +93,7 @@ export const quizQuestions = [
     {
       id: 10,
       question: "Você sente que vive em uma guerra contra a balança, o famoso Efeito Sanfona?",
+      imageBelowTitle: "https://i.imgur.com/dbBEXRL.jpeg",
       options: [
         { label: "Sim, eu me sinto horrível, eu perco 2kg, mas ganho 4kg depois.", value: "Sim, eu me sinto horrível, eu perco 2kg, mas ganho 4kg depois." },
         { label: "Parece que meu metabolismo fica cada vez mais lento e resistente a cada tentativa.", value: "Parece que meu metabolismo fica cada vez mais lento e resistente a cada tentativa." },
@@ -111,6 +114,7 @@ export const quizQuestions = [
     {
       id: 12,
       question: "Sendo brutalmente honesta: como você sente que seu marido (ou parceiro) te enxerga hoje?",
+      imageBelowTitle: "https://i.imgur.com/7XuJqdg.jpeg",
       options: [
         { label: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher.", value: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher." },
         { label: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto.", value: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto." },
@@ -131,6 +135,7 @@ export const quizQuestions = [
     {
       id: 14,
       question: "Você sente que as pessoas (ou médicos) te julgam só pelo seu peso?",
+      imageBelowTitle: "https://i.imgur.com/m2JOiRH.jpeg",
       options: [
         { label: "Sim, sinto que sou \"invisível\" até que meu corpo incomode.", value: "Sim, sinto que sou \"invisível\" até que meu corpo incomode." },
         { label: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\".", value: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\"." },
@@ -151,6 +156,7 @@ export const quizQuestions = [
     {
       id: 16,
       question: "Você sente uma vontade estranha que te faz comer mesmo sem fome?",
+      imageBelowTitle: "https://i.imgur.com/7hYcexV.jpeg",
       options: [
         { label: "Sim, parece que meu cérebro foi modificado e não consigo parar.", value: "Sim, parece que meu cérebro foi modificado e não consigo parar." },
         { label: "Sim, é como um vício mais forte que eu.", value: "Sim, é como um vício mais forte que eu." },
@@ -171,6 +177,7 @@ export const quizQuestions = [
     {
       id: 18,
       question: "Muitas mulheres sentem o corpo inflamado e pesado. Você sente isso?",
+      imageBelowTitle: "https://i.imgur.com/DXfvJ5e.jpeg",
       options: [
         { label: "Exatamente, sinto meu corpo intoxicado e inchado.", value: "Exatamente, sinto meu corpo intoxicado e inchado." },
         { label: "Sim, sinto um estufamento na barriga que não passa.", value: "Sim, sinto um estufamento na barriga que não passa." },
@@ -191,6 +198,7 @@ export const quizQuestions = [
     {
       id: 20,
       question: "Imagine encontrar aquelas pessoas que te julgaram ou te ignoraram daqui a 30 dias. Qual reação você quer causar?",
+      imageBelowTitle: "https://i.imgur.com/RE8HA6Z.jpeg",
       options: [
         { label: "Quero ver o queixo delas caindo quando eu entrar na sala magra, elegante e poderosa.", value: "Quero ver o queixo delas caindo quando eu entrar na sala magra, elegante e poderosa." },
         { label: "Quero que elas sintam inveja e perguntem desesperadas qual foi meu segredo.", value: "Quero que elas sintam inveja e perguntem desesperadas qual foi meu segredo." },
@@ -221,6 +229,7 @@ export const quizQuestions = [
     {
       id: 23,
       question: "Imagine fazer refeições deliciosas em 20 minutos, com coisas simples que você já tem em casa, que enganam seu metabolismo para queimar gordura. Ajudaria?",
+      imageBelowTitle: "https://i.imgur.com/0DpLfrG.jpeg",
       options: [
         { label: "Seria a salvação, resolveria minha falta de tempo e dinheiro.", value: "Seria a salvação, resolveria minha falta de tempo e dinheiro." },
         { label: "Eu teria a praticidade que preciso para não desistir no meio.", value: "Eu teria a praticidade que preciso para não desistir no meio." },
@@ -241,6 +250,7 @@ export const quizQuestions = [
     {
       id: 25,
       question: "Você topa trocar a comida sem gosto por 200 receitas saborosas (com doces e massas) que desinflamam e destravam sua queima de gordura?",
+      imageBelowTitle: "https://i.imgur.com/uPSVCd7.jpeg",
       options: [
         { label: "Sim, estou pronta para comer comida de verdade e ser feliz.", value: "Sim, estou pronta para comer comida de verdade e ser feliz." },
         { label: "Com certeza, quero resultado rápido sem abrir mão do sabor.", value: "Com certeza, quero resultado rápido sem abrir mão do sabor." },
@@ -251,6 +261,7 @@ export const quizQuestions = [
     {
       id: 26,
       question: "Se eu te entregar o acesso ao Código das 200 Receitas agora, qual seria sua resposta?",
+      imageBelowTitle: "https://i.imgur.com/Vlc46EP.jpeg",
       options: [
         { label: "Sim! Quero acessar minhas receitas e começar a desinflamar agora.", value: "Sim! Quero acessar minhas receitas e começar a desinflamar agora." },
         { label: "Com certeza! Quero começar minha transformação hoje mesmo.", value: "Com certeza! Quero começar minha transformação hoje mesmo." },

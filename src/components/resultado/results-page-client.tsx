@@ -261,6 +261,9 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
         <section className="py-8 bg-background">
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto text-center">
+                    <div className="mb-4">
+                        <Image src="https://i.imgur.com/2SvkrU6.jpeg" alt="Black Friday Offer" width={600} height={200} className="mx-auto rounded-md shadow-lg" />
+                    </div>
                     <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
                         <p className="font-bold text-lg">{`OFERTA BLACK FRIDAY (${today} - 23:59)`}</p>
                     </Card>
