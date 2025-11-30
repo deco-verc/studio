@@ -132,7 +132,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       isAnimatingOut ? 'opacity-0 translate-x-12' : ''
                     )}
                   >
-                    <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-start text-center gap-4">
+                    <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-between text-center gap-4">
                       {hasAvatars && option.avatar && (
                         <div className="relative w-32 h-32">
                           <Image
