@@ -105,10 +105,10 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               {currentQuestion.options.map((option, index) => {
                 const OptionContent = (
                   <>
-                    {hasAvatars && (
+                    {hasAvatars && option.avatar && (
                       <div className="mb-4 relative w-32 h-32">
                         <Image
-                          src={option.avatar!}
+                          src={option.avatar}
                           alt={option.label}
                           fill
                           className="mx-auto rounded-full object-cover shadow-md"
@@ -117,7 +117,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                     )}
                     <div className={cn("flex items-center space-x-4", hasAvatars && "justify-center")}>
                       <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                      <Label htmlFor={`q${currentStep}-o${index}`} className={cn("font-medium text-foreground/80 flex-1 cursor-pointer", hasAvatars ? "text-center text-sm md:text-base" : "text-base md:text-lg")}>
+                      <Label htmlFor={`q${currentStep}-o${index}`} className={cn("font-medium text-foreground/80 flex-1 cursor-pointer", hasAvatars ? "text-center text-sm md:text-base !flex-initial" : "text-base md:text-lg")}>
                         {option.label}
                       </Label>
                     </div>
@@ -133,7 +133,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
                       "opacity-0 translate-y-4 animate-fade-in-up",
                       isAnimatingOut ? 'opacity-0 translate-x-12' : '',
-                       hasAvatars ? 'flex flex-col items-center justify-start space-y-0' : 'flex items-center space-x-4'
+                       hasAvatars ? 'flex flex-col items-center justify-start' : 'flex items-center space-x-4'
                     )}
                   >
                     {hasAvatars ? (
