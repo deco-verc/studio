@@ -74,7 +74,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center min-h-[64px]">
             <CardTitle 
               key={currentStep}
               className={cn(
@@ -117,7 +117,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                   >
                     <Label htmlFor={id} className="w-full h-full cursor-pointer">
                       {hasAvatars ? (
-                        <div className="flex flex-col items-center justify-start gap-4">
+                        <div className="flex flex-col items-center justify-start text-center gap-4">
                            {option.avatar && (
                             <div className="relative w-32 h-32">
                               <Image
@@ -128,12 +128,10 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                               />
                             </div>
                           )}
-                          <div className="flex items-center space-x-3">
-                            <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                            <span className="font-medium text-foreground/80 text-center text-sm md:text-base">
-                              {option.label}
-                            </span>
-                          </div>
+                          <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
+                          <span className="font-medium text-foreground/80 text-sm md:text-base">
+                            {option.label}
+                          </span>
                         </div>
                       ) : (
                         <div className="flex items-center space-x-4">
