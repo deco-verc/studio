@@ -74,7 +74,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative flex items-center justify-center min-h-[6rem] md:min-h-[4rem]">
+          <div className="relative flex items-center justify-center">
             <CardTitle 
               key={currentStep}
               className={cn(
@@ -103,27 +103,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               )}
             >
               {currentQuestion.options.map((option, index) => {
-                const OptionContent = (
-                  <>
-                    {hasAvatars && option.avatar && (
-                      <div className="mb-4 mx-auto relative w-32 h-32">
-                        <Image
-                          src={option.avatar}
-                          alt={option.label}
-                          fill
-                          className="rounded-full object-cover shadow-md"
-                        />
-                      </div>
-                    )}
-                    <div className={cn("flex items-center space-x-4", hasAvatars && "justify-center")}>
-                      <RadioGroupItem value={option.value} id={`q${currentStep}-o${index}`} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                      <Label htmlFor={`q${currentStep}-o${index}`} className={cn("font-medium text-foreground/80 flex-1 cursor-pointer", hasAvatars ? "text-center text-sm md:text-base !flex-initial" : "text-base md:text-lg")}>
-                        {option.label}
-                      </Label>
-                    </div>
-                  </>
-                );
-
+                const id = `q${currentStep}-o${index}`;
                 return (
                   <div 
                     key={index}
@@ -132,15 +112,38 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       "rounded-xl border bg-secondary/30 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
                       "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
                       "opacity-0 translate-y-4 animate-fade-in-up",
-                      isAnimatingOut ? 'opacity-0 translate-x-12' : '',
-                       hasAvatars ? 'flex flex-col items-center justify-start' : 'flex items-center'
+                      isAnimatingOut ? 'opacity-0 translate-x-12' : ''
                     )}
                   >
-                    {hasAvatars ? (
-                        <Label htmlFor={`q${currentStep}-o${index}`} className="w-full cursor-pointer flex flex-col items-center">{OptionContent}</Label>
-                    ) : (
-                      OptionContent
-                    )}
+                    <Label htmlFor={id} className="w-full h-full cursor-pointer">
+                      {hasAvatars ? (
+                        <div className="flex flex-col items-center justify-start gap-4">
+                           {option.avatar && (
+                            <div className="relative w-32 h-32">
+                              <Image
+                                src={option.avatar}
+                                alt={option.label}
+                                fill
+                                className="rounded-full object-cover shadow-md"
+                              />
+                            </div>
+                          )}
+                          <div className="flex items-center space-x-3">
+                            <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
+                            <span className="font-medium text-foreground/80 text-center text-sm md:text-base">
+                              {option.label}
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-4">
+                           <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
+                           <span className="font-medium text-foreground/80 flex-1 text-base md:text-lg">
+                            {option.label}
+                           </span>
+                        </div>
+                      )}
+                    </Label>
                   </div>
                 )
               })}
