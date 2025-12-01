@@ -79,7 +79,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
             <CardTitle 
               key={currentStep}
               className={cn(
-                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground transition-all duration-300 ease-in-out px-4",
+                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground transition-all duration-300 ease-in-out px-4 min-h-[6rem] flex items-center justify-center",
                 isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
               )}
             >
@@ -113,7 +113,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
             <RadioGroup
               key={currentStep}
               value={answers[currentStep]}
-              onValueChange={handleValueChange}
+              onValueValueChange={handleValueChange}
               className={cn(
                 "space-y-4",
                 hasAvatars && "grid grid-cols-2 gap-4 md:gap-6"
@@ -141,25 +141,15 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                             alt={option.label}
                             fill
                             className="rounded-full object-cover shadow-md"
+                            priority={currentStep === 0}
                           />
                         </div>
                       )}
                       
-                      {hasAvatars ? (
-                        <>
-                           <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                           <span className="font-medium text-foreground/80 text-sm md:text-base">
-                            {option.label}
-                           </span>
-                        </>
-                      ) : (
-                        <div className="flex items-center space-x-4 w-full">
-                           <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                           <span className="font-medium text-foreground/80 flex-1 text-base md:text-lg text-left">
-                            {option.label}
-                           </span>
-                        </div>
-                      )}
+                      <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
+                       <span className="font-medium text-foreground/80 text-sm md:text-base">
+                        {option.label}
+                       </span>
                     </Label>
                   </div>
                 )
