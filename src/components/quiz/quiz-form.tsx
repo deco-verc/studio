@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useTransition, useMemo, useEffect } from 'react';
+import { useState, useTransition, useMemo } from 'react';
 import Image from 'next/image';
 import { quizQuestions } from './quiz-questions';
 import { Button } from '@/components/ui/button';
@@ -113,7 +113,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
             <RadioGroup
               key={currentStep}
               value={answers[currentStep]}
-              onValueValueChange={handleValueChange}
+              onValueChange={handleValueChange}
               className={cn(
                 "space-y-4",
                 hasAvatars && "grid grid-cols-2 gap-4 md:gap-6"
@@ -141,7 +141,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                             alt={option.label}
                             fill
                             className="rounded-full object-cover shadow-md"
-                            priority={currentStep === 0}
+                            priority={currentStep < 2}
                           />
                         </div>
                       )}
