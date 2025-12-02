@@ -62,7 +62,7 @@ export default function AnalisePage() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-4">
       <div className="w-full max-w-4xl text-center space-y-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-headline text-primary">
-          Estou analisando o seu perfil agora... e já posso te adiantar: a culpa não é sua.
+          Estou analisando o seu perfil agora...
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Não feche essa página. Nesse video, eu vou te provar por que suas dietas falharam no passado e te entregar o caminho exato para resolver isso sem passar fome.
