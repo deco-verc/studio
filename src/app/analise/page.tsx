@@ -65,7 +65,7 @@ export default function AnalisePage() {
           Estou analisando o seu perfil agora... e já posso te adiantar: a culpa não é sua.
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Por favor, não feche essa página. No vídeo abaixo, eu vou te provar por que suas dietas falharam no passado e te entregar o caminho exato para resolver isso sem passar fome.
+          Não feche essa página. Nesse video, eu vou te provar por que suas dietas falharam no passado e te entregar o caminho exato para resolver isso sem passar fome.
         </p>
 
         {/* VSL Placeholder */}
