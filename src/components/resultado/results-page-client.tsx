@@ -121,7 +121,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
             <div className="container mx-auto px-4 text-center">
                 <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
                 <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-red-500">Bloqueado pela Química das Indústrias.</span>
+                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-red-500">Bloqueado pela Química das Indústrias.</span> Veja mais informações abaixo
                 </p>
                  <div className="container mx-auto px-4 max-w-4xl pt-4">
                   <Card className="shadow-lg border-none bg-card">
@@ -364,3 +364,4 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     
 
     
+
