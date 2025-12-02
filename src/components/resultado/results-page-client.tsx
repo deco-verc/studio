@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -112,6 +113,8 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
   const socialProofAutoplay = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })
   );
+
+  const checkoutUrl = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -279,9 +282,11 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                                     R$47<span className="text-4xl md:text-6xl align-top">,90</span>
                                 </p>
                             </div>
-                            <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
-                                COMPRAR COM DESCONTO
-                            </Button>
+                             <Link href={checkoutUrl}>
+                                <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
+                                    COMPRAR COM DESCONTO
+                                </Button>
+                            </Link>
                         </CardContent>
                     </Card>
                 </div>
@@ -347,9 +352,11 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                     ))}
                 </Accordion>
                 <div className="text-center mt-12">
-                     <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
-                        ESTOU PREPARADA PARA COMPRAR
-                    </Button>
+                    <Link href={checkoutUrl}>
+                        <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                            ESTOU PREPARADA PARA COMPRAR
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </section>
@@ -365,3 +372,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
 
     
 
+
+
+    
