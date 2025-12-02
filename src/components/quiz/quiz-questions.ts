@@ -23,20 +23,20 @@ export const quizQuestions = [
       question: "Qual é o seu maior desejo ao se olhar no espelho daqui a 30 dias?",
       imageBelowTitle: "https://i.imgur.com/6oSBBn1.jpeg",
       options: [
-        { label: "Ver minha barriga ficar chapada e minhas roupas servindo fácil.", value: "Ver minha barriga ficar chapada e minhas roupas servindo fácil." },
-        { label: "Acordar leve, sem inchaço e com energia de sobra.", value: "Acordar leve, sem inchaço e com energia de sobra." },
-        { label: "Entrar naquela roupa favorita que hoje nem fecha o zíper.", value: "Entrar naquela roupa favorita que hoje nem fecha o zíper." },
-        { label: "Sentir que eu mando no meu corpo e não a comida.", value: "Sentir que eu mando no meu corpo e não a comida." },
+        { label: "Ver minha barriga ficar chapada.", value: "Ver minha barriga ficar chapada." },
+        { label: "Acordar leve, sem inchaço e com energia.", value: "Acordar leve, sem inchaço e com energia." },
+        { label: "Comprar roupas sem preocupação.", value: "Comprar roupas sem preocupação." },
+        { label: "Ficar bonita para meu namorado/marido.", value: "Ficar bonita para meu namorado/marido." },
       ],
     },
     {
       id: 4,
-      question: "Sendo bem sincera: como você lida com a cozinha hoje?",
+      question: "Como você lida com a cozinha hoje?",
       options: [
-        { label: "Eu tento cozinhar, mas acabo sempre no básico sem graça.", value: "Eu tento cozinhar, mas acabo sempre no básico sem graça." },
-        { label: "Minha vida é corrida, acabo comendo qualquer coisa pronta.", value: "Minha vida é corrida, acabo comendo qualquer coisa pronta." },
-        { label: "Eu tento comer saudável, mas comida de dieta não tem gosto de nada.", value: "Eu tento comer saudável, mas comida de dieta não tem gosto de nada." },
-        { label: "Eu gosto de cozinhar, mas preciso de receitas que realmente queimem gordura.", value: "Eu gosto de cozinhar, mas preciso de receitas que realmente queimem gordura." },
+        { label: "Eu tento, mas não sou muito boa.", value: "Eu tento, mas não sou muito boa." },
+        { label: "Minha vida é corrida, acabo pedindo entrega.", value: "Minha vida é corrida, acabo pedindo entrega." },
+        { label: "Eu tento comer saudável, mas não consigo.", value: "Eu tento comer saudável, mas não consigo." },
+        { label: "Eu gosto de cozinhar, mas nunca sei o que fazer.", value: "Eu gosto de cozinhar, mas nunca sei o que fazer." },
       ],
     },
     {
@@ -46,7 +46,7 @@ export const quizQuestions = [
         { label: "Não aguento comer comida ruim, sem gosto.", value: "Não aguento comer comida ruim, sem gosto." },
         { label: "Fico de mau humor e irritada de tanta fome que sinto.", value: "Fico de mau humor e irritada de tanta fome que sinto." },
         { label: "Fico ansiosa porque demoro muito para ver resultado.", value: "Fico ansiosa porque demoro muito para ver resultado." },
-        { label: "Gastei dinheiro com produtos caros que não adiantaram nada.", value: "Gastei dinheiro com produtos caros que não adiantaram nada." },
+        { label: "Não encontrei um método bom.", value: "Não encontrei um método bom." },
       ],
     },
     {
@@ -55,43 +55,31 @@ export const quizQuestions = [
       imageBelowTitle: "https://i.imgur.com/crtE4Sf.jpeg",
       options: [
         { label: "Sinto um aperto no peito e evito me olhar no espelho da loja.", value: "Sinto um aperto no peito e evito me olhar no espelho da loja." },
-        { label: "Fico triste, pois só compro roupas largas para me esconder.", value: "Fico triste, pois só compro roupas largas para me esconder." },
-        { label: "Saio com raiva, porque nada serve e me sinto mal.", value: "Saio com raiva, porque nada serve e me sinto mal." },
-        { label: "Sinceramente? Nem provo mais para não voltar chorando para casa.", value: "Sinceramente? Nem provo mais para não voltar chorando para casa." },
+        { label: "Só compro roupas largas para me esconder.", value: "Só compro roupas largas para me esconder." },
+        { label: "Me sinto mal porque nada serve.", value: "Me sinto mal porque nada serve." },
+        { label: "Nem provo mais, compro pela internet.", value: "Nem provo mais, compro pela internet." },
       ],
     },
     {
       id: 7,
-      question: "O calor te incomoda por causa do atrito nas pernas (assaduras)?",
+      question: "Qual é a frase que você mais odeia ouvir de amigas ou familiares?",
       options: [
-        { label: "Sim, é horrível, machuca e não consigo usar vestido.", value: "Sim, é horrível, machuca e não consigo usar vestido." },
-        { label: "Sim, tenho que usar shortinho por baixo da roupa para aguentar.", value: "Sim, tenho que usar shortinho por baixo da roupa para aguentar." },
-        { label: "Sim, evito sair no verão para não sentir dor e incômodo.", value: "Sim, evito sair no verão para não sentir dor e incômodo." },
-        { label: "Sim, me sinto presa e desconfortável no meu próprio corpo.", value: "Sim, me sinto presa e desconfortável no meu próprio corpo." },
-      ],
-    },
-    {
-      id: 8,
-      question: "Qual é a frase que você mais odeia ouvir de amigas ou familiares, mesmo quando elas tentam ser \"gentis\"?",
-      options: [
-        { label: '"Nossa, você tem um rosto tão lindo... se emagrecesse um pouquinho ficaria perfeita."', value: '"Nossa, você tem um rosto tão lindo... se emagrecesse um pouquinho ficaria perfeita."' },
-        { label: '"Você é tão simpática e engraçada!" (Como se fosse um prêmio de consolação pelo peso).', value: '"Você é tão simpática e engraçada!" (Como se fosse um prêmio de consolação pelo peso).' },
+        { label: '"Nossa, você é tão bonita de rosto".', value: '"Nossa, você é tão bonita de rosto".' },
         { label: '"Essa roupa preta te emagreceu!"', value: '"Essa roupa preta te emagreceu!"' },
         { label: '"Você vai comer tudo isso?" (Aquele julgamento disfarçado).', value: '"Você vai comer tudo isso?" (Aquele julgamento disfarçado).' },
       ],
     },
     {
-      id: 9,
+      id: 8,
       question: "Você sente que seu corpo \"luta contra você\"?",
       options: [
-        { label: "Sim, sou uma pessoa magra presa num corpo que não obedece.", value: "Sim, sou uma pessoa magra presa num corpo que não obedece." },
-        { label: "Parece que meu metabolismo pifou e nada faz eu emagrecer.", value: "Parece que meu metabolismo pifou e nada faz eu emagrecer." },
+        { label: "Sim, parece que meu metabolismo pifou e nada faz eu emagrecer.", value: "Sim, parece que meu metabolismo pifou e nada faz eu emagrecer." },
         { label: "Eu perco um pouquinho, mas ganho o dobro depois. Cansei disso.", value: "Eu perco um pouquinho, mas ganho o dobro depois. Cansei disso." },
         { label: "Sinto uma vontade incontrolável de comer doces e massas.", value: "Sinto uma vontade incontrolável de comer doces e massas." },
       ],
     },
     {
-      id: 10,
+      id: 9,
       question: "Você sente que vive em uma guerra contra a balança, o famoso Efeito Sanfona?",
       imageBelowTitle: "https://i.imgur.com/dbBEXRL.jpeg",
       options: [
@@ -102,28 +90,18 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 11,
-      question: "Se nada mudar, como vão ser suas fotos de família daqui a 5 anos?",
-      options: [
-        { label: "Terei poucas fotos, pois hoje fujo das câmeras de vergonha.", value: "Terei poucas fotos, pois hoje fujo das câmeras de vergonha." },
-        { label: "Vou ser aquela que sempre se esconde atrás de alguém na foto.", value: "Vou ser aquela que sempre se esconde atrás de alguém na foto." },
-        { label: "Vou me arrepender de não ter registrado momentos felizes.", value: "Vou me arrepender de não ter registrado momentos felizes." },
-        { label: "Vou perder a chance de ter lembranças lindas com quem amo.", value: "Vou perder a chance de ter lembranças lindas com quem amo." },
-      ],
-    },
-    {
-      id: 12,
-      question: "Sendo brutalmente honesta: como você sente que seu marido (ou parceiro) te enxerga hoje?",
+      id: 10,
+      question: "Sendo honesta: como você sente que seu marido (ou parceiro) te enxerga hoje?",
       imageBelowTitle: "https://i.imgur.com/7XuJqdg.jpeg",
       options: [
         { label: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher.", value: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher." },
         { label: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto.", value: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto." },
-        { label: "Sinto um distanciamento frio e tenho medo de que ele sinta vergonha de andar comigo.", value: "Sinto um distanciamento frio e tenho medo de que ele sinta vergonha de andar comigo." },
+        { label: "Sinto um distanciamento e tenho medo de que ele sinta vergonha de andar comigo.", value: "Sinto um distanciamento e tenho medo de que ele sinta vergonha de andar comigo." },
         { label: "Percebo que o brilho no olhar dele sumiu e morro de medo dele procurar fora o que não vê em mim.", value: "Percebo que o brilho no olhar dele sumiu e morro de medo dele procurar fora o que não vê em mim." },
       ],
     },
     {
-      id: 13,
+      id: 11,
       question: "De mulher para mulher: como isso afeta sua vida íntima?",
       options: [
         { label: "Muitas vezes peço para apagar a luz ou me escondo.", value: "Muitas vezes peço para apagar a luz ou me escondo." },
@@ -133,28 +111,18 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 14,
-      question: "Você sente que as pessoas (ou médicos) te julgam só pelo seu peso?",
+      id: 12,
+      question: "Você sente que as pessoas te julgam só pelo seu peso?",
       imageBelowTitle: "https://i.imgur.com/m2JOiRH.jpeg",
       options: [
-        { label: "Sim, sinto que sou \"invisível\" até que meu corpo incomode.", value: "Sim, sinto que sou \"invisível\" até que meu corpo incomode." },
+        { label: "Sim, sinto que sou \"invisível\".", value: "Sim, sinto que sou \"invisível\"." },
         { label: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\".", value: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\"." },
         { label: "Sim, sinto que perdi o respeito que as pessoas magras têm.", value: "Sim, sinto que perdi o respeito que as pessoas magras têm." },
-        { label: "Sim, sinto raiva por não ser tratada com a gentileza que mereço.", value: "Sim, sinto raiva por não ser tratada com a gentileza que mereço." },
+        { label: "Sim, sinto raiva por não ser tratada da forma que mereço.", value: "Sim, sinto raiva por não ser tratada da forma que mereço." },
       ],
     },
     {
-      id: 15,
-      question: "Além da estética, o que você mais deseja recuperar na sua relação com a saúde e a sociedade?",
-      options: [
-        { label: "Quero ir ao médico e ser ouvida de verdade, sem que qualquer dor minha seja resumida a \"você precisa emagrecer\".", value: "Quero ir ao médico e ser ouvida de verdade, sem que qualquer dor minha seja resumida a \"você precisa emagrecer\"." },
-        { label: "Quero entrar em qualquer lugar e ser tratada com o respeito e a gentileza que dão às pessoas magras.", value: "Quero entrar em qualquer lugar e ser tratada com o respeito e a gentileza que dão às pessoas magras." },
-        { label: "Quero deixar de ser \"invisível\" ou \"a gorda simpática\" e recuperar minha credibilidade e dignidade.", value: "Quero deixar de ser \"invisível\" ou \"a gorda simpática\" e recuperar minha credibilidade e dignidade." },
-        { label: "Quero ter a certeza de que estou cuidando de mim para não ser negligenciada pelo sistema de saúde no futuro.", value: "Quero ter a certeza de que estou cuidando de mim para não ser negligenciada pelo sistema de saúde no futuro." },
-      ],
-    },
-    {
-      id: 16,
+      id: 13,
       question: "Você sente uma vontade estranha que te faz comer mesmo sem fome?",
       imageBelowTitle: "https://i.imgur.com/7hYcexV.jpeg",
       options: [
@@ -165,7 +133,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 17,
+      id: 14,
       question: "Você sabia que muitos produtos \"Light\" e \"Fit\" têm químicos que AUMENTAM sua fome e fazem você engordar?",
       options: [
         { label: "Eu desconfiava! Sempre fico com mais fome depois de comer isso.", value: "Eu desconfiava! Sempre fico com mais fome depois de comer isso." },
@@ -175,7 +143,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 18,
+      id: 15,
       question: "Muitas mulheres sentem o corpo inflamado e pesado. Você sente isso?",
       imageBelowTitle: "https://i.imgur.com/DXfvJ5e.jpeg",
       options: [
@@ -186,7 +154,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 19,
+      id: 16,
       question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
       options: [
         { label: "Eu sentiria um alívio gigante e pararia de me culpar.", value: "Eu sentiria um alívio gigante e pararia de me culpar." },
@@ -196,7 +164,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 20,
+      id: 17,
       question: "Imagine encontrar aquelas pessoas que te julgaram ou te ignoraram daqui a 30 dias. Qual reação você quer causar?",
       imageBelowTitle: "https://i.imgur.com/RE8HA6Z.jpeg",
       options: [
@@ -207,7 +175,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 21,
+      id: 18,
       question: "Qual é o seu maior sonho para reacender a chama da sua vida amorosa e sua autoestima?",
       options: [
         { label: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder.", value: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder." },
@@ -217,17 +185,17 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 22,
-      question: "Se essas Receitas agissem como um antídoto, tirando esse vício e desinflamando seu corpo fazendo você emagrecer dormindo, como seria?",
+      id: 19,
+      question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
       options: [
         { label: "Seria a paz que eu procuro: comer sem culpa e sem compulsão.", value: "Seria a paz que eu procuro: comer sem culpa e sem compulsão." },
-        { label: "Eu finalmente teria o controle de volta e emagreceria natural.", value: "Eu finalmente teria o controle de volta e emagreceria natural." },
+        { label: "Eu finalmente teria o controle de volta e emagreceria naturalmente.", value: "Eu finalmente teria o controle de volta e emagreceria naturalmente." },
         { label: "Seria minha vingança contra a indústria que me viciou.", value: "Seria minha vingança contra a indústria que me viciou." },
         { label: "Eu me sentiria leve, desinchada e queimando gordura sozinha.", value: "Eu me sentiria leve, desinchada e queimando gordura sozinha." },
       ],
     },
     {
-      id: 23,
+      id: 20,
       question: "Imagine fazer refeições deliciosas em 20 minutos, com coisas simples que você já tem em casa, que enganam seu metabolismo para queimar gordura. Ajudaria?",
       imageBelowTitle: "https://i.imgur.com/0DpLfrG.jpeg",
       options: [
@@ -238,7 +206,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 24,
+      id: 21,
       question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
       options: [
         { label: "Seria um sonho de liberdade total.", value: "Seria um sonho de liberdade total." },
@@ -248,7 +216,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 25,
+      id: 22,
       question: "Você topa trocar a comida sem gosto por 200 receitas saborosas (com doces e massas) que desinflamam e destravam sua queima de gordura?",
       imageBelowTitle: "https://i.imgur.com/uPSVCd7.jpeg",
       options: [
@@ -259,7 +227,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 26,
+      id: 23,
       question: "Se eu te entregar o acesso ao Código das 200 Receitas agora, qual seria sua resposta?",
       imageBelowTitle: "https://i.imgur.com/Vlc46EP.jpeg",
       options: [
