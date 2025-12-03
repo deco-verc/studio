@@ -13,6 +13,7 @@ import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { gtmEvent } from '../analytics/google-tag-manager';
 
 type QuizFormProps = {
   submitQuiz: (answers: string[]) => Promise<void>;
@@ -48,6 +49,12 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
     const newAnswers = { ...answers, [currentStep]: value };
     setAnswers(newAnswers);
     setIsAnimatingOut(true);
+
+    gtmEvent('quiz_step', {
+      step_number: currentStep + 1,
+      step_title: currentQuestion.question,
+      response: value,
+    });
 
     setTimeout(() => {
         if (currentStep < totalQuestions - 1) {
@@ -127,10 +134,8 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                     style={{ animationDelay: `${index * 100}ms` }}
                     className={cn(
                       "rounded-xl border bg-secondary/30 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
-                      "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
-                      "opacity-0 translate-y-4 animate-fade-in-up",
-                      isAnimatingOut ? 'opacity-0 translate-x-12' : '',
-                      hasAvatars && 'flex'
+                      "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex",
+                      isAnimatingOut ? 'opacity-0 translate-x-12' : 'opacity-0 translate-y-4 animate-fade-in-up'
                     )}
                   >
                     <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-between text-center gap-4">

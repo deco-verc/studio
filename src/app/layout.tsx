@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import Script from 'next/script';
+import { GoogleTagManager } from '@/components/analytics/google-tag-manager';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'CorpoLeve Quiz',
@@ -32,6 +34,9 @@ export default function RootLayout({
         ></script>
       </head>
       <body className="antialiased">
+        <Suspense>
+          <GoogleTagManager />
+        </Suspense>
         {children}
         <Toaster />
         <Script

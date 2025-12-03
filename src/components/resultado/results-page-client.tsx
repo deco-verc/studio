@@ -13,6 +13,7 @@ import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
 import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay"
+import { gtmEvent } from '../analytics/google-tag-manager';
 
 interface Results {
   diagnosis: string;
@@ -115,6 +116,13 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
   );
 
   const checkoutUrl = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
+
+  const handlePurchaseClick = () => {
+    gtmEvent('purchase_cta_click', {
+      value: 47.90,
+      currency: 'BRL',
+    });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -282,7 +290,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                                     R$47<span className="text-4xl md:text-6xl align-top">,90</span>
                                 </p>
                             </div>
-                             <Link href={checkoutUrl}>
+                             <Link href={checkoutUrl} onClick={handlePurchaseClick}>
                                 <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
                                     COMPRAR COM DESCONTO
                                 </Button>
@@ -352,7 +360,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                     ))}
                 </Accordion>
                 <div className="text-center mt-12">
-                    <Link href={checkoutUrl}>
+                    <Link href={checkoutUrl} onClick={handlePurchaseClick}>
                         <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
                             ESTOU PREPARADA PARA COMPRAR
                         </Button>

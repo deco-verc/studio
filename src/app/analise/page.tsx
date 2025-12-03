@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { getAnalysisResults } from '@/app/actions';
+import { gtmEvent } from '@/components/analytics/google-tag-manager';
 
 export default function AnalisePage() {
   const [showButton, setShowButton] = useState(false);
@@ -51,6 +52,7 @@ export default function AnalisePage() {
 
   const handleRedirect = () => {
     if (resultsData) {
+      gtmEvent('vsl_cta_click', {});
       router.push(`/resultado?data=${resultsData}`);
     } else {
       // This can happen if the button is clicked before AI processing is complete
