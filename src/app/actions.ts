@@ -4,17 +4,33 @@ import { personalizedDiagnosis } from '@/ai/flows/personalized-diagnosis';
 import { generateCustomizedRecommendations } from '@/ai/flows/customized-recommendations';
 import { redirect } from 'next/navigation';
 
-// This action now only redirects to the analysis page with the raw answers.
-// The AI processing will be triggered on the analysis page.
 export async function submitQuiz(answers: string[]) {
-  const encodedAnswers = encodeURIComponent(JSON.stringify(answers));
-  redirect(`/analise?answers=${encodedAnswers}`);
+  try {
+    // Run both AI flows in parallel on the server
+    const [diagnosisResult, recommendationsResult] = await Promise.all([
+      personalizedDiagnosis({ quizAnswers: answers }),
+      generateCustomizedRecommendations({ quizResponses: answers }),
+    ]);
+
+    const results = {
+      diagnosis: diagnosisResult.diagnosis,
+      recommendations: recommendationsResult,
+      answers,
+    };
+
+    // Encode the final results and redirect to the results page
+    const encodedResults = encodeURIComponent(JSON.stringify(results));
+    redirect(`/resultado?data=${encodedResults}`);
+  } catch (error) {
+    console.error('Error processing quiz analysis:', error);
+    // Redirect to an error state on the quiz page if anything fails
+    redirect('/quiz?error=analysis_failed');
+  }
 }
 
-// This new action will be called from the analysis page to get the results.
+// This function is no longer needed on the client, as processing happens in submitQuiz
 export async function getAnalysisResults(answers: string[]) {
   try {
-    // Both AI flows can run in parallel
     const [diagnosisResult, recommendationsResult] = await Promise.all([
       personalizedDiagnosis({ quizAnswers: answers }),
       generateCustomizedRecommendations({ quizResponses: answers }),
@@ -29,7 +45,6 @@ export async function getAnalysisResults(answers: string[]) {
     return results;
   } catch (error) {
     console.error('Error processing quiz analysis:', error);
-    // Return a specific error object that the client can handle
     return { error: 'Failed to generate analysis. Please try again.' };
   }
 }
