@@ -123,24 +123,10 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 18,
-      question: "Muitas mulheres sentem o corpo inflamado e pesado. Você sente isso?",
-      imageBelowTitle: "https://i.imgur.com/DXfvJ5e.jpeg",
-      options: [
-        { label: "Exatamente, sinto meu corpo intoxicado e inchado.", value: "Exatamente, sinto meu corpo intoxicado e inchado." },
-        { label: "Sim, sinto um estufamento na barriga que não passa.", value: "Sim, sinto um estufamento na barriga que não passa." },
-        { label: "Sinto que meu metabolismo parou e preciso de uma \"faxina\".", value: "Sinto que meu metabolismo parou e preciso de uma \"faxina\"." },
-        { label: "Sinto um cansaço e peso como se carregasse uma âncora.", value: "Sinto um cansaço e peso como se carregasse uma âncora." },
-      ],
-    },
-    {
       id: 19,
       question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
       options: [
-        { label: "Eu sentiria um alívio gigante e pararia de me culpar.", value: "Eu sentiria um alívio gigante e pararia de me culpar." },
-        { label: "Eu ficaria indignada e iria querer limpar meu corpo agora.", value: "Eu ficaria indignada e iria querer limpar meu corpo agora." },
-        { label: "Agora entendo por que as dietas de fome nunca funcionaram.", value: "Agora entendo por que as dietas de fome nunca funcionaram." },
-        { label: "Eu abraçaria essa nova chance de fazer certo, atacando a raiz.", value: "Eu abraçaria essa nova chance de fazer certo, atacando a raiz." },
+        { label: "Eu sempre tive essas dúvidas, quero me desintoxicar", value: "Eu sempre tive essas dúvidas, quero me desintoxicar" },
       ],
     },
     {
@@ -165,6 +151,16 @@ export const quizQuestions = [
       ],
     },
     {
+      id: 24,
+      question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
+      options: [
+        { label: "Seria um sonho de liberdade total.", value: "Seria um sonho de liberdade total." },
+        { label: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\".", value: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\"." },
+        { label: "Eu recuperaria minha autoestima e vontade de viver.", value: "Eu recuperaria minha autoestima e vontade de viver." },
+        { label: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem.", value: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem." },
+      ],
+    },
+    {
       id: 22,
       question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
       options: [
@@ -179,20 +175,7 @@ export const quizQuestions = [
       question: "Imagine fazer refeições deliciosas em 20 minutos, com coisas simples que você já tem em casa, que enganam seu metabolismo para queimar gordura. Ajudaria?",
       imageBelowTitle: "https://i.imgur.com/0DpLfrG.jpeg",
       options: [
-        { label: "Seria a salvação, resolveria minha falta de tempo e dinheiro.", value: "Seria a salvação, resolveria minha falta de tempo e dinheiro." },
-        { label: "Eu teria a praticidade que preciso para não desistir no meio.", value: "Eu teria a praticidade que preciso para não desistir no meio." },
-        { label: "Transformaria minha dieta em prazer, não em castigo.", value: "Transformaria minha dieta em prazer, não em castigo." },
-        { label: "Eu conseguiria cuidar de mim e da minha família ao mesmo tempo.", value: "Eu conseguiria cuidar de mim e da minha família ao mesmo tempo." },
-      ],
-    },
-    {
-      id: 24,
-      question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
-      options: [
-        { label: "Seria um sonho de liberdade total.", value: "Seria um sonho de liberdade total." },
-        { label: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\".", value: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\"." },
-        { label: "Eu recuperaria minha autoestima e vontade de viver.", value: "Eu recuperaria minha autoestima e vontade de viver." },
-        { label: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem.", value: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem." },
+        { label: "Muito ! Eu quero de graça", value: "Muito ! Eu quero de graça" },
       ],
     },
     {
@@ -200,10 +183,7 @@ export const quizQuestions = [
       question: "Você topa trocar a comida sem gosto por 200 receitas saborosas (com doces e massas) que desinflamam e destravam sua queima de gordura?",
       imageBelowTitle: "https://i.imgur.com/uPSVCd7.jpeg",
       options: [
-        { label: "Sim, estou pronta para comer comida de verdade e ser feliz.", value: "Sim, estou pronta para comer comida de verdade e ser feliz." },
-        { label: "Com certeza, quero resultado rápido sem abrir mão do sabor.", value: "Com certeza, quero resultado rápido sem abrir mão do sabor." },
-        { label: "Sim, quero me livrar do vício em industrializados agora.", value: "Sim, quero me livrar do vício em industrializados agora." },
-        { label: "Sim, essa é a mudança que meu corpo está pedindo.", value: "Sim, essa é a mudança que meu corpo está pedindo." },
+        { label: "COM CERTEZA, QUERO PRA AGORA !", value: "COM CERTEZA, QUERO PRA AGORA !" },
       ],
     },
     {
@@ -211,10 +191,7 @@ export const quizQuestions = [
       question: "Se eu te entregar o acesso ao Código das 200 Receitas agora, qual seria sua resposta?",
       imageBelowTitle: "https://i.imgur.com/Vlc46EP.jpeg",
       options: [
-        { label: "Sim! Quero acessar minhas receitas e começar a desinflamar agora.", value: "Sim! Quero acessar minhas receitas e começar a desinflamar agora." },
-        { label: "Com certeza! Quero começar minha transformação hoje mesmo.", value: "Com certeza! Quero começar minha transformação hoje mesmo." },
-        { label: "Sim! Quero voltar a me olhar no espelho com orgulho.", value: "Sim! Quero voltar a me olhar no espelho com orgulho." },
-        { label: "Sim! Quero surpreender a todos com a minha nova versão.", value: "Sim! Quero surpreender a todos com a minha nova versão." },
+        { label: "EU QUERO", value: "EU QUERO" },
       ],
     },
   ];
