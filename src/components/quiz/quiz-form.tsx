@@ -86,7 +86,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card/80 backdrop-blur-sm">
         <CardHeader className="p-6">
           <Progress value={progress} className="w-full mb-6 h-2 [&>*]:bg-primary" />
-          <div className="relative flex flex-col items-center justify-center min-h-[18rem] md:min-h-[20rem]">
+          <div className="relative flex flex-col items-center justify-center">
             {isPending ? (
               <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
                   <Loader2 className="h-16 w-16 animate-spin text-primary" />
@@ -98,7 +98,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                animationState === 'enter' ? 'quiz-item-enter' : 'quiz-item-exit'
             )}>
               <CardTitle 
-                className="text-2xl md:text-3xl font-bold font-headline text-foreground min-h-[4rem] flex items-center justify-center"
+                className="text-2xl md:text-3xl font-bold font-headline text-foreground flex items-center justify-center py-8"
               >
                 {currentQuestion.question}
               </CardTitle>
