@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
 import { getAnalysisResults } from '@/app/actions';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
+import { useToast } from '@/hooks/use-toast';
 
 export default function AnalisePage() {
   const [showButton, setShowButton] = useState(false);
@@ -13,6 +15,7 @@ export default function AnalisePage() {
   const [resultsData, setResultsData] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
     const answersParam = searchParams.get('answers');
@@ -23,7 +26,11 @@ export default function AnalisePage() {
         // Trigger AI processing in the background
         getAnalysisResults(answers).then(results => {
           if (results.error) {
-            console.error(results.error);
+            toast({
+                title: "Erro na Análise",
+                description: "Não foi possível gerar seu diagnóstico. Por favor, tente novamente.",
+                variant: "destructive",
+            });
             router.push('/quiz?error=true'); // Redirect on error
           } else {
             setResultsData(encodeURIComponent(JSON.stringify(results)));
