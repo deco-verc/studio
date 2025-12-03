@@ -94,7 +94,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               </div>
             ) : (
             <div className={cn(
-              "absolute w-full px-4 text-center space-y-4",
+              "w-full px-4 text-center flex flex-col items-center justify-center space-y-4",
                animationState === 'enter' ? 'quiz-item-enter' : 'quiz-item-exit'
             )}>
               <CardTitle 
