@@ -19,17 +19,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet" />
-        <Script
-          src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-          data-utmify-prevent-xcod-sck
-          data-utmify-prevent-subids
-          async
-          defer
-        ></Script>
       </head>
       <body className="antialiased">
         {children}
         <Toaster />
+        <Script
+          id="utm-script"
+          src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+          strategy="beforeInteractive"
+          data-utmify-prevent-xcod-sck=""
+          data-utmify-prevent-subids=""
+        ></Script>
       </body>
     </html>
   );
