@@ -30,17 +30,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 4,
-      question: "Como você lida com a cozinha hoje?",
-      options: [
-        { label: "Eu tento, mas não sou muito boa.", value: "Eu tento, mas não sou muito boa." },
-        { label: "Minha vida é corrida, acabo pedindo entrega.", value: "Minha vida é corrida, acabo pedindo entrega." },
-        { label: "Eu tento comer saudável, mas não consigo.", value: "Eu tento comer saudável, mas não consigo." },
-        { label: "Eu gosto de cozinhar, mas nunca sei o que fazer.", value: "Eu gosto de cozinhar, mas nunca sei o que fazer." },
-      ],
-    },
-    {
-      id: 5,
+      id: 6,
       question: "Como você se sente quando vai comprar roupas hoje?",
       imageBelowTitle: "https://i.imgur.com/crtE4Sf.jpeg",
       options: [
@@ -51,7 +41,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 6,
+      id: 8,
       question: "Qual é a frase que você mais odeia ouvir de amigas ou familiares?",
       options: [
         { label: '"Nossa, você é tão bonita de rosto".', value: '"Nossa, você é tão bonita de rosto".' },
@@ -60,7 +50,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 7,
+      id: 9,
       question: "Você sente que seu corpo \"luta contra você\"?",
       options: [
         { label: "Sim parece que meu metabolismo pifou e nada faz eu emagrecer.", value: "Sim parece que meu metabolismo pifou e nada faz eu emagrecer." },
@@ -69,7 +59,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 8,
+      id: 10,
       question: "Você sente que vive em uma guerra contra a balança, o famoso Efeito Sanfona?",
       imageBelowTitle: "https://i.imgur.com/dbBEXRL.jpeg",
       options: [
@@ -80,7 +70,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 9,
+      id: 12,
       question: "Sendo honesta: como você sente que seu marido (ou parceiro) te enxerga hoje?",
       imageBelowTitle: "https://i.imgur.com/7XuJqdg.jpeg",
       options: [
@@ -91,7 +81,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 10,
+      id: 13,
       question: "De mulher para mulher: como isso afeta sua vida íntima?",
       options: [
         { label: "Muitas vezes peço para apagar a luz ou me escondo.", value: "Muitas vezes peço para apagar a luz ou me escondo." },
@@ -101,7 +91,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 11,
+      id: 14,
       question: "Você sente que as pessoas te julgam só pelo seu peso?",
       imageBelowTitle: "https://i.imgur.com/m2JOiRH.jpeg",
       options: [
@@ -112,7 +102,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 12,
+      id: 16,
       question: "Você sente uma vontade estranha que te faz comer mesmo sem fome?",
       imageBelowTitle: "https://i.imgur.com/7hYcexV.jpeg",
       options: [
@@ -123,7 +113,7 @@ export const quizQuestions = [
       ],
     },
      {
-      id: 13,
+      id: 17,
       question: "Você sabia que muitos produtos \"Light\" e \"Fit\" têm químicos que AUMENTAM sua fome e fazem você engordar?",
       options: [
         { label: "Eu desconfiava! Sempre fico com mais fome depois de comer isso.", value: "Eu desconfiava! Sempre fico com mais fome depois de comer isso." },
@@ -133,7 +123,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 14,
+      id: 18,
       question: "Muitas mulheres sentem o corpo inflamado e pesado. Você sente isso?",
       imageBelowTitle: "https://i.imgur.com/DXfvJ5e.jpeg",
       options: [
@@ -144,7 +134,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 15,
+      id: 19,
       question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
       options: [
         { label: "Eu sentiria um alívio gigante e pararia de me culpar.", value: "Eu sentiria um alívio gigante e pararia de me culpar." },
@@ -154,7 +144,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 16,
+      id: 20,
       question: "Imagine encontrar aquelas pessoas que te julgaram ou te ignoraram daqui a 30 dias. Qual reação você quer causar?",
       imageBelowTitle: "https://i.imgur.com/RE8HA6Z.jpeg",
       options: [
@@ -165,7 +155,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 17,
+      id: 21,
       question: "Qual é o seu maior sonho para reacender a chama da sua vida amorosa e sua autoestima?",
       options: [
         { label: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder.", value: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder." },
@@ -175,7 +165,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 18,
+      id: 22,
       question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
       options: [
         { label: "Seria a paz que eu procuro comer sem culpa e sem compulsão.", value: "Seria a paz que eu procuro comer sem culpa e sem compulsão." },
@@ -185,7 +175,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 19,
+      id: 23,
       question: "Imagine fazer refeições deliciosas em 20 minutos, com coisas simples que você já tem em casa, que enganam seu metabolismo para queimar gordura. Ajudaria?",
       imageBelowTitle: "https://i.imgur.com/0DpLfrG.jpeg",
       options: [
@@ -196,7 +186,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 20,
+      id: 24,
       question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
       options: [
         { label: "Seria um sonho de liberdade total.", value: "Seria um sonho de liberdade total." },
@@ -206,7 +196,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 21,
+      id: 25,
       question: "Você topa trocar a comida sem gosto por 200 receitas saborosas (com doces e massas) que desinflamam e destravam sua queima de gordura?",
       imageBelowTitle: "https://i.imgur.com/uPSVCd7.jpeg",
       options: [
@@ -217,7 +207,7 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 22,
+      id: 26,
       question: "Se eu te entregar o acesso ao Código das 200 Receitas agora, qual seria sua resposta?",
       imageBelowTitle: "https://i.imgur.com/Vlc46EP.jpeg",
       options: [
