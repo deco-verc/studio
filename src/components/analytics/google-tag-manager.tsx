@@ -1,4 +1,3 @@
-// src/components/analytics/google-tag-manager.tsx
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -19,8 +18,7 @@ export function gtmEvent(eventName: string, data: Record<string, any>) {
   }
 }
 
-export function GoogleTagManager() {
-  const gtmId = 'GTM-NFSCC674';
+export function GoogleTagManager({ gtmId }: { gtmId: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
