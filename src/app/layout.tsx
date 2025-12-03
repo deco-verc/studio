@@ -19,6 +19,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet" />
+        <script
+          id="utm-pixel-config"
+          dangerouslySetInnerHTML={{
+            __html: `window.pixelId = "692fb30e751c0c336b539b5d";`,
+          }}
+        />
+        <script
+          async
+          defer
+          src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"
+        ></script>
       </head>
       <body className="antialiased">
         {children}
