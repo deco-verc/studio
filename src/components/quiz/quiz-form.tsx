@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useTransition, useMemo } from 'react';
+import { useState, useTransition, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import { quizQuestions } from './quiz-questions';
 import { Button } from '@/components/ui/button';
@@ -33,22 +33,26 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [isPending, startTransition] = useTransition();
-  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  const [animationState, setAnimationState] = useState<'enter' | 'exit'>('enter');
   const { toast } = useToast();
 
   const totalQuestions = quizQuestions.length;
   const progress = useMemo(() => smartProgress(currentStep + 1, totalQuestions), [currentStep, totalQuestions]);
   const currentQuestion = quizQuestions[currentStep] as (typeof quizQuestions)[0] & { imageBelowTitle?: string };
 
-
   const hasAvatars = useMemo(() => {
     return currentQuestion.options.every(option => 'avatar' in option && option.avatar);
   }, [currentQuestion]);
+  
+  // Effect to reset animation state when question changes
+  useEffect(() => {
+    setAnimationState('enter');
+  }, [currentStep]);
 
   const handleValueChange = (value: string) => {
     const newAnswers = { ...answers, [currentStep]: value };
     setAnswers(newAnswers);
-    setIsAnimatingOut(true);
+    setAnimationState('exit');
 
     gtmEvent('quiz_step', {
       step_number: currentStep + 1,
@@ -59,7 +63,6 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
     setTimeout(() => {
         if (currentStep < totalQuestions - 1) {
             setCurrentStep(currentStep + 1);
-            setIsAnimatingOut(false);
         } else {
             startTransition(async () => {
                 const answerArray = Object.values(newAnswers);
@@ -70,53 +73,53 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                       title: "Por favor, responda todas as perguntas.",
                       variant: "destructive",
                   });
-                  setIsAnimatingOut(false);
+                  // Reset animation if submission fails
+                  setAnimationState('enter');
                 }
             });
         }
-    }, 350);
+    }, 400); // Duration should match animation duration
   };
   
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background/80 p-4 overflow-hidden">
-      <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-secondary/50 to-background p-4 overflow-hidden">
+      <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card/80 backdrop-blur-sm">
         <CardHeader className="p-6">
-          <Progress value={progress} className="w-full mb-6 h-2" />
-          <div className="relative flex flex-col items-center justify-center">
-            <CardTitle 
-              key={currentStep}
-              className={cn(
-                "text-2xl md:text-3xl font-bold font-headline text-center text-foreground transition-all duration-300 ease-in-out px-4 min-h-[6rem] flex items-center justify-center",
-                isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
-              )}
-            >
-              {currentQuestion.question}
-            </CardTitle>
-            {currentQuestion.imageBelowTitle && (
-              <div className={cn(
-                  "mt-4 relative w-full max-w-xs mx-auto rounded-lg overflow-hidden shadow-md transition-all duration-300 ease-in-out",
-                  isAnimatingOut ? 'opacity-0 -translate-x-12' : 'opacity-100 translate-x-0'
-                )}
-                style={{ animationDelay: '100ms' }}
-              >
-                <Image 
-                  src={currentQuestion.imageBelowTitle}
-                  alt="Imagem da pergunta"
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-cover"
-                />
+          <Progress value={progress} className="w-full mb-6 h-2 [&>*]:bg-primary" />
+          <div className="relative flex flex-col items-center justify-center min-h-[18rem] md:min-h-[20rem]">
+            {isPending ? (
+              <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
+                  <Loader2 className="h-16 w-16 animate-spin text-primary" />
+                  <p className="text-lg md:text-xl text-muted-foreground">Analisando suas respostas...</p>
               </div>
+            ) : (
+            <div className={cn(
+              "absolute w-full px-4 text-center space-y-4",
+               animationState === 'enter' ? 'quiz-item-enter' : 'quiz-item-exit'
+            )}>
+              <CardTitle 
+                className="text-2xl md:text-3xl font-bold font-headline text-foreground min-h-[4rem] flex items-center justify-center"
+              >
+                {currentQuestion.question}
+              </CardTitle>
+              {currentQuestion.imageBelowTitle && (
+                <div className="relative w-full max-w-xs mx-auto rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src={currentQuestion.imageBelowTitle}
+                    alt="Imagem da pergunta"
+                    width={300}
+                    height={200}
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
+              )}
+            </div>
             )}
           </div>
         </CardHeader>
-        <CardContent className="px-4 sm:px-6 md:px-8 pb-8">
-           {isPending ? (
-             <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
-                <Loader2 className="h-16 w-16 animate-spin text-primary" />
-                <p className="text-lg md:text-xl text-muted-foreground">Analisando suas respostas...</p>
-             </div>
-           ) : (
+        <CardContent className="px-4 sm:px-6 md:px-8 pb-8 min-h-[200px]">
+           {!isPending && (
             <RadioGroup
               key={currentStep}
               value={answers[currentStep]}
@@ -133,26 +136,27 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                     key={index}
                     style={{ animationDelay: `${index * 100}ms` }}
                     className={cn(
-                      "rounded-xl border bg-secondary/30 p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
+                      "rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
                       "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex",
-                      isAnimatingOut ? 'opacity-0 translate-x-12' : 'opacity-0 translate-y-4 animate-fade-in-up'
+                      animationState === 'enter' ? 'opacity-0 translate-y-4 animate-fade-in-up' : 'opacity-0'
                     )}
                   >
+                    <RadioGroupItem value={option.value} id={id} className="sr-only" />
                     <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-between text-center gap-4">
                       {hasAvatars && option.avatar && (
-                        <div className="relative w-32 h-32">
+                        <div className="relative w-32 h-32 md:w-40 md:h-40">
                           <Image
                             src={option.avatar}
                             alt={option.label}
                             fill
                             className="rounded-full object-cover shadow-md"
                             priority={currentStep < 2}
+                            sizes="(max-width: 768px) 128px, 160px"
                           />
                         </div>
                       )}
                       
-                      <RadioGroupItem value={option.value} id={id} className="h-5 w-5 flex-shrink-0 border-primary/50" />
-                       <span className="font-medium text-foreground/80 text-sm md:text-base">
+                       <span className="font-medium text-foreground/90 text-sm md:text-base">
                         {option.label}
                        </span>
                     </Label>
