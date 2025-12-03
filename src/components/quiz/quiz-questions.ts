@@ -123,13 +123,6 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 19,
-      question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
-      options: [
-        { label: "Eu sempre tive essas dúvidas, quero me desintoxicar", value: "Eu sempre tive essas dúvidas, quero me desintoxicar" },
-      ],
-    },
-    {
       id: 20,
       question: "Imagine encontrar aquelas pessoas que te julgaram ou te ignoraram daqui a 30 dias. Qual reação você quer causar?",
       imageBelowTitle: "https://i.imgur.com/RE8HA6Z.jpeg",
@@ -151,6 +144,16 @@ export const quizQuestions = [
       ],
     },
     {
+      id: 22,
+      question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
+      options: [
+        { label: "Seria a paz que eu procuro comer sem culpa e sem compulsão.", value: "Seria a paz que eu procuro comer sem culpa e sem compulsão." },
+        { label: "Eu finalmente teria o controle de volta e emagreceria naturalmente.", value: "Eu finalmente teria o controle de volta e emagreceria naturalmente." },
+        { label: "Seria minha vingança contra a indústria que me viciou.", value: "Seria minha vingança contra a indústria que me viciou." },
+        { label: "Eu me sentiria leve, desinchada e queimando gordura sozinha.", value: "Eu me sentiria leve, desinchada e queimando gordura sozinha." },
+      ],
+    },
+    {
       id: 24,
       question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
       options: [
@@ -161,13 +164,10 @@ export const quizQuestions = [
       ],
     },
     {
-      id: 22,
-      question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
+      id: 19,
+      question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
       options: [
-        { label: "Seria a paz que eu procuro comer sem culpa e sem compulsão.", value: "Seria a paz que eu procuro comer sem culpa e sem compulsão." },
-        { label: "Eu finalmente teria o controle de volta e emagreceria naturalmente.", value: "Eu finalmente teria o controle de volta e emagreceria naturalmente." },
-        { label: "Seria minha vingança contra a indústria que me viciou.", value: "Seria minha vingança contra a indústria que me viciou." },
-        { label: "Eu me sentiria leve, desinchada e queimando gordura sozinha.", value: "Eu me sentiria leve, desinchada e queimando gordura sozinha." },
+        { label: "Eu sempre tive essas dúvidas, quero me desintoxicar", value: "Eu sempre tive essas dúvidas, quero me desintoxicar" },
       ],
     },
     {
@@ -195,3 +195,4 @@ export const quizQuestions = [
       ],
     },
   ];
+
