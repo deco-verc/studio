@@ -84,9 +84,9 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-secondary/50 to-background p-4 overflow-hidden">
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card/80 backdrop-blur-sm">
-        <CardHeader className="p-6">
+        <CardHeader className="p-4 md:p-6">
           <Progress value={progress} className="w-full mb-6 h-2 [&>*]:bg-primary" />
-          <div className="relative flex flex-col items-center justify-center">
+          <div className="relative flex flex-col items-center justify-center min-h-[14rem] md:min-h-[18rem]">
             {isPending ? (
               <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
                   <Loader2 className="h-16 w-16 animate-spin text-primary" />
@@ -98,7 +98,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
                animationState === 'enter' ? 'quiz-item-enter' : 'quiz-item-exit'
             )}>
               <CardTitle 
-                className="text-2xl md:text-3xl font-bold font-headline text-foreground flex items-center justify-center py-8"
+                className="text-xl md:text-2xl lg:text-3xl font-bold font-headline text-foreground flex items-center justify-center py-4"
               >
                 {currentQuestion.question}
               </CardTitle>
@@ -126,7 +126,7 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
               onValueChange={handleValueChange}
               className={cn(
                 "space-y-4",
-                hasAvatars && "grid grid-cols-2 gap-4 md:gap-6"
+                hasAvatars && "grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
               )}
             >
               {currentQuestion.options.map((option, index) => {
