@@ -2,19 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { SocialProofCarousel } from '@/components/home/social-proof-carousel';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
-  const socialProofs = [
-    PlaceHolderImages.find(p => p.id === 'socialProof1'),
-    PlaceHolderImages.find(p => p.id === 'socialProof2'),
-    PlaceHolderImages.find(p => p.id === 'socialProof3'),
-    PlaceHolderImages.find(p => p.id === 'socialProof4'),
-  ].filter(Boolean) as any[];
-
+  
   const features = [
     'Como sair da Armadilha da Indústria Alimentícia que vicia o seu paladar em açúcar',
     'A Mentira dos Alimentos "Light e FIT" e como eles te engordam.',
@@ -85,38 +78,7 @@ export default function Home() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Veja o que aconteceu com mulheres que estavam na mesma situação que você.</h2>
               </div>
             </div>
-            <div className="pb-8">
-               <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                className="w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto"
-              >
-                <CarouselContent>
-                  {socialProofs.map((proof) => (
-                    <CarouselItem key={proof.id} className="basis-1/2 sm:basis-1/3 md:basis-1/4">
-                      <div className="p-2">
-                        <Card className="overflow-hidden rounded-lg shadow-md">
-                          <CardContent className="p-0">
-                            <Image
-                              src={proof.imageUrl}
-                              width="250"
-                              height="500"
-                              alt={proof.description}
-                              data-ai-hint={proof.imageHint}
-                              className="aspect-[1/2] w-full object-cover"
-                            />
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex" />
-                <CarouselNext className="hidden sm:flex" />
-              </Carousel>
-            </div>
+            <SocialProofCarousel />
           </div>
         </section>
       </main>
