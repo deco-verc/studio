@@ -1,5 +1,4 @@
 import { QuizForm } from '@/components/quiz/quiz-form';
-import { submitQuiz } from '@/app/actions';
 import { quizQuestions } from '@/components/quiz/quiz-questions';
 import Head from 'next/head';
 
@@ -22,8 +21,10 @@ export default function QuizPage() {
         ))}
       </Head>
       <main className="min-h-screen bg-background">
-        <QuizForm submitQuiz={submitQuiz} />
+        <QuizForm />
       </main>
     </>
   );
 }
+
+    

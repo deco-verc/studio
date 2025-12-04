@@ -14,10 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
-
-type QuizFormProps = {
-  submitQuiz: (answers: string[]) => Promise<void>;
-};
+import { useRouter } from 'next/navigation';
 
 const smartProgress = (current: number, total: number): number => {
     if (current < total * 0.5) {
@@ -29,12 +26,13 @@ const smartProgress = (current: number, total: number): number => {
     }
 };
 
-export function QuizForm({ submitQuiz }: QuizFormProps) {
+export function QuizForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [isPending, startTransition] = useTransition();
   const [animationState, setAnimationState] = useState<'enter' | 'exit'>('enter');
   const { toast } = useToast();
+  const router = useRouter();
 
   const totalQuestions = quizQuestions.length;
   const progress = useMemo(() => smartProgress(currentStep + 1, totalQuestions), [currentStep, totalQuestions]);
@@ -44,7 +42,6 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
     return currentQuestion.options.every(option => 'avatar' in option && option.avatar);
   }, [currentQuestion]);
   
-  // Effect to reset animation state when question changes
   useEffect(() => {
     setAnimationState('enter');
   }, [currentStep]);
@@ -64,18 +61,8 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
         if (currentStep < totalQuestions - 1) {
             setCurrentStep(currentStep + 1);
         } else {
-            startTransition(async () => {
-                const answerArray = Object.values(newAnswers);
-                if(answerArray.length === totalQuestions) {
-                  await submitQuiz(answerArray);
-                } else {
-                  toast({
-                      title: "Por favor, responda todas as perguntas.",
-                      variant: "destructive",
-                  });
-                  // Reset animation if submission fails
-                  setAnimationState('enter');
-                }
+            startTransition(() => {
+                router.push('/resultado');
             });
         }
     }, 400); // Duration should match animation duration
@@ -170,3 +157,5 @@ export function QuizForm({ submitQuiz }: QuizFormProps) {
     </div>
   );
 }
+
+    

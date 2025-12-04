@@ -1,41 +1,31 @@
 import { ResultsPageClient } from '@/components/resultado/results-page-client';
 import { Suspense } from 'react';
 import Loading from '../loading';
+import { generateCustomizedRecommendations } from '@/ai/flows/customized-recommendations';
+import { personalizedDiagnosis } from '@/ai/flows/personalized-diagnosis';
 
-type ResultsPageProps = {
-  searchParams: { [key:string]: string | string[] | undefined };
+// Dummy data for rendering while the real data is being fetched or if fetching fails.
+const fallbackRecommendations: any = {
+  recommendedRecipes: [],
+  recommendedBonusContent: [],
+  reasoning: '',
 };
 
-function Resultados({ searchParams }: ResultsPageProps) {
-  const dataParam = searchParams.data;
+const fallbackResults = {
+  diagnosis: 'Análise detalhada sobre como a indústria pode ter impactado seu metabolismo.',
+  recommendations: fallbackRecommendations,
+  answers: [],
+};
 
-  if (!dataParam || typeof dataParam !== 'string') {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-        <h1 className="text-2xl font-bold text-destructive mb-4">Erro: Dados do resultado não encontrados.</h1>
-        <p className="text-muted-foreground">Por favor, complete o teste para ver seus resultados.</p>
-      </div>
-    );
-  }
 
-  try {
-    const results = JSON.parse(decodeURIComponent(dataParam));
-    return <ResultsPageClient results={results} />;
-  } catch (error) {
-    console.error('Failed to parse results data:', error);
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
-            <h1 className="text-2xl font-bold text-destructive mb-4">Erro: Falha ao processar os resultados.</h1>
-            <p className="text-muted-foreground">Ocorreu um problema ao analisar seus dados. Por favor, tente novamente.</p>
-      </div>
-    );
-  }
-}
-
-export default function ResultadoPage(props: ResultsPageProps) {
+export default function ResultadoPage() {
+  // This page now directly renders the VSL content.
+  // The complex data fetching logic has been removed.
   return (
     <Suspense fallback={<Loading />}>
-      <Resultados {...props} />
+      <ResultsPageClient results={fallbackResults} />
     </Suspense>
   )
 }
+
+    
