@@ -1,3 +1,4 @@
+
 import { ResultsPageClient } from '@/components/resultado/results-page-client';
 import { Suspense } from 'react';
 import Loading from '../loading';

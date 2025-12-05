@@ -127,68 +127,63 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
-        {/* Header Section */}
-        <section className="bg-primary/10 py-6">
-            <div className="container mx-auto px-4 text-center">
-                <h1 className="text-3xl md:text-5xl font-black tracking-tight sm:text-4xl lg:text-6xl/none font-headline text-blue-600 mb-4">DIAGNÓSTICO CONFIRMADO</h1>
-                <p className="text-lg md:text-2xl max-w-3xl mx-auto text-foreground/80">
-                  O seu <span className="font-bold">metabolismo</span> foi <span className="text-red-500">Bloqueado pela Química das Indústrias.</span> Veja mais informações abaixo
-                </p>
-                 <div className="container mx-auto px-4 max-w-4xl pt-4">
-                  <Card className="shadow-lg border-none bg-card">
-                      <CardHeader>
-                          <CardTitle className="font-headline text-2xl text-center">Nível de Inflamação do seu Metabolismo</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                          <div className="w-full h-[300px]">
-                              <ResponsiveContainer>
-                                  <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                                      <XAxis 
-                                          dataKey="name" 
-                                          stroke="hsl(var(--muted-foreground))" 
-                                          fontSize={12} 
-                                          tickLine={false} 
-                                          axisLine={false} 
-                                          interval={0}
-                                      />
-                                      <YAxis 
-                                          stroke="hsl(var(--muted-foreground))" 
-                                          fontSize={12} 
-                                          tickLine={false} 
-                                          axisLine={false} 
-                                          tickFormatter={(value) => `${Math.round(value)}%`} 
-                                      />
-                                      <Tooltip 
-                                          cursor={{fill: 'hsla(var(--accent) / 0.1)'}} 
-                                          contentStyle={{
-                                              backgroundColor: 'hsl(var(--background))', 
-                                              border: '1px solid hsl(var(--border))',
-                                              borderRadius: 'var(--radius)'
-                                          }}
-                                          labelFormatter={(label) => label ? `Dia ${label}` : ''}
-                                          formatter={(value: number) => [`${value.toFixed(0)}%`, "Inflamação"]}
-                                      />
-                                      <Legend wrapperStyle={{fontSize: "14px"}}/>
-                                      <Line 
-                                          type="monotone" 
-                                          dataKey="Seu Nível de Inflamação" 
-                                          stroke="hsl(var(--primary))" 
-                                          strokeWidth={3}
-                                          dot={false}
-                                          activeDot={{ r: 8, strokeWidth: 2, fill: 'hsl(var(--primary))' }}
-                                      />
-                                  </LineChart>
-                              </ResponsiveContainer>
-                          </div>
-                      </CardContent>
-                  </Card>
-              </div>
+        
+        {/* VSL Section */}
+        <section className="bg-black py-8 md:py-12">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="text-center mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold text-white">Seu diagnóstico está pronto...</h1>
+              <p className="text-lg text-white/80">Assista ao vídeo abaixo para revelar seu plano personalizado.</p>
+            </div>
+            <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
+              {/* 
+                COPIE E COLE O CÓDIGO DE INCORPORAÇÃO DO SEU VÍDEO AQUI.
+                Exemplo do YouTube:
+              */}
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" 
+                title="YouTube video player" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowFullScreen>
+              </iframe>
+            </div>
+          </div>
+        </section>
+
+        {/* Price Anchor Section */}
+        <section className="py-8 bg-background">
+            <div className="container mx-auto px-4">
+                <div className="max-w-2xl mx-auto text-center">
+                    <div className="mb-4">
+                        <Image src="https://i.imgur.com/2SvkrU6.jpeg" alt="Black Friday Offer" width={600} height={200} className="mx-auto rounded-md shadow-lg" />
+                    </div>
+                    <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
+                        <p className="font-bold text-lg">{`OFERTA BLACK FRIDAY (${today} - 23:59)`}</p>
+                    </Card>
+                    <Card className="p-6 md:p-10 bg-primary/5 shadow-2xl border-2 border-accent">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-3xl md:text-5xl !mt-2">Acesso Imediato ao Protocolo</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            <div className="my-4">
+                                <p className="text-4xl md:text-5xl font-bold text-muted-foreground line-through">De R$147,00</p>
+                                <p className="text-lg text-muted-foreground mt-1">Por apenas</p>
+                                <p className="text-6xl md:text-8xl font-black text-primary my-2">
+                                    R$47<span className="text-4xl md:text-6xl align-top">,90</span>
+                                </p>
+                            </div>
+                             <Link href={checkoutUrl} onClick={handlePurchaseClick}>
+                                <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
+                                    COMPRAR COM DESCONTO
+                                </Button>
+                            </Link>
+                        </CardContent>
+                    </Card>
+                </div>
             </div>
         </section>
-        
-        {/* Chart Section */}
-       
 
         {/* Main Content Section */}
         <section className="py-8">
@@ -268,39 +263,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
             </div>
         </section>
 
-        {/* Price Anchor Section */}
-        <section className="py-8 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="max-w-2xl mx-auto text-center">
-                    <div className="mb-4">
-                        <Image src="https://i.imgur.com/2SvkrU6.jpeg" alt="Black Friday Offer" width={600} height={200} className="mx-auto rounded-md shadow-lg" />
-                    </div>
-                    <Card className="bg-destructive text-destructive-foreground p-3 mb-4 rounded-lg shadow-lg">
-                        <p className="font-bold text-lg">{`OFERTA BLACK FRIDAY (${today} - 23:59)`}</p>
-                    </Card>
-                    <Card className="p-6 md:p-10 bg-primary/5 shadow-2xl border-2 border-accent">
-                        <CardHeader>
-                            <CardTitle className="font-headline text-3xl md:text-5xl !mt-2">Acesso Imediato ao Protocolo</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="my-4">
-                                <p className="text-4xl md:text-5xl font-bold text-muted-foreground line-through">De R$147,00</p>
-                                <p className="text-lg text-muted-foreground mt-1">Por apenas</p>
-                                <p className="text-6xl md:text-8xl font-black text-primary my-2">
-                                    R$47<span className="text-4xl md:text-6xl align-top">,90</span>
-                                </p>
-                            </div>
-                             <Link href={checkoutUrl} onClick={handlePurchaseClick}>
-                                <Button size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse">
-                                    COMPRAR COM DESCONTO
-                                </Button>
-                            </Link>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
-        </section>
-
         {/* Action Section */}
         <section className="bg-primary text-primary-foreground py-8">
             <div className="container mx-auto px-4 text-center space-y-6">
@@ -375,11 +337,5 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
-
-    
-
-    
-
-
 
     
