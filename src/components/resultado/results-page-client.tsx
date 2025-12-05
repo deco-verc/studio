@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -15,6 +14,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay"
 import { gtmEvent } from '../analytics/google-tag-manager';
 import { cn } from '@/lib/utils';
+import Player from '@vimeo/player';
 
 interface Results {
   diagnosis: string;
@@ -84,31 +84,14 @@ const bonusContent = [
     },
 ];
 
-const speedOptions = [
-  { label: '1x', speed: 1.0 },
-  { label: '1.25x', speed: 1.25 },
-  { label: '1.5x', speed: 1.5 },
-  { label: '2x', speed: 2.0 },
-];
-
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
   const [today, setToday] = useState('');
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [currentSpeed, setCurrentSpeed] = useState(1.0);
 
   useEffect(() => {
     const date = new Date();
     const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
     setToday(formattedDate);
   }, []);
-
-  const setPlaybackSpeed = (speed: number) => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = speed;
-      setCurrentSpeed(speed);
-      gtmEvent('video_speed_change', { speed });
-    }
-  };
 
   const transformationImages = [
     'carousel1', 'carousel2', 'carousel3', 'carousel4', 'carousel5', 'carousel6', 'carousel7'
@@ -139,48 +122,6 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
         
-        {/* VSL Section */}
-        <section className="bg-black py-8 md:py-12">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <div className="text-center mb-8">
-              <h1 className="text-2xl md:text-3xl font-bold text-white">Seu diagnóstico está pronto...</h1>
-              <p className="text-lg text-white/80">Assista ao vídeo abaixo para revelar seu plano personalizado.</p>
-            </div>
-            <div className="relative">
-              <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-                <video
-                  ref={videoRef}
-                  className="w-full h-full"
-                  controls
-                  autoPlay
-                  playsInline
-                  muted 
-                  src="/video.mp4"
-                >
-                  Seu navegador não suporta a tag de vídeo.
-                </video>
-              </div>
-              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 bg-black/50 backdrop-blur-sm p-2 rounded-lg">
-                <Zap className="h-5 w-5 text-yellow-300" />
-                 {speedOptions.map(({ label, speed }) => (
-                  <button
-                    key={speed}
-                    onClick={() => setPlaybackSpeed(speed)}
-                    className={cn(
-                      "px-3 py-1 text-sm font-semibold rounded-md transition-colors",
-                      currentSpeed === speed
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-transparent text-white hover:bg-white/20"
-                    )}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Price Anchor Section */}
         <section className="py-8 bg-background">
             <div className="container mx-auto px-4">
@@ -224,9 +165,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <CardTitle className="font-headline text-2xl">Sua Análise Personalizada</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4 text-lg text-foreground/90">
-                            <p>Eu sei exatamente o que você pensou quando viu o resultado desse quiz.</p>
-                            <p>Você pensou em todas as vezes que recusou um jantar com amigos para não sair da dieta. Pensou nos horas de esteira, nos chás amargos e na frustração de subir na balança e ver o peso subindo. É uma sensação horrível que eu também já senti.</p>
-                            <p className="font-semibold text-primary">Nos próximos minutos eu vou te dar o segredo das mulheres que conseguem manter o corpo magro e já vou te adiantando que não é a genética. É que elas, conscientemente ou não, alimentam o corpo com a dosagem exata de macronutrientes que são absorvidos pelo intestino e aceleram a queima de gordura E a boa notícia é que você não precisa ser chef de cozinha, nem rica, para fazer isso. Você só precisa do Manual de Instruções que eu vou te apresentar.</p>
+                            <p>{results.diagnosis}</p>
                         </CardContent>
                     </Card>
                     
@@ -236,10 +175,11 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                             <CardTitle className="font-headline text-2xl text-primary">Seu Plano Exclusivo</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-6">
+                             <p className="text-lg font-semibold">{results.recommendations.reasoning}</p>
                             <ul className="space-y-3 text-lg">
-                                <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">Receitas que Enganam seu Cérebro:</span> 200+ opções deliciosas.</span></li>
-                                <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">O Detox de Gorduras:</span> Um plano para limpar seu corpo.</span></li>
-                                <li className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span><span className="font-bold">A Ativação da Queima Noturna:</span> Emagreça enquanto dorme.</span></li>
+                                {results.recommendations.recommendedRecipes.map((recipe, i) => (
+                                    <li key={i} className="flex items-start"><CheckCircle className="h-6 w-6 text-primary mr-3 mt-1 shrink-0"/> <span>{recipe}</span></li>
+                                ))}
                             </ul>
                              <Carousel
                                 opts={{ align: "start", loop: true }}
@@ -366,5 +306,3 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
     </div>
   );
 }
-
-    

@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState, useTransition, useMemo, useEffect } from 'react';
@@ -62,7 +60,8 @@ export function QuizForm() {
             setCurrentStep(currentStep + 1);
         } else {
             startTransition(() => {
-                router.push('/resultado');
+                // Redirect to the analysis/VSL page
+                router.push('/analise');
             });
         }
     }, 400); // Duration should match animation duration
@@ -77,7 +76,7 @@ export function QuizForm() {
             {isPending ? (
               <div className="flex flex-col items-center justify-center space-y-4 h-64 animate-fade-in">
                   <Loader2 className="h-16 w-16 animate-spin text-primary" />
-                  <p className="text-lg md:text-xl text-muted-foreground">Analisando suas respostas...</p>
+                  <p className="text-lg md:text-xl text-muted-foreground">Finalizando...</p>
               </div>
             ) : (
             <div className={cn(
@@ -157,5 +156,3 @@ export function QuizForm() {
     </div>
   );
 }
-
-    

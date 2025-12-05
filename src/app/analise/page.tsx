@@ -1,33 +1,128 @@
+'use client';
 
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { gtmEvent } from '@/components/analytics/google-tag-manager';
+import Player from '@vimeo/player';
+
+const speedOptions = [
+  { label: '1x', speed: 1.0 },
+  { label: '1.25x', speed: 1.25 },
+  { label: '1.5x', speed: 1.5 },
+  { label: '2x', speed: 2.0 },
+];
+
+const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
 
 export default function AnalisePage() {
-  // This page now serves as a visual loading indicator.
-  // The actual data processing and redirection happens in the server action.
-  // Next.js will show the loading.tsx file during the server action's execution,
-  // and then transition to the results page. This page is a fallback view
-  // in case the transition takes an observable amount of time or if JS is disabled.
+  const router = useRouter();
+  const [showButton, setShowButton] = useState(false);
+  const [currentSpeed, setCurrentSpeed] = useState(1.0);
+  const vimeoPlayerRef = useRef<Player | null>(null);
+  const playerContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Show the button after 1 minute (60000 milliseconds)
+    const timer = setTimeout(() => {
+      setShowButton(true);
+      gtmEvent('cta_button_show', { page_path: '/analise' });
+    }, 60000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (playerContainerRef.current) {
+        const iframe = playerContainerRef.current.querySelector('iframe');
+        if (iframe) {
+            const player = new Player(iframe);
+            vimeoPlayerRef.current = player;
+
+            player.ready().then(() => {
+                player.play().catch(error => {
+                    console.warn("Autoplay was prevented:", error.name);
+                });
+            });
+        }
+    }
+  }, []);
+
+
+  const setPlaybackSpeed = (speed: number) => {
+    if (vimeoPlayerRef.current) {
+      vimeoPlayerRef.current.setPlaybackRate(speed).then(() => {
+        setCurrentSpeed(speed);
+        gtmEvent('video_speed_change', { speed });
+      }).catch(error => {
+        console.error(`Error setting playback rate to ${speed}x:`, error);
+      });
+    }
+  };
+  
+  const handleCtaClick = () => {
+    gtmEvent('vsl_cta_click', {
+        page_path: '/analise',
+        redirect_url: '/resultado',
+    });
+    router.push('/resultado');
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-4">
       <div className="w-full max-w-4xl text-center space-y-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-headline text-primary">
-          Analisando seu perfil...
+          Estamos analisando suas respostas...
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Isso pode levar um momento. Por favor, não feche esta página.
+          Enquanto isso, assista a esta apresentação especial que preparamos para você.
         </p>
 
-        <div className="flex items-center justify-center text-muted-foreground text-lg h-20">
-          <Loader2 className="mr-4 h-8 w-8 animate-spin" />
-          Processando suas respostas...
+        {/* Vimeo Player */}
+        <div ref={playerContainerRef} className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
+          <div style={{padding:'56.25% 0 0 0',position:'relative'}}>
+              <iframe 
+                  src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1" 
+                  frameBorder="0" 
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
+                  style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} 
+                  title="VSL Video"
+                  allowFullScreen
+              ></iframe>
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+            {speedOptions.map(({ label, speed }) => (
+                <Button
+                    key={speed}
+                    onClick={() => setPlaybackSpeed(speed)}
+                    variant={currentSpeed === speed ? 'default' : 'outline'}
+                    size="sm"
+                    className="transition-all"
+                >
+                    {label}
+                </Button>
+            ))}
         </div>
 
-        {/* You can keep the VSL or a placeholder here if desired */}
-        <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden">
-          <div className="w-full h-full flex items-center justify-center">
-            <p className="text-white">Um vídeo de espera pode ser exibido aqui.</p>
-          </div>
+        {/* Delayed CTA Button */}
+        <div className="h-20 flex items-center justify-center">
+          {showButton ? (
+            <Button
+              onClick={handleCtaClick}
+              size="lg"
+              className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse"
+            >
+              QUERO VER MEU PLANO PERSONALIZADO
+            </Button>
+          ) : (
+            <div className="flex items-center text-muted-foreground animate-pulse">
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Botão de acesso será liberado em breve...
+            </div>
+          )}
         </div>
       </div>
     </div>
