@@ -25,13 +25,6 @@ interface ResultsPageClientProps {
   results: Results;
 }
 
-const chartData = Array.from({ length: 10 }, (_, i) => ({
-    day: i * 3, 
-    "Seu Nível de Inflamação": Math.max(15, 100 * Math.exp(-i * 0.4)), 
-    name: i === 1 ? "Agora" : (i === 9 ? "Depois" : "")
-}));
-
-
 const faqs = [
     {
       q: "Eu não sei cozinhar / Tenho preguiça. Funciona pra mim?",
@@ -136,18 +129,15 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
               <p className="text-lg text-white/80">Assista ao vídeo abaixo para revelar seu plano personalizado.</p>
             </div>
             <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-              {/* 
-                COPIE E COLE O CÓDIGO DE INCORPORAÇÃO DO SEU VÍDEO AQUI.
-                Exemplo do YouTube:
-              */}
-              <iframe 
+              <video
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowFullScreen>
-              </iframe>
+                controls
+                autoPlay
+                playsInline
+                src="/video.mp4"
+              >
+                Seu navegador não suporta a tag de vídeo.
+              </video>
             </div>
           </div>
         </section>
@@ -290,7 +280,7 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
                 >
                     <CarouselContent>
                         {transformationImages.map((img, index) => (
-                        <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
+                        <CarouselItem key={index} className="sm:basis-1/2 md:basis--1/3">
                             <div className="p-1">
                             <Card className="border-none">
                                 <CardContent className="flex aspect-square items-center justify-center p-0 rounded-lg overflow-hidden">
