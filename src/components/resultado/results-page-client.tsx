@@ -9,11 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
-import { CheckCircle, Gift, ShieldCheck } from 'lucide-react';
+import { CheckCircle, Gift, ShieldCheck, Zap } from 'lucide-react';
 import type { CustomizedRecommendationsOutput } from '@/ai/flows/customized-recommendations';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay"
 import { gtmEvent } from '../analytics/google-tag-manager';
+import { cn } from '@/lib/utils';
 
 interface Results {
   diagnosis: string;
@@ -83,14 +84,31 @@ const bonusContent = [
     },
 ];
 
+const speedOptions = [
+  { label: '1x', speed: 1.0 },
+  { label: '1.25x', speed: 1.25 },
+  { label: '1.5x', speed: 1.5 },
+  { label: '2x', speed: 2.0 },
+];
+
 export function ResultsPageClient({ results }: ResultsPageClientProps) {
   const [today, setToday] = useState('');
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentSpeed, setCurrentSpeed] = useState(1.0);
 
   useEffect(() => {
     const date = new Date();
     const formattedDate = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
     setToday(formattedDate);
   }, []);
+
+  const setPlaybackSpeed = (speed: number) => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = speed;
+      setCurrentSpeed(speed);
+      gtmEvent('video_speed_change', { speed });
+    }
+  };
 
   const transformationImages = [
     'carousel1', 'carousel2', 'carousel3', 'carousel4', 'carousel5', 'carousel6', 'carousel7'
@@ -128,16 +146,37 @@ export function ResultsPageClient({ results }: ResultsPageClientProps) {
               <h1 className="text-2xl md:text-3xl font-bold text-white">Seu diagnóstico está pronto...</h1>
               <p className="text-lg text-white/80">Assista ao vídeo abaixo para revelar seu plano personalizado.</p>
             </div>
-            <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-              <video
-                className="w-full h-full"
-                controls
-                autoPlay
-                playsInline
-                src="/video.mp4"
-              >
-                Seu navegador não suporta a tag de vídeo.
-              </video>
+            <div className="relative">
+              <div className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
+                <video
+                  ref={videoRef}
+                  className="w-full h-full"
+                  controls
+                  autoPlay
+                  playsInline
+                  muted 
+                  src="/video.mp4"
+                >
+                  Seu navegador não suporta a tag de vídeo.
+                </video>
+              </div>
+              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 bg-black/50 backdrop-blur-sm p-2 rounded-lg">
+                <Zap className="h-5 w-5 text-yellow-300" />
+                 {speedOptions.map(({ label, speed }) => (
+                  <button
+                    key={speed}
+                    onClick={() => setPlaybackSpeed(speed)}
+                    className={cn(
+                      "px-3 py-1 text-sm font-semibold rounded-md transition-colors",
+                      currentSpeed === speed
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-transparent text-white hover:bg-white/20"
+                    )}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
