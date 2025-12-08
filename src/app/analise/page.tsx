@@ -7,6 +7,8 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
 import Player from '@vimeo/player';
+import { sendServerEvent } from '../meta-actions';
+import { v4 as uuidv4 } from 'uuid'; // We'll need to install this package
 
 const speedOptions = [
   { label: '1x', speed: 1.0 },
@@ -16,6 +18,14 @@ const speedOptions = [
 ];
 
 const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
+
+function getCookie(name: string): string | null {
+    if (typeof document === 'undefined') return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+    return null;
+}
 
 export default function AnalisePage() {
   const router = useRouter();
@@ -63,10 +73,30 @@ export default function AnalisePage() {
   };
   
   const handleCtaClick = () => {
-    gtmEvent('vsl_cta_click', {
+    const eventId = uuidv4();
+    const eventName = 'vsl_cta_click';
+
+    // 1. Send event to GTM (client-side)
+    gtmEvent(eventName, {
         page_path: '/analise',
         redirect_url: '/resultado',
+        eventId, // Pass the eventId for deduplication
     });
+
+    // 2. Prepare user data for CAPI (server-side)
+    const userData = {
+        client_ip_address: null, // Should be fetched server-side for accuracy
+        client_user_agent: navigator.userAgent,
+        fbc: getCookie('_fbc'),
+        fbp: getCookie('_fbp'),
+        email: null, // You can populate this if the user is logged in
+        phone: null, // You can populate this if the user is logged in
+    };
+    
+    // 3. Send event to Meta CAPI (server-side)
+    sendServerEvent(eventName, eventId, userData);
+
+    // 4. Redirect the user
     router.push('/resultado');
   };
 
