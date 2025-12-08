@@ -8,7 +8,11 @@ const pixelId = process.env.META_PIXEL_ID;
 if (!accessToken || !pixelId) {
     console.warn("Meta Pixel ID or Access Token is not set in environment variables. Server-side events will not be sent.");
 } else {
-    bizSdk.FacebookAdsApi.init(accessToken);
+    try {
+        bizSdk.FacebookAdsApi.init(accessToken);
+    } catch (e) {
+        console.error("Failed to initialize Meta Business SDK. Check your access token.", e);
+    }
 }
 
 interface UserDataCAPI {
@@ -31,13 +35,23 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
     }
 
     try {
-        const userDataToSend = new UserData()
-            .setClientIpAddress(userData.client_ip_address)
-            .setClientUserAgent(userData.client_user_agent)
-            .setFbc(userData.fbc)
-            .setFbp(userData.fbp)
-            .setEmails(userData.email ? [userData.email] : null)
-            .setPhones(userData.phone ? [userData.phone] : null);
+        const userDataToSend = new UserData(
+            userData.email ? [userData.email] : null,
+            userData.phone ? [userData.phone] : null,
+            null, // gender
+            null, // date of birth
+            null, // last name
+            null, // first name
+            null, // city
+            null, // state
+            null, // zip
+            null, // country
+            null, // external_id
+            userData.client_ip_address,
+            userData.client_user_agent,
+            userData.fbp,
+            userData.fbc
+        );
         
         const customDataToSend = new CustomData();
         if (customData?.value) {
@@ -47,7 +61,7 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
             customDataToSend.setCurrency(customData.currency);
         }
 
-        const event = new ServerEvent()
+        const serverEvent = new ServerEvent()
             .setEventName(eventName)
             .setEventTime(Math.floor(Date.now() / 1000))
             .setEventId(eventId)
@@ -56,15 +70,10 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
             .setEventSourceUrl(process.env.NEXT_PUBLIC_SITE_URL ? `${process.env.NEXT_PUBLIC_SITE_URL}/analise` : null)
             .setActionSource('website');
 
-        const eventsData = [event];
-        const account = new AdAccount(null); // account_id is optional
+        const eventsData = [serverEvent];
+        const adAccount = new AdAccount('act_' + pixelId, bizSdk.FacebookAdsApi.getApi());
         
-        // This is a workaround for the SDK not having a direct method for pixel events
-        // We set the `id` of the account to our pixelId.
-        account.id = pixelId;
-        
-        await account.createEvent([], eventsData);
-
+        await adAccount.createEvent(eventsData);
 
         console.log(`CAPI Event '${eventName}' sent successfully with event ID: ${eventId}`);
         return { success: true, eventId };
