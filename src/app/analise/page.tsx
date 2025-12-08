@@ -80,10 +80,12 @@ export default function AnalisePage() {
         phone: null,
     };
     
+    // Send to GTM / Meta Pixel (client-side)
     gtmEvent(eventName, {
         eventId,
     });
     
+    // Send to Meta CAPI (server-side)
     sendServerEvent(eventName, eventId, userData);
 
     router.push('/resultado');
