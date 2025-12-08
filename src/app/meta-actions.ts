@@ -1,15 +1,17 @@
 'use server';
 
-import { bizSdk, AdAccount, UserData, ServerEvent, CustomData } from 'facebook-nodejs-business-sdk';
+import { FacebookAdsApi, AdAccount, UserData, ServerEvent, CustomData } from 'facebook-nodejs-business-sdk';
 
 const accessToken = process.env.META_ACCESS_TOKEN;
 const pixelId = process.env.META_PIXEL_ID;
+
+let api: FacebookAdsApi | null = null;
 
 if (!accessToken || !pixelId) {
     console.warn("Meta Pixel ID or Access Token is not set in environment variables. Server-side events will not be sent.");
 } else {
     try {
-        bizSdk.FacebookAdsApi.init(accessToken);
+        api = FacebookAdsApi.init(accessToken);
     } catch (e) {
         console.error("Failed to initialize Meta Business SDK. Check your access token.", e);
     }
@@ -30,7 +32,7 @@ interface CustomDataCAPI {
 }
 
 export async function sendServerEvent(eventName: string, eventId: string, userData: UserDataCAPI, customData?: CustomDataCAPI) {
-    if (!accessToken || !pixelId) {
+    if (!api || !pixelId) {
         return;
     }
 
@@ -71,7 +73,8 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
             .setActionSource('website');
 
         const eventsData = [serverEvent];
-        const adAccount = new AdAccount('act_' + pixelId, bizSdk.FacebookAdsApi.getApi());
+        // The AdAccount ID should be prefixed with 'act_'
+        const adAccount = new AdAccount('act_' + pixelId);
         
         await adAccount.createEvent(eventsData);
 
