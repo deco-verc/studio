@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
 import Player from '@vimeo/player';
 import { sendServerEvent } from '../meta-actions';
@@ -16,8 +15,6 @@ const speedOptions = [
   { label: '1.5x', speed: 1.5 },
   { label: '2x', speed: 2.0 },
 ];
-
-const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
 
 function getCookie(name: string): string | null {
     if (typeof document === 'undefined') return null;
@@ -35,11 +32,10 @@ export default function AnalisePage() {
   const playerContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Show the button after 1 minute (60000 milliseconds)
     const timer = setTimeout(() => {
       setShowButton(true);
       gtmEvent('cta_button_show', { page_path: '/analise' });
-    }, 60000);
+    }, 60000); // 1 minuto
 
     return () => clearTimeout(timer);
   }, []);
@@ -60,7 +56,6 @@ export default function AnalisePage() {
     }
   }, []);
 
-
   const setPlaybackSpeed = (speed: number) => {
     if (vimeoPlayerRef.current) {
       vimeoPlayerRef.current.setPlaybackRate(speed).then(() => {
@@ -76,27 +71,21 @@ export default function AnalisePage() {
     const eventId = uuidv4();
     const eventName = 'InitiateCheckout';
 
-    // 1. Send event to GTM (client-side)
-    gtmEvent(eventName, {
-        page_path: '/analise',
-        redirect_url: '/resultado',
-        eventId, // Pass the eventId for deduplication
-    });
-
-    // 2. Prepare user data for CAPI (server-side)
     const userData = {
-        client_ip_address: null, // Should be fetched server-side for accuracy
+        client_ip_address: null, 
         client_user_agent: navigator.userAgent,
         fbc: getCookie('_fbc'),
         fbp: getCookie('_fbp'),
-        email: null, // You can populate this if the user is logged in
-        phone: null, // You can populate this if the user is logged in
+        email: null,
+        phone: null,
     };
     
-    // 3. Send event to Meta CAPI (server-side)
+    gtmEvent(eventName, {
+        eventId,
+    });
+    
     sendServerEvent(eventName, eventId, userData);
 
-    // 4. Redirect the user
     router.push('/resultado');
   };
 
@@ -110,11 +99,10 @@ export default function AnalisePage() {
           Enquanto isso, assista a esta apresentação especial que preparamos para você.
         </p>
 
-        {/* Vimeo Player */}
         <div ref={playerContainerRef} className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
           <div style={{padding:'56.25% 0 0 0',position:'relative'}}>
               <iframe 
-                  src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1" 
+                  src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0" 
                   frameBorder="0" 
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
                   style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} 
@@ -137,7 +125,6 @@ export default function AnalisePage() {
             ))}
         </div>
 
-        {/* Delayed CTA Button */}
         <div className="h-20 flex items-center justify-center">
           {showButton ? (
             <Button
