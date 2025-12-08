@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
 import Player from '@vimeo/player';
 import { sendServerEvent } from '../meta-actions';
-import { v4 as uuidv4 } from 'uuid'; // We'll need to install this package
+import { v4 as uuidv4 } from 'uuid';
 
 const speedOptions = [
   { label: '1x', speed: 1.0 },
@@ -74,7 +74,7 @@ export default function AnalisePage() {
   
   const handleCtaClick = () => {
     const eventId = uuidv4();
-    const eventName = 'vsl_cta_click';
+    const eventName = 'InitiateCheckout';
 
     // 1. Send event to GTM (client-side)
     gtmEvent(eventName, {
