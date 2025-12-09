@@ -101,8 +101,8 @@ export default function AnalisePage() {
           Enquanto isso, assista a esta apresentação especial que preparamos para você.
         </p>
 
-        <div ref={playerContainerRef} className="aspect-video w-full bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-          <div style={{padding:'56.25% 0 0 0',position:'relative'}}>
+        <div ref={playerContainerRef} className="aspect-[9/16] w-full max-w-md mx-auto bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
+          <div style={{padding:'177.77% 0 0 0',position:'relative'}}>
               <iframe 
                   src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0" 
                   frameBorder="0" 
