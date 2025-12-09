@@ -2,14 +2,14 @@
 
 import { useState, useTransition, useMemo, useEffect } from 'react';
 import Image from 'next/image';
-import { quizQuestions } from './quiz-questions';
+import { quizQuestions, Trigger } from './quiz-questions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, MessageSquareQuote, BarChart2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
 import { useRouter } from 'next/navigation';
@@ -24,47 +24,95 @@ const smartProgress = (current: number, total: number): number => {
     }
 };
 
+const TriggerDisplay = ({ trigger }: { trigger: Trigger }) => {
+  return (
+    <div className="w-full text-center flex flex-col items-center justify-center space-y-4 p-4 animate-fade-in">
+        {trigger.text && <p className="text-lg md:text-xl text-foreground/90">{trigger.text}</p>}
+        {trigger.socialProof && (
+            <Card className="w-full max-w-md bg-primary/10 border-primary/20 p-4">
+                <CardContent className="p-0 flex flex-col items-center gap-2">
+                    <MessageSquareQuote className="w-8 h-8 text-primary" />
+                    <p className="text-center italic text-foreground">"{trigger.socialProof.quote}"</p>
+                    <p className="font-semibold text-primary">- {trigger.socialProof.author}</p>
+                </CardContent>
+            </Card>
+        )}
+        {trigger.graph && (
+            <Card className="w-full max-w-md bg-secondary/30 p-4">
+                 <CardHeader className="p-2">
+                    <CardTitle className="text-base font-bold text-center">{trigger.graph.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <Image src={trigger.graph.imageUrl} alt={trigger.graph.title} width={400} height={200} className="rounded-md mx-auto" />
+                    <p className="text-center text-sm text-muted-foreground mt-2">{trigger.graph.legend}</p>
+                </CardContent>
+            </Card>
+        )}
+    </div>
+  )
+}
+
 export function QuizForm() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<{ [key: number]: string }>({});
+  const [answers, setAnswers] = useState<{ [key: number]: string[] }>({});
   const [isPending, startTransition] = useTransition();
   const [animationState, setAnimationState] = useState<'enter' | 'exit'>('enter');
-  const { toast } = useToast();
+  const [showTrigger, setShowTrigger] = useState<Trigger | null>(null);
   const router = useRouter();
 
   const totalQuestions = quizQuestions.length;
   const progress = useMemo(() => smartProgress(currentStep + 1, totalQuestions), [currentStep, totalQuestions]);
-  const currentQuestion = quizQuestions[currentStep] as (typeof quizQuestions)[0] & { imageBelowTitle?: string };
+  const currentQuestion = quizQuestions[currentStep];
 
-  const hasAvatars = useMemo(() => {
-    return currentQuestion.options.every(option => 'avatar' in option && option.avatar);
-  }, [currentQuestion]);
-  
   useEffect(() => {
     setAnimationState('enter');
+    setShowTrigger(null);
   }, [currentStep]);
 
-  const handleValueChange = (value: string) => {
-    const newAnswers = { ...answers, [currentStep]: value };
-    setAnswers(newAnswers);
+  const handleNext = () => {
     setAnimationState('exit');
+    setTimeout(() => {
+      if (currentStep < totalQuestions - 1) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        startTransition(() => {
+          sessionStorage.setItem('quizAnswers', JSON.stringify(answers));
+          router.push('/analise');
+        });
+      }
+    }, 400); // Animation duration
+  }
+
+  const handleResponse = (value: string | string[]) => {
+    const responseArray = Array.isArray(value) ? value : [value];
+    const newAnswers = { ...answers, [currentStep]: responseArray };
+    setAnswers(newAnswers);
 
     gtmEvent('quiz_step', {
       step_number: currentStep + 1,
       step_title: currentQuestion.question,
-      response: value,
+      response: responseArray.join(', '),
     });
 
-    setTimeout(() => {
-        if (currentStep < totalQuestions - 1) {
-            setCurrentStep(currentStep + 1);
-        } else {
-            startTransition(() => {
-                // Redirect to the analysis/VSL page
-                router.push('/analise');
-            });
-        }
-    }, 400); // Duration should match animation duration
+    if (currentQuestion.trigger) {
+      setShowTrigger(currentQuestion.trigger);
+      setTimeout(() => {
+        handleNext();
+      }, 5000); // Show trigger for 5 seconds
+    } else {
+      handleNext();
+    }
+  };
+
+  const handleMultiChoiceChange = (checked: boolean, value: string) => {
+    const currentSelection = answers[currentStep] || [];
+    let newSelection;
+    if (checked) {
+      newSelection = [...currentSelection, value];
+    } else {
+      newSelection = currentSelection.filter(item => item !== value);
+    }
+    setAnswers({ ...answers, [currentStep]: newSelection });
   };
   
   return (
@@ -78,6 +126,8 @@ export function QuizForm() {
                   <Loader2 className="h-16 w-16 animate-spin text-primary" />
                   <p className="text-lg md:text-xl text-muted-foreground">Finalizando...</p>
               </div>
+            ) : showTrigger ? (
+              <TriggerDisplay trigger={showTrigger} />
             ) : (
             <div className={cn(
               "w-full px-4 text-center flex flex-col items-center justify-center space-y-4",
@@ -88,68 +138,74 @@ export function QuizForm() {
               >
                 {currentQuestion.question}
               </CardTitle>
-              {currentQuestion.imageBelowTitle && (
-                <div className="relative w-full max-w-xs mx-auto rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src={currentQuestion.imageBelowTitle}
-                    alt="Imagem da pergunta"
-                    width={300}
-                    height={200}
-                    className="w-full h-auto object-cover"
-                    priority
-                  />
-                </div>
-              )}
             </div>
             )}
           </div>
         </CardHeader>
         <CardContent className="px-4 sm:px-6 md:px-8 pb-8 min-h-[200px]">
-           {!isPending && (
-            <RadioGroup
-              key={currentStep}
-              value={answers[currentStep]}
-              onValueChange={handleValueChange}
-              className={cn(
-                "space-y-4",
-                hasAvatars && "grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
+           {!isPending && !showTrigger && (
+             <>
+              {currentQuestion.type === 'single-choice' && (
+                <RadioGroup
+                  key={currentStep}
+                  onValueChange={(value) => handleResponse(value)}
+                  className="space-y-4"
+                >
+                  {currentQuestion.options.map((option, index) => {
+                    const id = `q${currentStep}-o${index}`;
+                    return (
+                      <div 
+                        key={index}
+                        style={{ animationDelay: `${index * 100}ms` }}
+                        className="rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105 hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex animate-fade-in-up"
+                      >
+                        <RadioGroupItem value={option.value} id={id} className="sr-only" />
+                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4">
+                          <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow">{option.label}</span>
+                        </Label>
+                      </div>
+                    )
+                  })}
+                </RadioGroup>
               )}
-            >
-              {currentQuestion.options.map((option, index) => {
-                const id = `q${currentStep}-o${index}`;
-                return (
-                  <div 
-                    key={index}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                    className={cn(
-                      "rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105",
-                      "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex",
-                      animationState === 'enter' ? 'opacity-0 translate-y-4 animate-fade-in-up' : 'opacity-0'
-                    )}
+
+              {currentQuestion.type === 'multiple-choice' && (
+                <div className="space-y-4">
+                  {currentQuestion.options.map((option, index) => {
+                     const id = `q${currentStep}-o${index}`;
+                     const isChecked = answers[currentStep]?.includes(option.value);
+                     return (
+                      <div 
+                        key={index}
+                        style={{ animationDelay: `${index * 100}ms` }}
+                        className={cn(
+                          "rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 flex items-center animate-fade-in-up",
+                          "hover:border-primary/50 hover:bg-primary/5 hover:shadow-md",
+                          isChecked && "border-primary bg-primary/10 shadow-lg"
+                        )}
+                      >
+                         <Checkbox
+                            id={id}
+                            checked={isChecked}
+                            onCheckedChange={(checked) => handleMultiChoiceChange(!!checked, option.value)}
+                            className="h-6 w-6"
+                         />
+                         <Label htmlFor={id} className="ml-4 w-full h-full cursor-pointer font-medium text-foreground/90 text-sm md:text-base">
+                          {option.label}
+                         </Label>
+                      </div>
+                     )
+                  })}
+                  <Button 
+                    onClick={() => handleResponse(answers[currentStep] || [])}
+                    disabled={!answers[currentStep] || answers[currentStep].length === 0}
+                    className="w-full mt-6"
                   >
-                    <RadioGroupItem value={option.value} id={id} className="sr-only" />
-                    <Label htmlFor={id} className="w-full h-full cursor-pointer flex flex-col items-center justify-between text-center gap-4">
-                      {hasAvatars && option.avatar && (
-                        <div className="relative w-32 h-32 md:w-40 md:h-40">
-                          <Image
-                            src={option.avatar}
-                            alt={option.label}
-                            fill
-                            className="rounded-full object-cover shadow-md"
-                            priority={currentStep < 2}
-                            sizes="(max-width: 768px) 128px, 160px"
-                          />
-                        </div>
-                      )}
-                      
-                       <span className="font-medium text-foreground/90 text-sm md:text-base">
-                        {option.label}
-                       </span>
-                    </Label>
-                  </div>
-                )
-              })}
-            </RadioGroup>
+                    Continuar
+                  </Button>
+                </div>
+              )}
+             </>
            )}
         </CardContent>
       </Card>

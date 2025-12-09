@@ -1,198 +1,327 @@
 
-export const quizQuestions = [
-    {
-      id: 1,
-      question: "Para começarmos, qual seu sexo?",
-      options: [
-        { label: "Feminino", value: "Feminino", avatar: "https://i.imgur.com/LQGNQBh.png" },
-        { label: "Masculino", value: "Masculino", avatar: "https://i.imgur.com/EUTPGJ3.png" },
-      ],
-    },
-    {
-      id: 2,
-      question: "Em qual fase da vida você está agora?",
-      options: [
-        { label: "Tenho entre 18 e 29 anos", value: "Tenho entre 18 e 29 anos", avatar: "https://i.imgur.com/MvneBFa.png" },
-        { label: "Tenho entre 30 e 45 anos", value: "Tenho entre 30 e 45 anos", avatar: "https://i.imgur.com/9bMf6xY.png" },
-        { label: "Tenho entre 46 e 60 anos", value: "Tenho entre 46 e 60 anos", avatar: "https://i.imgur.com/6LVROCC.png" },
-        { label: "Tenho mais de 60 anos", value: "Tenho mais de 60 anos", avatar: "https://i.imgur.com/kTstDj1.png" },
-      ],
-    },
-    {
-      id: 3,
-      question: "Qual é o seu maior desejo ao se olhar no espelho daqui a 30 dias?",
-      imageBelowTitle: "https://i.imgur.com/6oSBBn1.jpeg",
-      options: [
-        { label: "Ver minha barriga ficar chapada.", value: "Ver minha barriga ficar chapada." },
-        { label: "Acordar leve, sem inchaço e com energia.", value: "Acordar leve, sem inchaço e com energia." },
-        { label: "Comprar roupas sem preocupação.", value: "Comprar roupas sem preocupação." },
-        { label: "Ficar bonita para meu namorado/marido.", value: "Ficar bonita para meu namorado/marido." },
-      ],
-    },
-    {
-      id: 6,
-      question: "Como você se sente quando vai comprar roupas hoje?",
-      imageBelowTitle: "https://i.imgur.com/crtE4Sf.jpeg",
-      options: [
-        { label: "Sinto um aperto no peito e evito me olhar no espelho da loja.", value: "Sinto um aperto no peito e evito me olhar no espelho da loja." },
-        { label: "Só compro roupas largas para me esconder.", value: "Só compro roupas largas para me esconder." },
-        { label: "Me sinto mal porque nada serve.", value: "Me sinto mal porque nada serve." },
-        { label: "Nem provo mais,compro pela internet..", value: "Nem provo mais,compro pela internet.." },
-      ],
-    },
-    {
-      id: 8,
-      question: "Qual é a frase que você mais odeia ouvir de amigas ou familiares?",
-      options: [
-        { label: '"Nossa, você é tão bonita de rosto".', value: '"Nossa, você é tão bonita de rosto".' },
-        { label: '"Essa roupa preta te emagreceu!"', value: '"Essa roupa preta te emagreceu!"' },
-        { label: '"Você vai comer tudo isso?" (Aquele julgamento disfarçado ).', value: '"Você vai comer tudo isso?" (Aquele julgamento disfarçado ).' },
-      ],
-    },
-    {
-      id: 9,
-      question: "Você sente que seu corpo \"luta contra você\"?",
-      options: [
-        { label: "Sim parece que meu metabolismo pifou e nada faz eu emagrecer.", value: "Sim parece que meu metabolismo pifou e nada faz eu emagrecer." },
-        { label: "Eu perco um pouquinho, mas ganho o dobro depois. Cansei disso.", value: "Eu perco um pouquinho, mas ganho o dobro depois. Cansei disso." },
-        { label: "Sinto uma vontade incontrolável de comer doces e massas.", value: "Sinto uma vontade incontrolável de comer doces e massas." },
-      ],
-    },
-    {
-      id: 10,
-      question: "Você sente que vive em uma guerra contra a balança, o famoso Efeito Sanfona?",
-      imageBelowTitle: "https://i.imgur.com/dbBEXRL.jpeg",
-      options: [
-        { label: "Sim, eu me sinto horrível, eu perco 2kg, mas ganho 4kg depois.", value: "Sim, eu me sinto horrível, eu perco 2kg, mas ganho 4kg depois." },
-        { label: "Parece que meu metabolismo fica cada vez mais lento e resistente a cada tentativa.", value: "Parece que meu metabolismo fica cada vez mais lento e resistente a cada tentativa." },
-        { label: "Sinto que estou presa num ciclo vicioso e que meu corpo não quer emagrecer.", value: "Sinto que estou presa num ciclo vicioso e que meu corpo não quer emagrecer." },
-        { label: "Tenho medo de tentar de novo, porque a frustração de engordar tudo outra vez dói demais.", value: "Tenho medo de tentar de novo, porque a frustração de engordar tudo outra vez dói demais." },
-      ],
-    },
-    {
-      id: 12,
-      question: "Sendo honesta: como você sente que seu marido (ou parceiro) te enxerga hoje?",
-      imageBelowTitle: "https://i.imgur.com/7XuJqdg.jpeg",
-      options: [
-        { label: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher.", value: "Sinto que ele me ama como companheira, mas não me deseja mais como mulher." },
-        { label: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto.", value: "Tenho a sensação terrível de que virei apenas a \"mãe dos filhos\" ou uma amiga de quarto." },
-        { label: "Sinto um distanciamento e tenho medo de que ele sinta vergonha de andar comigo.", value: "Sinto um distanciamento e tenho medo de que ele sinta vergonha de andar comigo." },
-        { label: "Percebo que o brilho no olhar dele sumiu e morro de medo dele procurar fora o que não vê em mim.", value: "Percebo que o brilho no olhar dele sumiu e morro de medo dele procurar fora o que não vê em mim." },
-      ],
-    },
-    {
-      id: 13,
-      question: "De mulher para mulher: como isso afeta sua vida íntima?",
-      options: [
-        { label: "Muitas vezes peço para apagar a luz ou me escondo.", value: "Muitas vezes peço para apagar a luz ou me escondo." },
-        { label: "Sinto que perdi minha sensualidade e confiança no meu corpo.", value: "Sinto que perdi minha sensualidade e confiança no meu corpo." },
-        { label: "Tenho medo que meu parceiro perca o interesse por mim.", value: "Tenho medo que meu parceiro perca o interesse por mim." },
-        { label: "Evito ao máximo a intimidade para não me sentir julgada.", value: "Evito ao máximo a intimidade para não me sentir julgada." },
-      ],
-    },
-    {
-      id: 14,
-      question: "Você sente que as pessoas te julgam só pelo seu peso?",
-      imageBelowTitle: "https://i.imgur.com/m2JOiRH.jpeg",
-      options: [
-        { label: "Sim, sinto que sou \"invisível\"..", value: "Sim, sinto que sou \"invisível\".." },
-        { label: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\".", value: "Sim, minhas dores reais são ignoradas e tudo é \"culpa do peso\"." },
-        { label: "Sim, sinto que perdi o respeito que as pessoas magras têm.", value: "Sim, sinto que perdi o respeito que as pessoas magras têm." },
-        { label: "Sim, sinto raiva por não ser tratada da forma que mereço.", value: "Sim, sinto raiva por não ser tratada da forma que mereço." },
-      ],
-    },
-    {
-      id: 16,
-      question: "Você sente uma vontade estranha que te faz comer mesmo sem fome?",
-      imageBelowTitle: "https://i.imgur.com/7hYcexV.jpeg",
-      options: [
-        { label: "Sim, parece que meu cérebro foi modificado e não consigo parar.", value: "Sim, parece que meu cérebro foi modificado e não consigo parar." },
-        { label: "Sim, é como um vício mais forte que eu.", value: "Sim, é como um vício mais forte que eu." },
-        { label: "Sinto que a indústria coloca algo na comida para me viciar.", value: "Sinto que a indústria coloca algo na comida para me viciar." },
-        { label: "Tenho certeza que não é falta de vergonha, é algo químico.", value: "Tenho certeza que não é falta de vergonha, é algo químico." },
-      ],
-    },
-     {
-      id: 17,
-      question: "Você sabia que muitos produtos \"Light\" e \"Fit\" têm químicos que AUMENTAM sua fome e fazem você engordar?",
-      options: [
-        { label: "Eu desconfiava! Sempre fico com mais fome depois de comer isso.", value: "Eu desconfiava! Sempre fico com mais fome depois de comer isso." },
-        { label: "Isso explica porque gastei tanto e nunca emagreci de verdade.", value: "Isso explica porque gastei tanto e nunca emagreci de verdade." },
-        { label: "Sinto raiva por ter sido enganada esse tempo todo.", value: "Sinto raiva por ter sido enganada esse tempo todo." },
-        { label: "Agora entendo porque continuo inchada e retendo líquido.", value: "Agora entendo porque continuo inchada e retendo líquido." },
-      ],
-    },
-    {
-      id: 20,
-      question: "Imagine encontrar aquelas pessoas que te julgaram ou te ignoraram daqui a 30 dias. Qual reação você quer causar?",
-      imageBelowTitle: "https://i.imgur.com/RE8HA6Z.jpeg",
-      options: [
-        { label: "Quero ver o queixo delas caindo quando eu entrar na sala magra, elegante e poderosa.", value: "Quero ver o queixo delas caindo quando eu entrar na sala magra, elegante e poderosa." },
-        { label: "Quero que elas sintam inveja e perguntem desesperadas qual foi meu segredo.", value: "Quero que elas sintam inveja e perguntem desesperadas qual foi meu segredo." },
-        { label: "Quero provar que eu consegui dar a volta por cima e venci.", value: "Quero provar que eu consegui dar a volta por cima e venci." },
-        { label: "Quero sair da invisibilidade e obrigar o mundo a me notar e me admirar pelo que me tornei.", value: "Quero sair da invisibilidade e obrigar o mundo a me notar e me admirar pelo que me tornei." },
-      ],
-    },
-    {
-      id: 21,
-      question: "Qual é o seu maior sonho para reacender a chama da sua vida amorosa e sua autoestima?",
-      options: [
-        { label: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder.", value: "Ter confiança total para deixar a luz acesa e deixar ele me admirar por inteira, sem me esconder." },
-        { label: "Usar uma lingerie linda e sexy sem tentar cobrir a barriga ou apagar tudo correndo.", value: "Usar uma lingerie linda e sexy sem tentar cobrir a barriga ou apagar tudo correndo." },
-        { label: "Voltar a sentir aquela \"faísca\" de ser desejada e tocada sem medo ou insegurança.", value: "Voltar a sentir aquela \"faísca\" de ser desejada e tocada sem medo ou insegurança." },
-        { label: "Parar de fugir dos momentos íntimos e me entregar ao prazer sentindo orgulho do meu corpo.", value: "Parar de fugir dos momentos íntimos e me entregar ao prazer sentindo orgulho do meu corpo." },
-      ],
-    },
-    {
-      id: 22,
-      question: "Se essas Receitas tirarem esse vício e desinflamarem seu corpo fazendo você emagrecer rapidamente, como seria?",
-      options: [
-        { label: "Seria a paz que eu procuro comer sem culpa e sem compulsão.", value: "Seria a paz que eu procuro comer sem culpa e sem compulsão." },
-        { label: "Eu finalmente teria o controle de volta e emagreceria naturalmente.", value: "Eu finalmente teria o controle de volta e emagreceria naturalmente." },
-        { label: "Seria minha vingança contra a indústria que me viciou.", value: "Seria minha vingança contra a indústria que me viciou." },
-        { label: "Eu me sentiria leve, desinchada e queimando gordura sozinha.", value: "Eu me sentiria leve, desinchada e queimando gordura sozinha." },
-      ],
-    },
-    {
-      id: 24,
-      question: "Qual seria a sensação de comer sua comida preferida e ver o peso baixando na balança?",
-      options: [
-        { label: "Seria um sonho de liberdade total.", value: "Seria um sonho de liberdade total." },
-        { label: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\".", value: "Eu me sentiria no controle, feliz e sem aquela \"fome emocional\"." },
-        { label: "Eu recuperaria minha autoestima e vontade de viver.", value: "Eu recuperaria minha autoestima e vontade de viver." },
-        { label: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem.", value: "Eu provaria para todos (e para mim mesma) que é possível ser magra comendo bem." },
-      ],
-    },
-    {
-      id: 19,
-      question: "E se você descobrisse que a culpa NÃO é sua, mas da indústria alimentícia que viciou seu paladar para eles lucrarem?",
-      options: [
-        { label: "Eu sempre tive essas dúvidas, quero me desintoxicar", value: "Eu sempre tive essas dúvidas, quero me desintoxicar" },
-      ],
-    },
-    {
-      id: 23,
-      question: "Imagine fazer refeições deliciosas em 20 minutos, com coisas simples que você já tem em casa, que enganam seu metabolismo para queimar gordura. Ajudaria?",
-      imageBelowTitle: "https://i.imgur.com/0DpLfrG.jpeg",
-      options: [
-        { label: "Muito ! Eu quero de graça", value: "Muito ! Eu quero de graça" },
-      ],
-    },
-    {
-      id: 25,
-      question: "Você topa trocar a comida sem gosto por 200 receitas saborosas (com doces e massas) que desinflamam e destravam sua queima de gordura?",
-      imageBelowTitle: "https://i.imgur.com/uPSVCd7.jpeg",
-      options: [
-        { label: "COM CERTEZA, QUERO PRA AGORA !", value: "COM CERTEZA, QUERO PRA AGORA !" },
-      ],
-    },
-    {
-      id: 26,
-      question: "Se eu te entregar o acesso ao Código das 200 Receitas agora, qual seria sua resposta?",
-      imageBelowTitle: "https://i.imgur.com/Vlc46EP.jpeg",
-      options: [
-        { label: "EU QUERO", value: "EU QUERO" },
-      ],
-    },
-  ];
+export type QuizOption = {
+  label: string;
+  value: string;
+  avatar?: string;
+};
 
+export type Trigger = {
+  text: string;
+  socialProof?: {
+    quote: string;
+    author: string;
+  };
+  graph?: {
+    title: string;
+    imageUrl: string;
+    legend: string;
+  }
+};
+
+
+export type QuizQuestion = {
+  id: number;
+  question: string;
+  type: 'single-choice' | 'multiple-choice';
+  options: QuizOption[];
+  trigger?: Trigger;
+};
+
+export const quizQuestions: QuizQuestion[] = [
+  {
+    id: 1,
+    question: "Qual é o seu sexo?",
+    type: 'single-choice',
+    options: [
+      { label: "Feminino", value: "Feminino" },
+      { label: "Masculino", value: "Masculino" },
+    ],
+  },
+  {
+    id: 2,
+    question: "Qual a sua idade?",
+    type: 'single-choice',
+    options: [
+      { label: "Tenho entre 18 e 29 anos", value: "18-29" },
+      { label: "Tenho entre 30 e 45 anos", value: "30-45" },
+      { label: "Tenho entre 46 e 60 anos", value: "46-60" },
+      { label: "Tenho mais de 60 anos", value: "60+" },
+    ],
+  },
+  {
+    id: 3,
+    question: "Quão insatisfeita você está com o seu corpo hoje?",
+    type: 'single-choice',
+    options: [
+      { label: "Totalmente Insatisfeita", value: "Totalmente Insatisfeita" },
+      { label: "Muito Insatisfeita", value: "Muito Insatisfeita" },
+      { label: "Pouco insatisfeita", value: "Pouco insatisfeita" },
+      { label: "Poderia ser melhor", value: "Poderia ser melhor" },
+    ],
+    trigger: {
+      text: "💡 92% das mulheres estão na mesma situação, completamente insatisfeitas. Mas esse é o primeiro passo, fique até o final para mudar essa realidade."
+    }
+  },
+  {
+    id: 4,
+    question: "Quando você se olha no espelho hoje, qual é o primeiro sentimento?",
+    type: 'single-choice',
+    options: [
+      { label: "Decepção com meu corpo", value: "Decepção com meu corpo" },
+      { label: "Tristeza com minha aparência", value: "Tristeza com minha aparência" },
+      { label: "Cansaço de tentar e não conseguir", value: "Cansaço de tentar e não conseguir" },
+      { label: "Sei que preciso mudar, mas não sei por onde começar", value: "Sei que preciso mudar, mas não sei por onde começar" },
+    ],
+    trigger: {
+      text: "Esse sentimento é mais comum do que você imagina — e é exatamente o primeiro sinal de que seu corpo está pedindo ajuda."
+    }
+  },
+  {
+    id: 5,
+    question: "Há quanto tempo você se sente assim?",
+    type: 'single-choice',
+    options: [
+      { label: "Menos de 3 meses", value: "Menos de 3 meses" },
+      { label: "3 a 6 meses", value: "3 a 6 meses" },
+      { label: "1 ano ou mais", value: "1 ano ou mais" },
+      { label: "Já faz tanto tempo que perdi a conta", value: "Já faz tanto tempo que perdi a conta" },
+    ],
+  },
+  {
+    id: 6,
+    question: "O que mais te incomoda fisicamente hoje?",
+    type: 'single-choice',
+    options: [
+      { label: "Barriga inchada", value: "Barriga inchada" },
+      { label: "Rosto mais cheio", value: "Rosto mais cheio" },
+      { label: "Roupas apertando", value: "Roupas apertando" },
+      { label: "Sensação de estar maior do que antes", value: "Sensação de estar maior do que antes" },
+    ],
+  },
+  {
+    id: 7,
+    question: "Qual dessas situações acontece com você no dia a dia?",
+    type: 'multiple-choice',
+    options: [
+      { label: "Como sem fome e nem percebo", value: "Como sem fome e nem percebo" },
+      { label: "Uso comida como recompensa", value: "Uso comida como recompensa" },
+      { label: "Pulo refeições e depois exagero", value: "Pulo refeições e depois exagero" },
+      { label: "Como industrializados pela praticidade", value: "Como industrializados pela praticidade" },
+    ],
+  },
+  {
+    id: 8,
+    question: "Esses hábitos acontecem com mais frequência em qual momento?",
+    type: 'single-choice',
+    options: [
+      { label: "Final da tarde", value: "Final da tarde" },
+      { label: "À noite", value: "À noite" },
+      { label: "Quando estou sozinha", value: "Quando estou sozinha" },
+      { label: "Quando estou estressada", value: "Quando estou estressada" },
+    ],
+    trigger: {
+      text: "O horário/situação que você selecionou é onde o hormônio do estresse (Cortisol) costuma \"sequestrar\" sua força de vontade. A culpa não é sua, é química.",
+      socialProof: {
+        quote: "A maior mudança pra mim foi à noite. Antes, eu comia sem pensar tudo que via pela frente. Com o protocolo, em 7 dias eu já não sentia aquela fome desesperadora, foi minha mudança de chave.",
+        author: "Luciana, 36 anos"
+      }
+    }
+  },
+  {
+    id: 9,
+    question: "Você acredita que seu ganho de peso está ligado a:",
+    type: 'multiple-choice',
+    options: [
+      { label: "Comer por emoção", value: "Comer por emoção" },
+      { label: "Comer compulsivamente", value: "Comer compulsivamente" },
+      { label: "Efeito sanfona (dietas ioiô)", value: "Efeito sanfona" },
+      { label: "Inchaço/digestão lenta", value: "Inchaço/digestão lenta" },
+      { label: "Falta de constância por causa da ansiedade", value: "Falta de constância por ansiedade" },
+    ],
+  },
+  {
+    id: 10,
+    question: "Quando bate aquela vontade de comer o que engorda… o que geralmente acontece?",
+    type: 'single-choice',
+    options: [
+      { label: "Como mesmo assim e depois me arrependo", value: "Como e me arrependo" },
+      { label: "Tento resistir, mas sempre cedo", value: "Tento resistir, mas cedo" },
+      { label: "Como sem perceber", value: "Como sem perceber" },
+      { label: "Às vezes consigo evitar, mas é difícil", value: "Consigo evitar, mas é difícil" },
+    ],
+  },
+  {
+    id: 11,
+    question: "O que mais te atrapalha na hora de tentar emagrecer?",
+    type: 'multiple-choice',
+    options: [
+      { label: "Falta de tempo para preparar algo saudável", value: "Falta de tempo" },
+      { label: "Fome e ansiedade durante as dietas", value: "Fome e ansiedade" },
+      { label: "Comida sem sabor me faz desistir", value: "Comida sem sabor" },
+      { label: "Não sei o que comer no dia a dia", value: "Não sei o que comer" },
+    ],
+  },
+  {
+    id: 12,
+    question: "O que você já tentou e NÃO funcionou?",
+    type: 'multiple-choice',
+    options: [
+      { label: "Academia", value: "Academia" },
+      { label: "Chá emagrecedor", value: "Chá emagrecedor" },
+      { label: "Dietas restritivas", value: "Dietas restritivas" },
+      { label: "Remédios para emagrecer", value: "Remédios para emagrecer" },
+      { label: "Jejum intermitente", value: "Jejum intermitente" },
+    ],
+    trigger: {
+      text: "",
+      graph: {
+        title: "Esses Métodos são falhos, Veja a diferença deles para o protocolo:",
+        imageUrl: "https://i.imgur.com/your-graph-image-url.png", // Você precisa substituir por uma URL de imagem do gráfico
+        legend: "Esses métodos destroem seu metabolismo e te impedem de emagrecer. O nosso método reeduca seu paladar."
+      }
+    }
+  },
+  {
+    id: 13,
+    question: "Quando você tenta e acaba desistindo, o que sente?",
+    type: 'single-choice',
+    options: [
+      { label: "Culpa por não conseguir", value: "Culpa" },
+      { label: "Frustração por voltar ao mesmo ponto", value: "Frustração" },
+      { label: "Sensação de estar perdendo a batalha", value: "Perdendo a batalha" },
+      { label: "Medo de nunca conseguir mudar", value: "Medo de nunca conseguir" },
+    ],
+  },
+  {
+    id: 14,
+    question: "Quando sente que perdeu o controle sobre o que come, o que mais te preocupa?",
+    type: 'single-choice',
+    options: [
+      { label: "Continuar engordando aos poucos", value: "Continuar engordando" },
+      { label: "Chegar num ponto que não consiga mais voltar", value: "Não conseguir voltar" },
+      { label: "Afetar minha saúde", value: "Afetar a saúde" },
+      { label: "Perder a confiança em mim mesma", value: "Perder a autoconfiança" },
+    ],
+    trigger: {
+      text: "🧬 FATO CIENTÍFICO: A sensação de \"perda de controle\" que você descreveu é o sintoma #1 de um Metabolismo Viciado. Vamos investigar a causa agora..."
+    }
+  },
+  {
+    id: 15,
+    question: "Você sente que seu corpo parece viciado em certos alimentos — como se seu cérebro fosse programado pra desejar o que te faz engordar?",
+    type: 'single-choice',
+    options: [
+      { label: "Sim, é exatamente assim", value: "Sim, é exatamente assim" },
+      { label: "Às vezes tenho essa sensação", value: "Às vezes sinto isso" },
+      { label: "Nunca pensei assim, mas faz sentido", value: "Faz sentido" },
+      { label: "Eu acho que é isso mesmo", value: "Acho que é isso" },
+    ],
+  },
+  {
+    id: 16,
+    question: "Já tentou cortar açúcar ou aquelas comidas que você sabe que fazem mal, mas seu corpo pede mesmo assim e sentiu ansiedade, irritação ou compulsão?",
+    type: 'single-choice',
+    options: [
+      { label: "Sim, fico até de mau humor", value: "Sim, fico de mau humor" },
+      { label: "Me sinto ansiosa e como mais ainda", value: "Fico ansiosa e como mais" },
+      { label: "Sim, por isso sempre desisto", value: "Sim, por isso desisto" },
+      { label: "Nunca tentei cortar totalmente", value: "Nunca tentei cortar" },
+    ],
+  },
+  {
+    id: 17,
+    question: "Sabia que até alimentos “light e fit” podem ativar o mesmo vício que te faz engordar?",
+    type: 'single-choice',
+    options: [
+      { label: "Eu compro achando que são saudáveis e continuo inchada", value: "Compro light/fit e continuo inchada" },
+      { label: "Já suspeitei, mas não sabia que era tão sério", value: "Suspeitava, mas não sabia a gravidade" },
+      { label: "Não sabia disso, tô chocada", value: "Não sabia, chocada" },
+      { label: "Sempre achei que “light” era saudável", value: "Achava que light era saudável" },
+    ],
+  },
+  {
+    id: 18,
+    question: "Você sabia que a indústria alimentícia usa combinações químicas para te viciar em certos alimentos?",
+    type: 'single-choice',
+    options: [
+      { label: "Sim! Isso explica muita coisa sobre meu peso.", value: "Sim, explica meu peso" },
+      { label: "Já ouvi falar, mas nunca entendi direito", value: "Ouvi falar, mas não entendi" },
+      { label: "Não sabia, mas agora tudo faz sentido", value: "Não sabia, mas faz sentido" },
+      { label: "Nunca pensei nisso desse jeito", value: "Nunca pensei nisso" },
+    ],
+  },
+  {
+    id: 19,
+    question: "Você acredita que existe um “botão interno” que pode desligar a fome emocional, se você souber como ativar?",
+    type: 'single-choice',
+    options: [
+      { label: "Seria um sonho, né?!", value: "Seria um sonho" },
+      { label: "Acho que sim, se for com comida de verdade", value: "Sim, com comida de verdade" },
+      { label: "Não sei, mas fiquei curiosa", value: "Não sei, mas fiquei curiosa" },
+      { label: "Parece impossível, mas queria descobrir", value: "Parece impossível, mas queria descobrir" },
+    ],
+  },
+  {
+    id: 20,
+    question: "Por conta do seu peso atual, você sente algum desses sintomas físicos?",
+    type: 'multiple-choice',
+    options: [
+      { label: "Falta de fôlego", value: "Falta de fôlego" },
+      { label: "Muito suor", value: "Muito suor" },
+      { label: "Falta de mobilidade", value: "Falta de mobilidade" },
+      { label: "Acorda cansada", value: "Acorda cansada" },
+      { label: "Dores no corpo", value: "Dores no corpo" },
+    ],
+  },
+  {
+    id: 21,
+    question: "E emocionalmente... como isso afeta sua vida?",
+    type: 'multiple-choice',
+    options: [
+      { label: "Me sinto mal nas roupas", value: "Sinto-me mal nas roupas" },
+      { label: "Afeta meu relacionamento", value: "Afeta meu relacionamento" },
+      { label: "Vergonha do meu corpo", value: "Vergonha do corpo" },
+      { label: "Autoestima muito baixa", value: "Autoestima baixa" },
+      { label: "Me comparo com outras mulheres e fico mal", value: "Comparo-me e fico mal" },
+    ],
+    trigger: {
+      text: "📌 Mais de 10.000 mulheres marcaram exatamente suas dores — vergonha, baixa autoestima, roupas que não serviam — voltaram a se sentir bonitas seguindo o plano das 200 receitas. Elas começaram exatamente onde você está agora."
+    }
+  },
+  {
+    id: 22,
+    question: "Se você pudesse mudar UMA coisa no seu corpo nos próximos 7 dias, o que seria?",
+    type: 'single-choice',
+    options: [
+      { label: "Desinchar a barriga", value: "Desinchar a barriga" },
+      { label: "Perder 2 a 3kg", value: "Perder 2-3kg" },
+      { label: "Reduzir a vontade de doce", value: "Reduzir vontade de doce" },
+      { label: "Sentir mais leveza e energia", value: "Sentir mais leveza e energia" },
+    ],
+  },
+  {
+    id: 23,
+    question: "O quanto faria diferença ter um cardápio simples, rápido e gostoso que te ajudasse a emagrecer rápido, sem fome, sem esforço mental e sem se sentir viciada em comida?",
+    type: 'single-choice',
+    options: [
+      { label: "Mudaria tudo pra mim", value: "Mudaria tudo" },
+      { label: "Finalmente eu conseguiria seguir algo", value: "Conseguiria seguir" },
+      { label: "Seria um alívio enorme", value: "Alívio enorme" },
+      { label: "É exatamente o que eu procuro há muito tempo", value: "É o que procuro" },
+    ],
+    trigger: {
+      text: "Você já chegou até aqui. Se tudo que você marcou até agora fez sentido… então esse plano foi feito pra você. Basta só 1 semana pra começar a virar esse jogo."
+    }
+  },
+  {
+    id: 24,
+    question: "Se eu te mostrasse um plano com 200 receitas simples, rápidas e gostosas — combinadas pra desligar o vício em comida, controlar a fome emocional e te ajudar a emagrecer até 3kg em 7 dias… você toparia testar por 1 semana?",
+    type: 'single-choice',
+    options: [
+      { label: "Sim, parece exatamente o que eu preciso", value: "Sim, preciso disso" },
+      { label: "Com certeza, eu topo!", value: "Com certeza, topo" },
+      { label: "Isso é exatamente o que eu procuro há muito tempo", value: "É o que procuro" },
+      { label: "Acho que sim, se for fácil de seguir", value: "Sim, se for fácil" },
+    ],
+  },
+];
