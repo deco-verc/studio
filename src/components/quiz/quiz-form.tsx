@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
+import * as LucideIcons from 'lucide-react';
 import { Loader2, MessageSquareQuote, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
@@ -54,6 +55,13 @@ const TriggerDisplay = ({ trigger, onContinue }: { trigger: Trigger; onContinue:
     </div>
   )
 }
+
+const Icon = ({ name, className }: { name: string; className?: string }) => {
+  const LucideIcon = (LucideIcons as any)[name];
+  if (!LucideIcon) return null;
+  return <LucideIcon className={cn("mr-3", className)} />;
+};
+
 
 export function QuizForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -195,6 +203,7 @@ export function QuizForm() {
                             className="w-full justify-start text-base py-6 animate-fade-in-up"
                             onClick={() => handleResponse(option.value)}
                         >
+                          {option.icon && <Icon name={option.icon} />}
                           {option.label}
                         </Button>
                     )
@@ -223,7 +232,8 @@ export function QuizForm() {
                             onCheckedChange={(checked) => handleMultiChoiceChange(!!checked, option.value)}
                             className="h-6 w-6"
                          />
-                         <Label htmlFor={id} className="ml-4 w-full h-full cursor-pointer font-medium text-foreground/90 text-sm md:text-base">
+                         <Label htmlFor={id} className="ml-4 w-full h-full cursor-pointer font-medium text-foreground/90 text-sm md:text-base flex items-center">
+                          {option.icon && <Icon name={option.icon} />}
                           {option.label}
                          </Label>
                       </div>
