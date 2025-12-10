@@ -187,24 +187,16 @@ export function QuizForm() {
                       )
                     }
                     return (
-                      <div 
-                        key={index}
-                        style={{ animationDelay: `${index * 100}ms` }}
-                        className="rounded-xl border bg-card transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg hover:border-primary/50 hover:bg-primary/5 hover:shadow-md animate-fade-in-up"
-                      >
-                         <input 
-                            type="radio" 
-                            name={`q${currentStep}`} 
-                            id={id} 
-                            value={option.value} 
-                            className="sr-only peer"
-                            onChange={() => handleResponse(option.value)}
-                        />
-                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center p-4 md:p-5 gap-4">
-                          <div className="h-5 w-5 rounded-full border border-primary flex items-center justify-center peer-checked:[&>*]:opacity-100"><div className="h-2.5 w-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div>
-                          <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow text-left">{option.label}</span>
-                        </Label>
-                      </div>
+                        <Button
+                            key={index}
+                            variant="outline"
+                            size="lg"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                            className="w-full justify-start text-base py-6 animate-fade-in-up"
+                            onClick={() => handleResponse(option.value)}
+                        >
+                          {option.label}
+                        </Button>
                     )
                   })}
                 </div>
@@ -253,3 +245,5 @@ export function QuizForm() {
     </div>
   );
 }
+
+    
