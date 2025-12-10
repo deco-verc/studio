@@ -9,11 +9,10 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, MessageSquareQuote } from 'lucide-react';
+import { Loader2, MessageSquareQuote, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
 import { useRouter } from 'next/navigation';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const smartProgress = (current: number, total: number): number => {
     if (current < total * 0.5) {
@@ -68,7 +67,11 @@ export function QuizForm() {
   useEffect(() => {
     setAnimationState('enter');
     setShowTrigger(null);
-  }, [currentStep]);
+
+    // Save answers to sessionStorage
+    sessionStorage.setItem('quizAnswers', JSON.stringify(Object.values(answers).flat()));
+
+  }, [currentStep, answers]);
 
   const handleNext = () => {
     setAnimationState('exit');
@@ -77,9 +80,7 @@ export function QuizForm() {
         setCurrentStep(currentStep + 1);
       } else {
         startTransition(() => {
-          const flatAnswers = Object.values(answers).flat();
-          const answersQueryString = new URLSearchParams({ answers: flatAnswers.join(',') }).toString();
-          router.push(`/analise?${answersQueryString}`);
+          router.push(`/analise`);
         });
       }
     }, 400); // Animation duration
@@ -120,6 +121,8 @@ export function QuizForm() {
     setAnswers({ ...answers, [currentStep]: newSelection });
   };
   
+  const hasImageOptions = currentQuestion.options.some(opt => opt.avatar);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-secondary/50 to-background p-4 overflow-hidden">
       <Card className="w-full max-w-2xl shadow-2xl rounded-2xl border-none bg-card/80 backdrop-blur-sm">
@@ -154,25 +157,44 @@ export function QuizForm() {
                 <RadioGroup
                   key={currentStep}
                   onValueChange={(value) => handleResponse(value)}
-                  className="space-y-4"
+                  className={cn(
+                    "gap-4",
+                    hasImageOptions && "grid grid-cols-2"
+                  )}
                 >
                   {currentQuestion.options.map((option, index) => {
                     const id = `q${currentStep}-o${index}`;
+                    if (hasImageOptions) {
+                      return (
+                         <div key={index} className="relative animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+                          <RadioGroupItem value={option.value} id={id} className="sr-only peer" />
+                          <Label htmlFor={id} className="block w-full h-full cursor-pointer rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 border-2 border-transparent peer-aria-checked:border-primary peer-aria-checked:scale-105 shadow-md hover:shadow-xl">
+                              <Image 
+                                src={option.avatar!} 
+                                alt={option.label}
+                                width={300}
+                                height={400}
+                                className="w-full h-full object-cover"
+                              />
+                              <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-white flex items-center justify-between">
+                                  <span className="font-semibold text-sm sm:text-base">{option.label}</span>
+                                  <div className="w-6 h-6 rounded-full bg-white/30 flex items-center justify-center transition-transform peer-aria-checked:rotate-90">
+                                      <ChevronRight className="w-5 h-5 text-white" />
+                                  </div>
+                              </div>
+                          </Label>
+                        </div>
+                      )
+                    }
                     return (
                       <div 
                         key={index}
                         style={{ animationDelay: `${index * 100}ms` }}
                         className="rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105 hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex animate-fade-in-up"
                       >
-                        <RadioGroupItem value={option.value} id={id} className="sr-only" />
-                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4">
-                          {option.avatar && (
-                            <Avatar>
-                              <AvatarImage src={option.avatar} alt={option.label} />
-                              <AvatarFallback>{option.label.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                          )}
-                          <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow">{option.label}</span>
+                        <RadioGroupItem value={option.value} id={id} className="h-5 w-5" />
+                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4 ml-4">
+                          <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow text-left">{option.label}</span>
                         </Label>
                       </div>
                     )

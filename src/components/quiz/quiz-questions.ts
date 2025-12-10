@@ -50,10 +50,10 @@ export const quizQuestions: QuizQuestion[] = [
     question: "Qual a sua idade?",
     type: 'single-choice',
     options: [
-      { label: "Tenho entre 18 e 29 anos", value: "18-29", avatar: age18_29?.imageUrl },
-      { label: "Tenho entre 30 e 45 anos", value: "30-45", avatar: age30_45?.imageUrl },
-      { label: "Tenho entre 46 e 60 anos", value: "46-60", avatar: age46_60?.imageUrl },
-      { label: "Tenho mais de 60 anos", value: "60+", avatar: age60plus?.imageUrl },
+      { label: "18-29", value: "18-29", avatar: age18_29?.imageUrl },
+      { label: "30-45", value: "30-45", avatar: age30_45?.imageUrl },
+      { label: "46-60", value: "46-60", avatar: age46_60?.imageUrl },
+      { label: "60+", value: "60+", avatar: age60plus?.imageUrl },
     ],
   },
   {
