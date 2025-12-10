@@ -1,3 +1,4 @@
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export type QuizOption = {
   label: string;
@@ -27,14 +28,17 @@ export type QuizQuestion = {
   trigger?: Trigger;
 };
 
+const femaleAvatar = PlaceHolderImages.find(p => p.id === 'female-avatar');
+const maleAvatar = PlaceHolderImages.find(p => p.id === 'male-avatar');
+
 export const quizQuestions: QuizQuestion[] = [
   {
     id: 1,
     question: "Qual é o seu sexo?",
     type: 'single-choice',
     options: [
-      { label: "Feminino", value: "Feminino" },
-      { label: "Masculino", value: "Masculino" },
+      { label: "Feminino", value: "Feminino", avatar: femaleAvatar?.imageUrl },
+      { label: "Masculino", value: "Masculino", avatar: maleAvatar?.imageUrl },
     ],
   },
   {
@@ -176,7 +180,7 @@ export const quizQuestions: QuizQuestion[] = [
       text: "",
       graph: {
         title: "Esses Métodos são falhos, Veja a diferença deles para o protocolo:",
-        imageUrl: "https://i.imgur.com/your-graph-image-url.png", // Você precisa substituir por uma URL de imagem do gráfico
+        imageUrl: "https://i.imgur.com/gJZGvjA.png",
         legend: "Esses métodos destroem seu metabolismo e te impedem de emagrecer. O nosso método reeduca seu paladar."
       }
     }

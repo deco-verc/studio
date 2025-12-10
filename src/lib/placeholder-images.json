@@ -7,6 +7,18 @@
       "imageHint": "woman eating"
     },
     {
+      "id": "female-avatar",
+      "description": "Avatar for female gender option in quiz",
+      "imageUrl": "https://i.imgur.com/sJV65yG.png",
+      "imageHint": "woman avatar"
+    },
+    {
+      "id": "male-avatar",
+      "description": "Avatar for male gender option in quiz",
+      "imageUrl": "https://i.imgur.com/33Paskg.png",
+      "imageHint": "man avatar"
+    },
+    {
       "id": "socialProof1",
       "description": "Social proof testimonial 1",
       "imageUrl": "https://i.imgur.com/MawSgG1.png",

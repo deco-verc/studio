@@ -9,10 +9,11 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { Loader2, MessageSquareQuote, BarChart2 } from 'lucide-react';
+import { Loader2, MessageSquareQuote } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
 import { useRouter } from 'next/navigation';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const smartProgress = (current: number, total: number): number => {
     if (current < total * 0.5) {
@@ -76,8 +77,9 @@ export function QuizForm() {
         setCurrentStep(currentStep + 1);
       } else {
         startTransition(() => {
-          sessionStorage.setItem('quizAnswers', JSON.stringify(answers));
-          router.push('/analise');
+          const flatAnswers = Object.values(answers).flat();
+          const answersQueryString = new URLSearchParams({ answers: flatAnswers.join(',') }).toString();
+          router.push(`/analise?${answersQueryString}`);
         });
       }
     }, 400); // Animation duration
@@ -100,7 +102,10 @@ export function QuizForm() {
         handleNext();
       }, 5000); // Show trigger for 5 seconds
     } else {
-      handleNext();
+      // For single choice questions without triggers, move immediately
+      if (currentQuestion.type === 'single-choice') {
+        handleNext();
+      }
     }
   };
 
@@ -161,6 +166,12 @@ export function QuizForm() {
                       >
                         <RadioGroupItem value={option.value} id={id} className="sr-only" />
                         <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4">
+                          {option.avatar && (
+                            <Avatar>
+                              <AvatarImage src={option.avatar} alt={option.label} />
+                              <AvatarFallback>{option.label.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                          )}
                           <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow">{option.label}</span>
                         </Label>
                       </div>
