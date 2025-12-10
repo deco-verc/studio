@@ -17,11 +17,11 @@ const speedOptions = [
 ];
 
 function getCookie(name: string): string | null {
-    if (typeof document === 'undefined') return null;
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
-    return null;
+  if (typeof document === 'undefined') return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
 }
 
 export default function AnalisePage() {
@@ -42,17 +42,17 @@ export default function AnalisePage() {
 
   useEffect(() => {
     if (playerContainerRef.current) {
-        const iframe = playerContainerRef.current.querySelector('iframe');
-        if (iframe) {
-            const player = new Player(iframe);
-            vimeoPlayerRef.current = player;
+      const iframe = playerContainerRef.current.querySelector('iframe');
+      if (iframe) {
+        const player = new Player(iframe);
+        vimeoPlayerRef.current = player;
 
-            player.ready().then(() => {
-                player.play().catch(error => {
-                    console.warn("Autoplay was prevented:", error.name);
-                });
-            });
-        }
+        player.ready().then(() => {
+          player.play().catch(error => {
+            console.warn("Autoplay was prevented:", error.name);
+          });
+        });
+      }
     }
   }, []);
 
@@ -66,25 +66,25 @@ export default function AnalisePage() {
       });
     }
   };
-  
+
   const handleCtaClick = () => {
     const eventId = uuidv4();
     const eventName = 'InitiateCheckout';
 
     const userData = {
-        client_ip_address: null, 
-        client_user_agent: navigator.userAgent,
-        fbc: getCookie('_fbc'),
-        fbp: getCookie('_fbp'),
-        email: null,
-        phone: null,
+      client_ip_address: null,
+      client_user_agent: navigator.userAgent,
+      fbc: getCookie('_fbc'),
+      fbp: getCookie('_fbp'),
+      email: null,
+      phone: null,
     };
-    
+
     // Send to GTM / Meta Pixel (client-side)
     gtmEvent(eventName, {
-        eventId,
+      eventId,
     });
-    
+
     // Send to Meta CAPI (server-side)
     sendServerEvent(eventName, eventId, userData);
 
@@ -94,37 +94,34 @@ export default function AnalisePage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-4">
       <div className="w-full max-w-4xl text-center space-y-8">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-headline text-primary">
-          Estamos analisando suas respostas...
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold font-headline text-primary leading-tight">
+          Seu protocolo personalizado está pronto — mas antes de acessar, assista esse vídeo até o final para entender.
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Enquanto isso, assista a esta apresentação especial que preparamos para você.
-        </p>
 
         <div ref={playerContainerRef} className="aspect-[9/16] w-full max-w-md mx-auto bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-          <div style={{padding:'177.77% 0 0 0',position:'relative'}}>
-              <iframe 
-                  src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0" 
-                  frameBorder="0" 
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
-                  style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} 
-                  title="VSL Video"
-                  allowFullScreen
-              ></iframe>
+          <div style={{ padding: '177.77% 0 0 0', position: 'relative' }}>
+            <iframe
+              src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              title="VSL Video"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
         <div className="flex items-center justify-center gap-2">
-            {speedOptions.map(({ label, speed }) => (
-                <Button
-                    key={speed}
-                    onClick={() => setPlaybackSpeed(speed)}
-                    variant={currentSpeed === speed ? 'default' : 'outline'}
-                    size="sm"
-                    className="transition-all"
-                >
-                    {label}
-                </Button>
-            ))}
+          {speedOptions.map(({ label, speed }) => (
+            <Button
+              key={speed}
+              onClick={() => setPlaybackSpeed(speed)}
+              variant={currentSpeed === speed ? 'default' : 'outline'}
+              size="sm"
+              className="transition-all"
+            >
+              {label}
+            </Button>
+          ))}
         </div>
 
         <div className="h-20 flex items-center justify-center">
@@ -132,7 +129,7 @@ export default function AnalisePage() {
             <Button
               onClick={handleCtaClick}
               size="lg"
-              className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse"
+              className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-lg md:text-xl font-bold py-6 md:py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse whitespace-normal h-auto leading-tight"
             >
               QUERO VER MEU PLANO PERSONALIZADO
             </Button>

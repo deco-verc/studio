@@ -15,10 +15,16 @@ export type Trigger = {
   };
   graph?: {
     title: string;
-    imageUrl: string;
+    type?: 'image' | 'comparison';
+    imageUrl?: string;
+    data?: { name: string; value: number; label: string; type: 'negative' | 'positive' }[];
     legend: string;
   }
 };
+
+// ... (lines 23-183 remain unchanged, I will target the specific block for question 12)
+
+
 
 
 export type QuizQuestion = {
@@ -184,9 +190,13 @@ export const quizQuestions: QuizQuestion[] = [
     trigger: {
       text: "",
       graph: {
-        title: "Esses Métodos são falhos, Veja a diferença deles para o protocolo:",
-        imageUrl: "https://i.imgur.com/gJZGvjA.png",
-        legend: "Esses métodos destroem seu metabolismo e te impedem de emagrecer. O nosso método reeduca seu paladar."
+        title: "Comparação de Eficiência:",
+        type: 'comparison',
+        data: [
+          { name: 'Tradicionais', value: 20, label: 'Falhos', type: 'negative' },
+          { name: 'Protocolo', value: 95, label: 'Eficiente', type: 'positive' }
+        ],
+        legend: "Enquanto métodos tradicionais falham em 80% dos casos, nosso protocolo age na raiz do problema."
       }
     }
   },

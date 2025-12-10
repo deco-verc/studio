@@ -42,6 +42,7 @@ body {
     --sidebar-border: 40 10% 85%;
     --sidebar-ring: 142 76% 40%;
   }
+
   .dark {
     --background: 20 14% 4%;
     --foreground: 40 10% 98%;
@@ -82,37 +83,42 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @layer utilities {
-  @keyframes slide-out-left {
-    from {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateX(-100px);
-    }
-  }
-  @keyframes slide-in-right {
+  @keyframes quiz-enter {
     from {
       opacity: 0;
-      transform: translateX(100px);
+      transform: translateX(20px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
 
-  .quiz-item-enter {
-    animation: slide-in-right 0.4s ease-out forwards;
+  @keyframes quiz-exit {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
   }
-  .quiz-item-exit {
-    animation: slide-out-left 0.4s ease-in forwards;
+
+  .animate-quiz-enter {
+    animation: quiz-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-quiz-exit {
+    animation: quiz-exit 0.3s ease-in forwards;
   }
 }
