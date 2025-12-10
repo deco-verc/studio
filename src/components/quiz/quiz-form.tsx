@@ -24,7 +24,7 @@ const smartProgress = (current: number, total: number): number => {
     }
 };
 
-const TriggerDisplay = ({ trigger }: { trigger: Trigger }) => {
+const TriggerDisplay = ({ trigger, onContinue }: { trigger: Trigger; onContinue: () => void; }) => {
   return (
     <div className="w-full text-center flex flex-col items-center justify-center space-y-4 p-4 animate-fade-in">
         {trigger.text && <p className="text-lg md:text-xl text-foreground/90">{trigger.text}</p>}
@@ -48,6 +48,9 @@ const TriggerDisplay = ({ trigger }: { trigger: Trigger }) => {
                 </CardContent>
             </Card>
         )}
+        <Button onClick={onContinue} className="mt-6">
+            Continuar
+        </Button>
     </div>
   )
 }
@@ -99,9 +102,6 @@ export function QuizForm() {
 
     if (currentQuestion.trigger) {
       setShowTrigger(currentQuestion.trigger);
-      setTimeout(() => {
-        handleNext();
-      }, 5000); // Show trigger for 5 seconds
     } else {
       // For single choice questions without triggers, move immediately
       if (currentQuestion.type === 'single-choice') {
@@ -135,7 +135,7 @@ export function QuizForm() {
                   <p className="text-lg md:text-xl text-muted-foreground">Finalizando...</p>
               </div>
             ) : showTrigger ? (
-              <TriggerDisplay trigger={showTrigger} />
+              <TriggerDisplay trigger={showTrigger} onContinue={handleNext} />
             ) : (
             <div className={cn(
               "w-full px-4 text-center flex flex-col items-center justify-center space-y-4",
