@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { quizQuestions, Trigger } from './quiz-questions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
@@ -187,6 +186,7 @@ export function QuizForm() {
                         </div>
                       )
                     }
+                    // This is the corrected block for non-image single-choice questions
                     return (
                       <div 
                         key={index}
