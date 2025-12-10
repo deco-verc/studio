@@ -103,10 +103,7 @@ export function QuizForm() {
     if (currentQuestion.trigger) {
       setShowTrigger(currentQuestion.trigger);
     } else {
-      // For single choice questions without triggers, move immediately
-      if (currentQuestion.type === 'single-choice') {
-        handleNext();
-      }
+      handleNext();
     }
   };
 
@@ -159,7 +156,7 @@ export function QuizForm() {
                   onValueChange={(value) => handleResponse(value)}
                   className={cn(
                     "gap-4",
-                    hasImageOptions && "grid grid-cols-2"
+                    hasImageOptions ? "grid grid-cols-2" : "grid grid-cols-1"
                   )}
                 >
                   {currentQuestion.options.map((option, index) => {
