@@ -56,7 +56,7 @@ export default function ObrigadoPage() {
         </p>
         <div className="pt-4">
           <Link href="/">
-            <Button size="lg">Voltar para o Início</Button>
+            <Button asChild size="lg">Voltar para o Início</Button>
           </Link>
         </div>
       </div>
