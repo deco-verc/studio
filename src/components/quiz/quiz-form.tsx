@@ -187,7 +187,7 @@ export function QuizForm() {
                       <div 
                         key={index}
                         style={{ animationDelay: `${index * 100}ms` }}
-                        className="rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg has-[:checked]:scale-105 hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex animate-fade-in-up"
+                        className="rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex animate-fade-in-up"
                       >
                         <RadioGroupItem value={option.value} id={id} className="h-5 w-5" />
                         <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4 ml-4">
