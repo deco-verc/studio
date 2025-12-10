@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
@@ -56,9 +57,9 @@ export default function Home() {
                   </div>
                 )}
                 <div className="flex flex-col gap-2 text-center w-full max-w-md mx-auto">
-                  <Link href="/quiz">
-                    <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
-                      FAZER TESTE GRATUITO
+                  <Link href="/quiz" passHref>
+                    <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                      <a>FAZER TESTE GRATUITO</a>
                     </Button>
                   </Link>
                   <p className="text-xs text-muted-foreground mt-2 px-4">
