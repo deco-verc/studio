@@ -16,12 +16,14 @@ import { gtmEvent } from '../analytics/google-tag-manager';
 import { useRouter } from 'next/navigation';
 
 const smartProgress = (current: number, total: number): number => {
-  if (current < total * 0.5) {
-    return (current / (total * 0.5)) * 60;
-  } else if (current < total - 1) {
-    return 60 + ((current - total * 0.5) / (total * 0.5 - 1)) * 30;
+  const realPercentage = current / total;
+
+  if (realPercentage <= 0.5) {
+    // Aggressive start: 0% real -> 15% visual, 50% real -> 75% visual
+    return 15 + (realPercentage * 120);
   } else {
-    return 100;
+    // Slower finish: 50% real -> 75% visual, 100% real -> 100% visual
+    return 50 + (realPercentage * 50);
   }
 };
 

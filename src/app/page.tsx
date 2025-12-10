@@ -8,7 +8,7 @@ import { SocialProofCarousel } from '@/components/home/social-proof-carousel';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero');
-  
+
   const features = [
     'Como sair da Armadilha da Indústria Alimentícia que vicia o seu paladar em açúcar',
     'A Mentira dos Alimentos "Light e FIT" e como eles te engordam.',
@@ -24,8 +24,8 @@ export default function Home() {
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-5xl lg:text-6xl/none font-headline text-primary">
-                    Emagreça até 3kg em 7 dias com o Truque que a Industria Alimentícia utiliza para enganar seu cérebro.
+                  <h1 className="text-3xl font-black tracking-tight sm:text-4xl md:text-5xl lg:text-6xl/none font-headline text-black">
+                    Emagreça <span className="text-green-600">até 3kg em 7 dias</span> com o <span className="text-red-600">Truque</span> que a <span className="text-red-600">Industria Alimentícia</span> utiliza para <span className="text-red-600">enganar</span> seu cérebro.
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     Sem passar fome e comendo suas comidas preferidas. Fique até o final para você descobrir:
@@ -51,13 +51,13 @@ export default function Home() {
                       height="500"
                       alt={heroImage.description}
                       data-ai-hint={heroImage.imageHint}
-                      className="aspect-square overflow-hidden rounded-xl object-cover shadow-2xl"
+                      className="aspect-square overflow-hidden rounded-xl object-cover shadow-[0_0_20px_cyan]"
                       priority
                     />
                   </div>
                 )}
                 <div className="flex flex-col gap-2 text-center w-full max-w-md mx-auto">
-                  <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                  <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform animate-pulse-shadow">
                     <Link href="/quiz">
                       FAZER TESTE GRATUITO
                     </Link>

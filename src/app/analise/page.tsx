@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Volume2, VolumeX, Play, Maximize } from 'lucide-react';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
 import Player from '@vimeo/player';
 import { sendServerEvent } from '../meta-actions';
 import { v4 as uuidv4 } from 'uuid';
+import { Progress } from '@/components/ui/progress';
+import { CHECKOUT_URL } from '@/lib/config';
 
 const speedOptions = [
   { label: '1x', speed: 1.0 },
@@ -28,6 +30,11 @@ export default function AnalisePage() {
   const router = useRouter();
   const [showButton, setShowButton] = useState(false);
   const [currentSpeed, setCurrentSpeed] = useState(1.0);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [showUnmuteOverlay, setShowUnmuteOverlay] = useState(false);
+
   const vimeoPlayerRef = useRef<Player | null>(null);
   const playerContainerRef = useRef<HTMLDivElement>(null);
 
@@ -47,14 +54,74 @@ export default function AnalisePage() {
         const player = new Player(iframe);
         vimeoPlayerRef.current = player;
 
+        // Smart Autoplay Logic
         player.ready().then(() => {
-          player.play().catch(error => {
-            console.warn("Autoplay was prevented:", error.name);
+          player.setVolume(1).then(() => {
+            player.play().then(() => {
+              setIsMuted(false);
+              setIsPlaying(true);
+              setShowUnmuteOverlay(false);
+            }).catch((error) => {
+              console.warn("Autoplay unmuted failed, trying muted:", error);
+              player.setVolume(0);
+              player.setMuted(true);
+              player.play().then(() => {
+                setIsMuted(true);
+                setIsPlaying(true);
+                setShowUnmuteOverlay(true);
+              }).catch(e => console.error("Autoplay muted failed:", e));
+            });
           });
         });
+
+        player.on('timeupdate', (data) => {
+          // Smart Progress: Non-linear progress to make it feel faster
+          // We map 0-100% real progress to a curve that moves faster initially
+          const realProgress = data.percent;
+          // Simple easing: fast start, slow end. 
+          // Or just standard progress but without time labels is often enough "smart" behavior for VSLs.
+          // Let's use a slight acceleration curve: p = p + (1-p)*0.1 * p
+          // Actually, let's just use real progress but styled nicely. 
+          // The "Smart" part in Vturb often implies simply hiding the total duration and using a visual bar.
+          setProgress(realProgress * 100);
+        });
+
+        player.on('play', () => setIsPlaying(true));
+        player.on('pause', () => setIsPlaying(false));
       }
     }
   }, []);
+
+  const toggleMute = async () => {
+    if (vimeoPlayerRef.current) {
+      const newMutedState = !isMuted;
+      await vimeoPlayerRef.current.setMuted(newMutedState);
+      await vimeoPlayerRef.current.setVolume(newMutedState ? 0 : 1);
+      setIsMuted(newMutedState);
+      setShowUnmuteOverlay(newMutedState);
+    }
+  };
+
+  const handleUnmuteClick = () => {
+    if (vimeoPlayerRef.current) {
+      vimeoPlayerRef.current.setMuted(false);
+      vimeoPlayerRef.current.setVolume(1);
+      setIsMuted(false);
+      setShowUnmuteOverlay(false);
+    }
+  }
+
+  const toggleFullscreen = () => {
+    if (playerContainerRef.current) {
+      if (!document.fullscreenElement) {
+        playerContainerRef.current.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  };
 
   const setPlaybackSpeed = (speed: number) => {
     if (vimeoPlayerRef.current) {
@@ -98,18 +165,51 @@ export default function AnalisePage() {
           Seu protocolo personalizado está pronto — mas antes de acessar, assista esse vídeo até o final para entender.
         </h1>
 
-        <div ref={playerContainerRef} className="aspect-[9/16] w-full max-w-md mx-auto bg-black rounded-lg shadow-2xl overflow-hidden border border-primary/20">
-          <div style={{ padding: '177.77% 0 0 0', position: 'relative' }}>
-            <iframe
-              src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-              title="VSL Video"
-              allowFullScreen
-            ></iframe>
+        <div className="relative w-full max-w-md mx-auto rounded-lg shadow-2xl overflow-hidden border border-primary/20 bg-black group">
+          <div ref={playerContainerRef} className="aspect-[9/16] w-full relative">
+            <div style={{ padding: '177.77% 0 0 0', position: 'relative' }}>
+              <iframe
+                src="https://player.vimeo.com/video/1143713015?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=0&controls=0&dnt=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                title="VSL Video"
+                allowFullScreen
+              ></iframe>
+            </div>
+
+            {/* Smart Autoplay Overlay */}
+            {showUnmuteOverlay && (
+              <div
+                className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 cursor-pointer transition-opacity hover:bg-black/30"
+                onClick={handleUnmuteClick}
+              >
+                <div className="bg-primary/90 text-white px-6 py-3 rounded-full font-bold flex items-center gap-3 animate-pulse shadow-lg backdrop-blur-sm hover:scale-105 transition-transform">
+                  <VolumeX className="w-6 h-6" />
+                  CLIQUE PARA ATIVAR O SOM 🔊
+                </div>
+              </div>
+            )}
+
+            {/* Fullscreen Button */}
+            <button
+              onClick={toggleFullscreen}
+              className="absolute top-4 right-4 z-30 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors opacity-0 group-hover:opacity-100"
+              aria-label="Tela cheia"
+            >
+              <Maximize className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Smart Progress Bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-800 z-10">
+            <div
+              className="h-full bg-gradient-to-r from-primary/80 to-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] transition-all duration-300 ease-linear"
+              style={{ width: `${progress}%` }}
+            />
           </div>
         </div>
+
         <div className="flex items-center justify-center gap-2">
           {speedOptions.map(({ label, speed }) => (
             <Button
