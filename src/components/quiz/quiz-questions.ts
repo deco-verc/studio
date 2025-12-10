@@ -30,6 +30,10 @@ export type QuizQuestion = {
 
 const femaleAvatar = PlaceHolderImages.find(p => p.id === 'female-avatar');
 const maleAvatar = PlaceHolderImages.find(p => p.id === 'male-avatar');
+const age18_29 = PlaceHolderImages.find(p => p.id === 'age-18-29');
+const age30_45 = PlaceHolderImages.find(p => p.id === 'age-30-45');
+const age46_60 = PlaceHolderImages.find(p => p.id === 'age-46-60');
+const age60plus = PlaceHolderImages.find(p => p.id === 'age-60-plus');
 
 export const quizQuestions: QuizQuestion[] = [
   {
@@ -46,10 +50,10 @@ export const quizQuestions: QuizQuestion[] = [
     question: "Qual a sua idade?",
     type: 'single-choice',
     options: [
-      { label: "Tenho entre 18 e 29 anos", value: "18-29" },
-      { label: "Tenho entre 30 e 45 anos", value: "30-45" },
-      { label: "Tenho entre 46 e 60 anos", value: "46-60" },
-      { label: "Tenho mais de 60 anos", value: "60+" },
+      { label: "Tenho entre 18 e 29 anos", value: "18-29", avatar: age18_29?.imageUrl },
+      { label: "Tenho entre 30 e 45 anos", value: "30-45", avatar: age30_45?.imageUrl },
+      { label: "Tenho entre 46 e 60 anos", value: "46-60", avatar: age46_60?.imageUrl },
+      { label: "Tenho mais de 60 anos", value: "60+", avatar: age60plus?.imageUrl },
     ],
   },
   {

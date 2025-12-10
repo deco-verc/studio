@@ -9,14 +9,38 @@
     {
       "id": "female-avatar",
       "description": "Avatar for female gender option in quiz",
-      "imageUrl": "https://i.imgur.com/sJV65yG.png",
+      "imageUrl": "https://i.imgur.com/LQGNQBh.png",
       "imageHint": "woman avatar"
     },
     {
       "id": "male-avatar",
       "description": "Avatar for male gender option in quiz",
-      "imageUrl": "https://i.imgur.com/33Paskg.png",
+      "imageUrl": "https://i.imgur.com/EUTPGJ3.png",
       "imageHint": "man avatar"
+    },
+    {
+      "id": "age-18-29",
+      "description": "Icon for 18-29 age range",
+      "imageUrl": "https://i.imgur.com/MvneBFa.png",
+      "imageHint": "young woman"
+    },
+    {
+      "id": "age-30-45",
+      "description": "Icon for 30-45 age range",
+      "imageUrl": "https://i.imgur.com/9bMf6xY.png",
+      "imageHint": "adult woman"
+    },
+    {
+      "id": "age-46-60",
+      "description": "Icon for 46-60 age range",
+      "imageUrl": "https://i.imgur.com/6LVROCC.png",
+      "imageHint": "mature woman"
+    },
+    {
+      "id": "age-60-plus",
+      "description": "Icon for 60+ age range",
+      "imageUrl": "https://i.imgur.com/kTstDj1.png",
+      "imageHint": "senior woman"
     },
     {
       "id": "socialProof1",
