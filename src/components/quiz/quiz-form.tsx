@@ -186,7 +186,6 @@ export function QuizForm() {
                         </div>
                       )
                     }
-                    // This is the corrected block for non-image single-choice questions
                     return (
                       <div 
                         key={index}
