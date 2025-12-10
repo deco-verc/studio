@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef, Suspense } from 'react';
@@ -334,7 +335,7 @@ function ResultsPageClient({ storedAnswers }: { storedAnswers: string[] | null }
                 <div className="text-center mt-12">
                     <Link href={checkoutUrl} onClick={handlePurchaseClick}>
                         <Button asChild size="lg" className="w-full max-w-md bg-accent hover:bg-accent/90 text-accent-foreground text-xl md:text-2xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
-                            ESTOU PREPARADA PARA COMPRAR
+                           ESTOU PREPARADA PARA COMPRAR
                         </Button>
                     </Link>
                 </div>

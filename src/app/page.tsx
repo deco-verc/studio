@@ -59,7 +59,7 @@ export default function Home() {
                 <div className="flex flex-col gap-2 text-center w-full max-w-md mx-auto">
                   <Link href="/quiz">
                     <Button asChild size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold py-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
-                      <a>FAZER TESTE GRATUITO</a>
+                      FAZER TESTE GRATUITO
                     </Button>
                   </Link>
                   <p className="text-xs text-muted-foreground mt-2 px-4">
