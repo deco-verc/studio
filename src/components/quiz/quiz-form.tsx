@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useTransition, useMemo, useEffect } from 'react';
@@ -75,7 +76,7 @@ export function QuizForm() {
     sessionStorage.setItem('quizAnswers', JSON.stringify(Object.values(answers).flat()));
 
   }, [currentStep, answers]);
-
+  
   const handleNext = () => {
     setAnimationState('exit');
     setTimeout(() => {
@@ -151,35 +152,38 @@ export function QuizForm() {
            {!isPending && !showTrigger && (
              <>
               {currentQuestion.type === 'single-choice' && (
-                <RadioGroup
-                  key={currentStep}
-                  onValueChange={(value) => handleResponse(value)}
-                  className={cn(
-                    "gap-4",
-                    hasImageOptions ? "grid grid-cols-2" : "grid grid-cols-1"
-                  )}
-                >
+                <div className={cn(
+                  "gap-4",
+                  hasImageOptions ? "grid grid-cols-2" : "flex flex-col"
+                )}>
                   {currentQuestion.options.map((option, index) => {
                     const id = `q${currentStep}-o${index}`;
                     if (hasImageOptions) {
                       return (
                          <div key={index} className="relative animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
-                          <RadioGroupItem value={option.value} id={id} className="sr-only peer" />
-                          <Label htmlFor={id} className="block w-full h-full cursor-pointer rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 border-2 border-transparent peer-aria-checked:border-primary peer-aria-checked:scale-105 shadow-md hover:shadow-xl">
-                              <Image 
-                                src={option.avatar!} 
-                                alt={option.label}
-                                width={300}
-                                height={400}
-                                className="w-full h-full object-cover"
-                              />
-                              <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-white flex items-center justify-between">
-                                  <span className="font-semibold text-sm sm:text-base">{option.label}</span>
-                                  <div className="w-6 h-6 rounded-full bg-white/30 flex items-center justify-center transition-transform peer-aria-checked:rotate-90">
-                                      <ChevronRight className="w-5 h-5 text-white" />
-                                  </div>
-                              </div>
-                          </Label>
+                            <input 
+                                type="radio" 
+                                name={`q${currentStep}`} 
+                                id={id} 
+                                value={option.value} 
+                                className="sr-only peer"
+                                onChange={() => handleResponse(option.value)}
+                            />
+                            <Label htmlFor={id} className="block w-full h-full cursor-pointer rounded-xl overflow-hidden aspect-[3/4] transition-all duration-300 border-2 border-transparent peer-checked:border-primary peer-checked:scale-105 shadow-md hover:shadow-xl">
+                                <Image 
+                                    src={option.avatar!} 
+                                    alt={option.label}
+                                    width={300}
+                                    height={400}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-white flex items-center justify-between">
+                                    <span className="font-semibold text-sm sm:text-base">{option.label}</span>
+                                    <div className="w-6 h-6 rounded-full bg-white/30 flex items-center justify-center transition-transform peer-checked:rotate-90">
+                                        <ChevronRight className="w-5 h-5 text-white" />
+                                    </div>
+                                </div>
+                            </Label>
                         </div>
                       )
                     }
@@ -187,16 +191,24 @@ export function QuizForm() {
                       <div 
                         key={index}
                         style={{ animationDelay: `${index * 100}ms` }}
-                        className="rounded-xl border bg-card p-4 md:p-5 transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg hover:border-primary/50 hover:bg-primary/5 hover:shadow-md flex animate-fade-in-up"
+                        className="rounded-xl border bg-card transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:shadow-lg hover:border-primary/50 hover:bg-primary/5 hover:shadow-md animate-fade-in-up"
                       >
-                        <RadioGroupItem value={option.value} id={id} className="h-5 w-5" />
-                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center gap-4 ml-4">
+                         <input 
+                            type="radio" 
+                            name={`q${currentStep}`} 
+                            id={id} 
+                            value={option.value} 
+                            className="sr-only peer"
+                            onChange={() => handleResponse(option.value)}
+                        />
+                        <Label htmlFor={id} className="w-full h-full cursor-pointer flex items-center text-center p-4 md:p-5 gap-4">
+                          <div className="h-5 w-5 rounded-full border border-primary flex items-center justify-center peer-checked:[&>*]:opacity-100"><div className="h-2.5 w-2.5 rounded-full bg-primary opacity-0 transition-opacity"></div></div>
                           <span className="font-medium text-foreground/90 text-sm md:text-base flex-grow text-left">{option.label}</span>
                         </Label>
                       </div>
                     )
                   })}
-                </RadioGroup>
+                </div>
               )}
 
               {currentQuestion.type === 'multiple-choice' && (
