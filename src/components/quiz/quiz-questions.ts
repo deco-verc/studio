@@ -19,7 +19,8 @@ export type Trigger = {
     imageUrl?: string;
     data?: { name: string; value: number; label: string; type: 'negative' | 'positive' }[];
     legend: string;
-  }
+  };
+  imageUrl?: string;
 };
 
 // ... (lines 23-183 remain unchanged, I will target the specific block for question 12)
@@ -74,7 +75,8 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Poderia ser melhor", value: "Poderia ser melhor", icon: "SmilePlus" },
     ],
     trigger: {
-      text: "92% das mulheres que completaram este teste também estavam insatisfeitas — e todas descobriram exatamente onde estavam errando. Continue."
+      text: "",
+      imageUrl: "https://i.imgur.com/D7T94hE.jpeg"
     }
   },
   {
@@ -88,7 +90,8 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Sei que preciso mudar, mas não sei por onde começar", value: "Sei que preciso mudar, mas não sei por onde começar", icon: "HelpCircle" },
     ],
     trigger: {
-      text: "Esse sentimento é mais comum do que você imagina — e é exatamente o primeiro sinal de que seu corpo está pedindo ajuda."
+      text: "",
+      imageUrl: "https://i.imgur.com/mSrIAIF.jpeg"
     }
   },
   {
@@ -135,7 +138,8 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Quando estou estressada", value: "Quando estou estressada", icon: "BrainCircuit" },
     ],
     trigger: {
-      text: "O horário/situação que você selecionou é onde o hormônio do estresse (Cortisol) costuma \"sequestrar\" sua força de vontade. A culpa não é sua, é química.",
+      text: "",
+      imageUrl: "https://i.imgur.com/yHbMPVU.jpeg",
       socialProof: {
         quote: "A maior mudança pra mim foi à noite. Antes, eu comia sem pensar tudo que via pela frente. Com o protocolo, em 7 dias eu já não sentia aquela fome desesperadora, foi minha mudança de chave.",
         author: "Luciana, 36 anos"
@@ -194,7 +198,7 @@ export const quizQuestions: QuizQuestion[] = [
         type: 'comparison',
         data: [
           { name: 'Tradicionais', value: 20, label: 'Falhos', type: 'negative' },
-          { name: 'Protocolo', value: 95, label: 'Eficiente', type: 'positive' }
+          { name: 'Protocolo 200 Receitas', value: 95, label: 'Eficiente', type: 'positive' }
         ],
         legend: "Os métodos comuns destroem seu metabolismo e te prendem no efeito sanfona. O nosso protocolo reeduca o seu paladar e libera o seu corpo para emagrecer de forma contínua."
       }
@@ -222,7 +226,8 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Perder a confiança em mim mesma", value: "Perder a autoconfiança", icon: "ShieldOff" },
     ],
     trigger: {
-      text: "🧬 FATO CIENTÍFICO: A sensação de \"perda de controle\" que você descreveu é o sintoma #1 de um Metabolismo Viciado. Vamos investigar a causa agora..."
+      text: "",
+      imageUrl: "https://i.imgur.com/RA211ae.jpeg"
     }
   },
   {

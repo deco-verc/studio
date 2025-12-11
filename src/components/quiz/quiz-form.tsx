@@ -42,6 +42,19 @@ const TriggerDisplay = ({ trigger, onContinue }: { trigger: Trigger; onContinue:
             </div>
           )}
 
+          {trigger.imageUrl && (
+            <div className="w-full rounded-xl overflow-hidden shadow-md">
+              <Image
+                src={trigger.imageUrl}
+                alt="Info"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
+          )}
+
           {trigger.socialProof && (
             <div className="w-full bg-gradient-to-br from-slate-50 to-white border border-slate-100 rounded-2xl p-6 shadow-sm relative overflow-hidden">
               <MessageSquareQuote className="absolute top-4 left-4 w-8 h-8 text-primary/20" />
@@ -347,6 +360,7 @@ export function QuizForm() {
                               width={300}
                               height={400}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              priority={currentStep < 3}
                             />
                             <div className="absolute bottom-0 left-0 right-0 p-3 bg-black/60 text-white flex items-center justify-between backdrop-blur-sm">
                               <span className="font-semibold text-sm sm:text-base leading-tight">{option.label}</span>

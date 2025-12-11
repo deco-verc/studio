@@ -47,12 +47,32 @@ export default function AnalisePage() {
     return () => clearTimeout(timer);
   }, []);
 
+  const plateausRef = useRef<{ start: number, end: number }[]>([]);
+
   useEffect(() => {
     if (playerContainerRef.current) {
       const iframe = playerContainerRef.current.querySelector('iframe');
       if (iframe) {
+        // Preload hint
+        const link = document.createElement('link');
+        link.rel = 'preconnect';
+        link.href = 'https://player.vimeo.com';
+        document.head.appendChild(link);
+
         const player = new Player(iframe);
         vimeoPlayerRef.current = player;
+
+        // Generate plateaus once duration is known
+        player.getDuration().then(d => {
+          const newPlateaus = [];
+          const numPlateaus = Math.floor(Math.random() * 3) + 1;
+          for (let i = 0; i < numPlateaus; i++) {
+            const startTime = (0.2 + Math.random() * 0.6) * d; // Random points between 20% and 80%
+            const duration = 0.2 + Math.random() * 0.6; // 200ms - 800ms
+            newPlateaus.push({ start: startTime, end: startTime + duration });
+          }
+          plateausRef.current = newPlateaus;
+        }).catch(e => console.error("Could not get duration:", e));
 
         // Smart Autoplay Logic
         player.ready().then(() => {
@@ -75,19 +95,56 @@ export default function AnalisePage() {
         });
 
         player.on('timeupdate', (data) => {
-          // Smart Progress: Non-linear progress to make it feel faster
-          // We map 0-100% real progress to a curve that moves faster initially
-          const realProgress = data.percent;
-          // Simple easing: fast start, slow end. 
-          // Or just standard progress but without time labels is often enough "smart" behavior for VSLs.
-          // Let's use a slight acceleration curve: p = p + (1-p)*0.1 * p
-          // Actually, let's just use real progress but styled nicely. 
-          // The "Smart" part in Vturb often implies simply hiding the total duration and using a visual bar.
-          setProgress(realProgress * 100);
+          const t_real = data.seconds;
+          const d = data.duration;
+
+          // Check plateaus
+          const inPlateau = plateausRef.current.some(p => t_real >= p.start && t_real < p.end);
+          if (inPlateau) return;
+
+          let p_vis = 0;
+          if (t_real > d * 0.9) {
+            // Catch up: interpolate from current visual pos (or 0.95) to 1.0
+            // To avoid jumps, we calculate what it *should* be.
+            // At 0.9d, we want to be at ~0.95. At 1.0d, we want 1.0.
+            const progressInFinalPhase = (t_real - (d * 0.9)) / (d * 0.1);
+            p_vis = 0.95 + (progressInFinalPhase * 0.05);
+          } else {
+            const leadFactor = 1.15;
+            const rawTarget = (t_real * leadFactor) / d;
+            p_vis = Math.min(rawTarget, 0.95);
+          }
+
+          setProgress(Math.min(p_vis * 100, 100));
         });
 
         player.on('play', () => setIsPlaying(true));
         player.on('pause', () => setIsPlaying(false));
+
+        // Auto-pause/resume on scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              player.getPaused().then(paused => {
+                if (!paused) player.pause();
+              });
+            } else {
+              // Optional: Auto-resume if it was playing before?
+              // The user said: "o vídeo pode retomar automaticamente do ponto onde parou"
+              // We'll try to play.
+              player.getPaused().then(paused => {
+                if (paused) player.play().catch(() => { });
+              });
+            }
+          });
+        }, { threshold: 0.1 });
+
+        observer.observe(playerContainerRef.current);
+
+        return () => {
+          observer.disconnect();
+          // Remove link? No need.
+        };
       }
     }
   }, []);
@@ -204,8 +261,11 @@ export default function AnalisePage() {
           {/* Smart Progress Bar */}
           <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gray-800 z-10">
             <div
-              className="h-full bg-gradient-to-r from-primary/80 to-primary shadow-[0_0_10px_rgba(var(--primary),0.5)] transition-all duration-300 ease-linear"
-              style={{ width: `${progress}%` }}
+              className="h-full bg-gradient-to-r from-primary/80 to-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]"
+              style={{
+                width: `${progress}%`,
+                transition: 'width 0.5s cubic-bezier(.2,.9,.2,1)'
+              }}
             />
           </div>
         </div>
