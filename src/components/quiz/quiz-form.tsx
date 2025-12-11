@@ -14,6 +14,7 @@ import { Loader2, MessageSquareQuote, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { gtmEvent } from '../analytics/google-tag-manager';
 import { useRouter } from 'next/navigation';
+import { trackEvent } from '@/lib/tracking-client';
 
 const smartProgress = (current: number, total: number): number => {
   const realPercentage = current / total;
@@ -206,9 +207,11 @@ export function QuizForm() {
     sessionStorage.setItem('quizAnswers', JSON.stringify(Object.values(answers).flat()));
   }, [answers]);
 
+
+
   useEffect(() => {
     // Fire quiz_start event only once on mount
-    gtmEvent('quiz_start', {
+    trackEvent('QuizStart', {
       total_questions: totalQuestions
     });
   }, []);
@@ -216,7 +219,7 @@ export function QuizForm() {
   // Track when a new question is viewed
   useEffect(() => {
     if (viewState === 'question') {
-      gtmEvent('quiz_view_step', {
+      trackEvent('QuizViewStep', {
         step_number: currentStep + 1,
         total_steps: totalQuestions,
         question_title: quizQuestions[currentStep].question
@@ -232,8 +235,14 @@ export function QuizForm() {
     } else {
       setViewState('loading');
       setAnimState('idle');
-      gtmEvent('quiz_complete', {
-        total_questions: totalQuestions
+
+      // Calculate segment based on answers (simplified logic or just pass answers)
+      // For now we just pass that they completed it
+      trackEvent('Lead', {
+        quiz_result: 'completed',
+        total_questions: totalQuestions,
+        step: 'quiz_completion',
+        segment: 'general' // You could implement logic to determine segment based on answers
       });
     }
   };

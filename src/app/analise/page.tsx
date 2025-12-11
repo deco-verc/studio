@@ -6,10 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Loader2, Volume2, VolumeX, Play, Maximize } from 'lucide-react';
 import { gtmEvent } from '@/components/analytics/google-tag-manager';
 import Player from '@vimeo/player';
-import { sendServerEvent } from '../meta-actions';
-import { v4 as uuidv4 } from 'uuid';
 import { Progress } from '@/components/ui/progress';
 import { CHECKOUT_URL } from '@/lib/config';
+import { trackEvent } from '@/lib/tracking-client';
 
 const speedOptions = [
   { label: '1x', speed: 1.0 },
@@ -18,13 +17,7 @@ const speedOptions = [
   { label: '2x', speed: 2.0 },
 ];
 
-function getCookie(name: string): string | null {
-  if (typeof document === 'undefined') return null;
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
-  return null;
-}
+
 
 export default function AnalisePage() {
   const router = useRouter();
@@ -201,26 +194,7 @@ export default function AnalisePage() {
   };
 
   const handleCtaClick = () => {
-    const eventId = uuidv4();
-    const eventName = 'InitiateCheckout';
-
-    const userData = {
-      client_ip_address: null,
-      client_user_agent: navigator.userAgent,
-      fbc: getCookie('_fbc'),
-      fbp: getCookie('_fbp'),
-      email: null,
-      phone: null,
-    };
-
-    // Send to GTM / Meta Pixel (client-side)
-    gtmEvent(eventName, {
-      eventId,
-    });
-
-    // Send to Meta CAPI (server-side)
-    sendServerEvent(eventName, eventId, userData);
-
+    trackEvent('InitiateCheckout');
     router.push('/resultado');
   };
 

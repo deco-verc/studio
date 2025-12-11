@@ -29,6 +29,10 @@ interface UserDataCAPI {
 interface CustomDataCAPI {
     value?: number;
     currency?: string;
+    content_name?: string;
+    content_ids?: string[];
+    content_type?: string;
+    custom_properties?: Record<string, any>;
 }
 
 export async function sendServerEvent(eventName: string, eventId: string, userData: UserDataCAPI, customData?: CustomDataCAPI) {
@@ -54,14 +58,14 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
             userData.fbp,
             userData.fbc
         );
-        
+
         const customDataToSend = new CustomData();
-        if (customData?.value) {
-            customDataToSend.setValue(customData.value);
-        }
-        if (customData?.currency) {
-            customDataToSend.setCurrency(customData.currency);
-        }
+        if (customData?.value) customDataToSend.setValue(customData.value);
+        if (customData?.currency) customDataToSend.setCurrency(customData.currency);
+        if (customData?.content_name) customDataToSend.setContentName(customData.content_name);
+        if (customData?.content_ids) customDataToSend.setContentIds(customData.content_ids);
+        if (customData?.content_type) customDataToSend.setContentType(customData.content_type);
+        if (customData?.custom_properties) customDataToSend.setCustomProperties(customData.custom_properties);
 
         const serverEvent = new ServerEvent()
             .setEventName(eventName)
@@ -75,7 +79,7 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
         const eventsData = [serverEvent];
         // The AdAccount ID should be prefixed with 'act_'
         const adAccount = new AdAccount('act_' + pixelId);
-        
+
         await adAccount.createEvent(eventsData);
 
         console.log(`CAPI Event '${eventName}' sent successfully with event ID: ${eventId}`);
@@ -83,7 +87,7 @@ export async function sendServerEvent(eventName: string, eventId: string, userDa
 
     } catch (error: any) {
         console.error('Error sending CAPI event:', error?.message || error);
-        if(error.isFacebookError) {
+        if (error.isFacebookError) {
             console.error('Facebook API Error details:', error.getFbError());
         }
         return { success: false, error: error.message };
