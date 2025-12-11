@@ -120,6 +120,12 @@ export default function AnalisePage() {
 
         player.on('play', () => setIsPlaying(true));
         player.on('pause', () => setIsPlaying(false));
+        player.on('ended', () => {
+          setIsVideoEnded(true);
+          if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => { });
+          }
+        });
 
         // Auto-pause/resume on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -159,12 +165,15 @@ export default function AnalisePage() {
     }
   };
 
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
+
   const handleUnmuteClick = () => {
     if (vimeoPlayerRef.current) {
       vimeoPlayerRef.current.setMuted(false);
       vimeoPlayerRef.current.setVolume(1);
       setIsMuted(false);
       setShowUnmuteOverlay(false);
+      toggleFullscreen();
     }
   }
 
@@ -236,7 +245,7 @@ export default function AnalisePage() {
             </div>
 
             {/* Smart Autoplay Overlay */}
-            {showUnmuteOverlay && (
+            {showUnmuteOverlay && !isVideoEnded && (
               <div
                 className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 cursor-pointer transition-opacity hover:bg-black/30"
                 onClick={handleUnmuteClick}
@@ -245,6 +254,22 @@ export default function AnalisePage() {
                   <VolumeX className="w-6 h-6" />
                   CLIQUE PARA ATIVAR O SOM 🔊
                 </div>
+              </div>
+            )}
+
+            {/* Video Ended Overlay */}
+            {isVideoEnded && (
+              <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm p-6 text-center animate-fade-in">
+                <h3 className="text-white text-xl md:text-2xl font-bold mb-6 leading-tight">
+                  Seu plano está pronto!
+                </h3>
+                <Button
+                  onClick={handleCtaClick}
+                  size="lg"
+                  className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white font-bold py-6 text-lg shadow-xl transform hover:scale-105 transition-all animate-bounce"
+                >
+                  VER MEU RESULTADO ➔
+                </Button>
               </div>
             )}
 
