@@ -11,9 +11,9 @@ export default function Home() {
 
   const features = [
     'Como sair da Armadilha da Indústria Alimentícia que vicia o seu paladar em açúcar',
-    'A Mentira dos Alimentos "Light e FIT" e como eles te engordam.',
+    'A mentira dos alimentos “light” e “fit” e por que muitos deles te fazem engordar',
     'A técnica simples que obriga seu corpo a usar a gordura acumulada como energia enquanto você dorme.',
-    'O Botão dentro do seu corpo que desliga a Fome',
+    'O Botão que desliga sua fome emocional.',
   ];
 
   return (
@@ -63,7 +63,7 @@ export default function Home() {
                     </Link>
                   </Button>
                   <p className="text-xs text-muted-foreground mt-2 px-4">
-                    Esse teste é feito apenas uma vez por pessoa. Responda o teste para ver se você está apta a acessar um conteúdo exclusivo.
+                    🔒 Esse teste libera um conteúdo que não fica disponível publicamente. Apenas quem completa o questionário tem acesso ao protocolo.
                   </p>
                 </div>
               </div>
@@ -75,8 +75,7 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
               <div className="space-y-3">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">+10516 Corpos Transformados</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Veja o que aconteceu com mulheres que estavam na mesma situação que você.</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">Mais de 10.516 mulheres seguiram esse mesmo protocolo a maioria começou exatamente onde você está agora.</h2>
               </div>
             </div>
             <SocialProofCarousel />

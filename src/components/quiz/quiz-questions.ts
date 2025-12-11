@@ -74,7 +74,7 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Poderia ser melhor", value: "Poderia ser melhor", icon: "SmilePlus" },
     ],
     trigger: {
-      text: "💡 92% das mulheres estão na mesma situação, completamente insatisfeitas. Mas esse é o primeiro passo, fique até o final para mudar essa realidade."
+      text: "92% das mulheres que completaram este teste também estavam insatisfeitas — e todas descobriram exatamente onde estavam errando. Continue."
     }
   },
   {
@@ -188,7 +188,7 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Jejum intermitente", value: "Jejum intermitente", icon: "Clock" },
     ],
     trigger: {
-      text: "",
+      text: "Esses métodos acabam desajustando seu metabolismo e te prendendo em um ciclo de engorda e emagrece.",
       graph: {
         title: "Comparação de Eficiência:",
         type: 'comparison',
@@ -196,7 +196,7 @@ export const quizQuestions: QuizQuestion[] = [
           { name: 'Tradicionais', value: 20, label: 'Falhos', type: 'negative' },
           { name: 'Protocolo', value: 95, label: 'Eficiente', type: 'positive' }
         ],
-        legend: "Enquanto métodos tradicionais falham em 80% dos casos, nosso protocolo age na raiz do problema."
+        legend: "Os métodos comuns destroem seu metabolismo e te prendem no efeito sanfona. O nosso protocolo reeduca o seu paladar e libera o seu corpo para emagrecer de forma contínua."
       }
     }
   },

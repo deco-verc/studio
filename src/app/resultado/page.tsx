@@ -155,7 +155,7 @@ function ResultsPageClient() {
                                         </div>
                                     </div>
                                     <p className="text-center text-sm text-red-600 font-medium mt-3 bg-red-50 py-2 rounded-lg">
-                                        ⚠️ Seu metabolismo está operando com apenas 30% da capacidade.
+                                        Seu corpo está operando em modo de emergência. Suas respostas indicam que o seu metabolismo está operando em torno de 30% do ideal.
                                     </p>
                                 </div>
 
@@ -391,7 +391,7 @@ function ResultsPageClient() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-muted-foreground mb-2">A lista de compras secreta com alimentos acessíveis que realmente ajudam a emagrecer.</p>
+                                    <p className="text-muted-foreground mb-2">O manual que revela quais “alimentos saudáveis” sabotam sua queima de gordura em até 48h.</p>
                                     <p className="text-sm font-bold text-gray-400 line-through">Valor: R$ 19,90</p>
                                 </CardContent>
                             </Card>
@@ -401,11 +401,11 @@ function ResultsPageClient() {
                                 </div>
                                 <CardHeader>
                                     <CardTitle className="text-xl font-bold text-primary flex items-start gap-2">
-                                        <Gift className="w-6 h-6 shrink-0" /> Antídoto de Emergência
+                                        <Gift className="w-6 h-6 shrink-0" /> Antídoto de Emergência (Anti-Doce)
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-muted-foreground mb-2">3 bebidas naturais para limpar seus receptores de açúcar e cortar a vontade de doce.</p>
+                                    <p className="text-muted-foreground mb-2">3 bebidas naturais que reduzem a vontade de comer doce em até 15 minutos.</p>
                                     <p className="text-sm font-bold text-gray-400 line-through">Valor: R$ 27,90</p>
                                 </CardContent>
                             </Card>
@@ -419,7 +419,7 @@ function ResultsPageClient() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-muted-foreground mb-2">Doces que dão prazer sem disparar a insulina.</p>
+                                    <p className="text-muted-foreground mb-2">Doces deliciosos que dão o prazer que seu cérebro pede, mas sem engordar.</p>
                                     <p className="text-sm font-bold text-gray-400 line-through">Valor: R$ 17,90</p>
                                 </CardContent>
                             </Card>
@@ -433,7 +433,7 @@ function ResultsPageClient() {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <p className="text-muted-foreground mb-2">Substituições baratas com o mesmo efeito desinflamatório.</p>
+                                    <p className="text-muted-foreground mb-2">Como montar refeições anti-inflamatórias gastando MUITO MENOS do que você gasta hoje.</p>
                                     <p className="text-sm font-bold text-gray-400 line-through">Valor: R$ 9,90</p>
                                 </CardContent>
                             </Card>
@@ -514,6 +514,14 @@ function ResultsPageClient() {
                                                 <span className="text-4xl md:text-5xl font-bold mt-2">,90</span>
                                             </div>
                                             <p className="text-sm text-gray-500">ou 5x de R$ 10,36</p>
+                                        </div>
+
+                                        <div className="bg-red-50 border border-red-200 p-4 rounded-lg text-center">
+                                            <p className="text-sm text-red-800 font-medium">
+                                                Atenção: Seu diagnóstico e bônus foram reservados por apenas 15 minutos.
+                                                <br />
+                                                Depois disso, o acesso pode expirar automaticamente.
+                                            </p>
                                         </div>
 
                                         <Link href={checkoutUrl} onClick={() => handlePurchaseClick('main_offer')}>
