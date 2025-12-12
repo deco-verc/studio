@@ -21,6 +21,51 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                window.dataLayer = window.dataLayer || [];
+
+                function getUrlParam(name) {
+                  var results = new RegExp('[\\\\?&]' + name + '=([^&#]*)').exec(window.location.search);
+                  return results ? decodeURIComponent(results[1].replace(/\\+/g, ' ')) : undefined;
+                }
+
+                var utmKeys = [
+                  'utm_source', 'utm_medium', 'utm_campaign', 
+                  'utm_content', 'utm_term', 'utm_adset', 'utm_ad'
+                ];
+                
+                var utmData = {};
+                var hasUtm = false;
+
+                utmKeys.forEach(function(key) {
+                  var value = getUrlParam(key);
+                  if (value) {
+                    utmData[key] = value;
+                    hasUtm = true;
+                  }
+                });
+
+                if (hasUtm) {
+                  utmData.event = 'utm_captured';
+                  window.dataLayer.push(utmData);
+                }
+
+                window.sendQuizData = function(result, pain, age, goal) {
+                  window.dataLayer.push({
+                    event: 'quiz_submitted',
+                    quiz_result: result,
+                    pain_level: pain,
+                    age_range: age,
+                    goal: goal
+                  });
+                };
+              })();
+            `,
+          }}
+        />
         <Script id="google-tag-manager-head" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -57,7 +102,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-        height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
+          height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
         <Suspense>
           <GoogleTagManager gtmId={GTM_ID} />
         </Suspense>
