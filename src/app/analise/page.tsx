@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Loader2, Volume2, VolumeX, Play, Maximize } from 'lucide-react';
-import { gtmEvent } from '@/components/analytics/google-tag-manager';
+import { sendGAEvent } from '@/lib/analytics';
 import Player from '@vimeo/player';
 import { Progress } from '@/components/ui/progress';
 import { CHECKOUT_URL } from '@/lib/config';
@@ -34,7 +34,7 @@ export default function AnalisePage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowButton(true);
-      gtmEvent('cta_button_show', { page_path: '/analise' });
+      sendGAEvent('cta_button_show', { page_path: '/analise' });
     }, 60000); // 1 minuto
 
     return () => clearTimeout(timer);
@@ -186,7 +186,7 @@ export default function AnalisePage() {
     if (vimeoPlayerRef.current) {
       vimeoPlayerRef.current.setPlaybackRate(speed).then(() => {
         setCurrentSpeed(speed);
-        gtmEvent('video_speed_change', { speed });
+        sendGAEvent('video_speed_change', { speed });
       }).catch(error => {
         console.error(`Error setting playback rate to ${speed}x:`, error);
       });

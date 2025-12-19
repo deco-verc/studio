@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { CheckCircle2, XCircle, Flame, Brain, Utensils, Leaf, ShieldCheck, Gift, AlertTriangle, Check, Zap, Star, Lock, CreditCard } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay"
-import { gtmEvent } from '@/components/analytics/google-tag-manager';
+import { sendGAEvent } from '@/lib/analytics';
 import { useSearchParams } from 'next/navigation';
 import Loading from '../loading';
 
@@ -77,7 +77,7 @@ function ResultsPageClient() {
         setToday(formattedDate);
 
         // Fire view event
-        gtmEvent('sales_page_view', {
+        sendGAEvent('sales_page_view', {
             page_title: 'Resultado - Protocolo'
         });
 
@@ -113,7 +113,7 @@ function ResultsPageClient() {
     const checkoutUrl = "https://www.ggcheckout.com/checkout/v2/XbM3xPUK4EeHhHwn4Kzs";
 
     const handlePurchaseClick = (location: string) => {
-        gtmEvent('sales_cta_click', {
+        sendGAEvent('sales_cta_click', {
             value: 47.90,
             currency: 'BRL',
             location: location
