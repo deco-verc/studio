@@ -1,8 +1,9 @@
 'use client';
 
 import { v4 as uuidv4 } from 'uuid';
-import { gtmEvent } from '@/components/analytics/google-tag-manager';
+
 import { sendServerEvent } from '@/app/meta-actions';
+import { sendGAEvent } from './analytics';
 
 // Helper to get cookies
 function getCookie(name: string): string | null {
@@ -41,9 +42,10 @@ export async function trackEvent(eventName: string, params: Record<string, any> 
         fbc,
     };
 
-    // 1. Client-side (GTM/Pixel)
-    // We pass everything to GTM. The GTM tags should be configured to map these to Pixel parameters.
-    gtmEvent(eventName, eventData);
+    // 1. Client-side (GA)
+    sendGAEvent(eventName, eventData);
+
+
 
     // 2. Server-side (CAPI)
     // We need to separate UserData from CustomData

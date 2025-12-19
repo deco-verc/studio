@@ -12,7 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import * as LucideIcons from 'lucide-react';
 import { Loader2, MessageSquareQuote, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { gtmEvent } from '../analytics/google-tag-manager';
+import { sendGAEvent } from '@/lib/analytics';
 import { useRouter } from 'next/navigation';
 import { trackEvent } from '@/lib/tracking-client';
 
@@ -274,7 +274,7 @@ export function QuizForm() {
     const responseArray = Array.isArray(value) ? value : [value];
     setAnswers(prev => ({ ...prev, [currentStep]: responseArray }));
 
-    gtmEvent('quiz_answer_step', {
+    sendGAEvent('quiz_answer_step', {
       step_number: currentStep + 1,
       total_steps: totalQuestions,
       question_title: currentQuestion.question,

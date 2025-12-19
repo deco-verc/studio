@@ -23,10 +23,9 @@ export async function getAnalysisResults(answers: string[]) {
     console.error('Error processing quiz analysis:', error);
     // Propagate a more informative error message
     const errorMessage = error instanceof Error ? error.message : 'Failed to generate analysis. Please try again.';
-    gtmEvent('analysis_failed', { error: errorMessage });
+
     return { error: `Análise falhou: ${errorMessage}` };
   }
 }
 
-// Helper to pass GTM events from server actions
-import { gtmEvent } from '@/components/analytics/google-tag-manager';
+

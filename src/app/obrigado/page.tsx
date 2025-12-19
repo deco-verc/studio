@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { gtmEvent } from '@/components/analytics/google-tag-manager';
+
 import { sendServerEvent } from '../meta-actions';
 import { v4 as uuidv4 } from 'uuid';
 import { CheckCircle } from 'lucide-react';
@@ -35,11 +35,7 @@ export default function ObrigadoPage() {
       phone: null, // Populate if you get it from checkout/user
     };
 
-    // 1. Send to GTM / Meta Pixel (client-side)
-    gtmEvent(eventName, {
-      ...purchaseData,
-      eventId,
-    });
+
 
     // 2. Send to Meta CAPI (server-side)
     sendServerEvent(eventName, eventId, userData, purchaseData);
